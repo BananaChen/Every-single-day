@@ -41,7 +41,7 @@ app.get('/get_signup', function(req, res) {
   var signup_name = req.query.name_signup;
   var signup_account = req.query.account_signup;
   var signup_password = req.query.password_signup;
-  var signup_check = req.query.password_again;
+  var signup_passcheck = req.query.password_again;
   var signup_email = req.query.email_signup;
   var insert = "INSERT INTO `wp2017_groupc`.`user` (name, account, password, email) VALUES(?,?,?,?)";
   var check_signup = "SELECT * FROM `wp2017_groupc`.`user` WHERE account = ?";
@@ -61,8 +61,11 @@ app.get('/get_signup', function(req, res) {
           console.log("insert failed");
         }
         else{
-          res.redirect('home.html')
-          console.log(rows[signup_account].account);
+          if(signup_password == signup_passcheck){
+            res.redirect('home.html')
+            console.log(rows[signup_account].account);
+          }
+          else res.send(`Your password is wrong`);
         }
       });
     }
