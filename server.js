@@ -1,6 +1,8 @@
 const express = require('express');
 const app = express();
 const port = 2266;
+const bodyParser = require('body-parser');
+const urlencodedParser = bodyParser.urlencoded({extended:false});
 
 app.use(express.static(__dirname+'/public'));
 
@@ -23,20 +25,26 @@ connection.connect();
 app.get('/get', function(req, res) {  
   var useraccount = req.query.account;
   var userpassword = req.query.password;
+  var checkaccount = 0;
   var check = "SELECT * FROM `wp2017_groupc`.`user` WHERE account = ? AND password = ?";
   connection.query(check, [useraccount, userpassword], function (err, rows, result){
-    console.log(rows);
     if (err){
       console.log("check failed!");
     }
     else{
       for(useraccount in rows){
-        console.log(rows[useraccount].account);
-        res.redirect('home.html')
+        checkaccount = 1;
       }
     }
+    if(checkaccount == 1){ 
+        console.log(rows[useraccount].account);
+        res.redirect('home.html')
+    }
+    else{
+      res.redirect('form_signup.html')
+    }
   });
-})
+});
 app.get('/get_signup', function(req, res) {  
   var signup_name = req.query.name_signup;
   var signup_account = req.query.account_signup;
@@ -73,7 +81,7 @@ app.get('/get_signup', function(req, res) {
       res.send(`The account has already existed`);
     }
   });
-})
+});
 //選擇
 /*
 var sel = "SELECT * FROM `wp2017_groupc`.`user` WHERE account='0001'";
