@@ -25,6 +25,7 @@ app.get('/get', function(req, res) {
   var userpassword = req.query.password;
   var check = "SELECT * FROM `wp2017_groupc`.`user` WHERE account = ? AND password = ?";
   connection.query(check, [useraccount, userpassword], function (err, rows, result){
+    console.log(rows);
     if (err){
       console.log("check failed!");
     }
@@ -36,7 +37,6 @@ app.get('/get', function(req, res) {
     }
   });
 })
-
 app.get('/get_signup', function(req, res) {  
   var signup_name = req.query.name_signup;
   var signup_account = req.query.account_signup;
@@ -44,17 +44,33 @@ app.get('/get_signup', function(req, res) {
   var signup_check = req.query.password_again;
   var signup_email = req.query.email_signup;
   var insert = "INSERT INTO `wp2017_groupc`.`user` (name, account, password, email) VALUES(?,?,?,?)";
-  connection.query(insert,[signup_name, signup_account, signup_password, signup_email], function (err, result){
+  var check_signup = "SELECT * FROM `wp2017_groupc`.`user` WHERE account = ?";
+  var newaccount = 0;
+  connection.query(check_signup, [signup_account], function (err, rows, result){
     if (err){
-      console.log("insert failed!");
+      console.log("select failed");
     }
     else{
-      res.redirect('home.html')
-      console.log("1 account insert");
+      for(useraccount in rows){
+        newaccount = 1;
+      }
+    }
+    if(newaccount == 0){
+      connection.query(insert,[signup_name, signup_account, signup_password, signup_email], function (err, result){
+        if (err){
+          console.log("insert failed");
+        }
+        else{
+          res.redirect('home.html')
+          console.log(rows[signup_account].account);
+        }
+      });
+    }
+    else{
+      res.send(`The account has already existed`);
     }
   });
 })
-
 //選擇
 /*
 var sel = "SELECT * FROM `wp2017_groupc`.`user` WHERE account='0001'";
@@ -70,7 +86,7 @@ connection.query(sel, (err,result) => {//result??
 */
 //delete data in database
 /*
-var del = "DELETE FROM `wp2017_groupc`.`user` WHERE account = '0000'";
+var del = "DELETE FROM `wp2017_groupc`.`user` WHERE account = 'a'";
 connection.query(del, function (err, result) {
   if (err){
     console.log('delete failed!');
