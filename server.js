@@ -23,9 +23,9 @@ const connection = mysql.createConnection({
 
 connection.connect();
 
-app.get('/get', function(req, res) {  
-  var useraccount = req.query.account;
-  var userpassword = req.query.password;
+app.post('/post',urlencodedParser, function(req, res) {  
+  var useraccount = req.body.account;
+  var userpassword = req.body.password;
   var md5 = crypto.createHash('md5');
   userpassword = md5.update(userpassword).digest('hex');//加密密碼
   var checkaccount = 0;
@@ -51,16 +51,16 @@ app.get('/get', function(req, res) {
     }
   });
 });
-app.get('/get_signup', function(req, res) {  
-  var signup_name = req.query.name_signup;
-  var signup_account = req.query.account_signup;
-  var signup_password = req.query.password_signup;
-  var signup_passcheck = req.query.password_again;
+app.post('/post_signup',urlencodedParser, function(req, res) {  
+  var signup_name = req.body.name_signup;
+  var signup_account = req.body.account_signup;
+  var signup_password = req.body.password_signup;
+  var signup_passcheck = req.body.password_again;
   var samepass = 0;
   if(signup_password == signup_passcheck) samepass = 1;
   var md5 = crypto.createHash('md5');
   signup_password = md5.update(signup_password).digest('hex');//加密密碼
-  var signup_email = req.query.email_signup;
+  var signup_email = req.body.email_signup;
   var insert = "INSERT INTO `wp2017_groupc`.`user` (name, account, password, email) VALUES(?,?,?,?)";
   var check_signup = "SELECT * FROM `wp2017_groupc`.`user` WHERE account = ?";
   var newaccount = 0;
@@ -107,7 +107,7 @@ connection.query(sel, (err,result) => {//result??
 */
 //delete data in database
 /*
-var del = "DELETE FROM `wp2017_groupc`.`user` WHERE account = 's'";
+var del = "DELETE FROM `wp2017_groupc`.`user` WHERE account = '666'";
 connection.query(del, function (err, result) {
   if (err){
     console.log('delete failed!');
