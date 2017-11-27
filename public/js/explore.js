@@ -1,19 +1,11 @@
 $(document).ready(function() {
-/*
+
   $('#view-more').click(function(){
     $.ajax({
       method: "GET",
-      url: "database.txt",
+      url: "view_more",
       success: function(data) {
-        //$("#content").text(data);
-        $(".shit div").append(" <b>Appended text</b>.");
-        console.log(data);
-      }
-    });
-  });
-  */
-  $('#view-more').click(function(){
-    var html =   '<br><br><br>' +
+        var html =   '<br><br><br>' +
                      "<div class='container'>" +
                      "<div class='row'>" +
                      "<div class='col-md-3 col-sm-12'>" +
@@ -57,8 +49,11 @@ $(document).ready(function() {
                      '</div>' +
                      '</div>' +
                      '</div>';
-    $(html).hide().appendTo("#portfolio").fadeIn(1000);
+        $(html).hide().appendTo("#portfolio").fadeIn(1000);
+      }
+    });
   });
+
 //infinite scroll
 
 
