@@ -136,14 +136,15 @@ app.post('/post',urlencodedParser,function(req, res){
 
 //view more
 app.post('/view_more',urlencodedParser, function(req, res) {
-  var rand_pick = "SELECT name FROM `wp2017_groupc`.`user` WHERE name = 'yiju'";
+  var r = Math.floor((Math.random() * 6));
+  var rand_pick = "SELECT name FROM `wp2017_groupc`.`user`";
   connection.query(rand_pick, (err,result) => { //checking function
     if (err) {
       throw err;
     }
     else {
-      console.log(result);
-      res.status(200).send(result[0].name);
+      //console.log(result);
+      res.status(200).send(result[r].name);
     }
   });
 });
@@ -152,7 +153,7 @@ app.post('/view_more',urlencodedParser, function(req, res) {
 //選擇
 /*
 var sel = "SELECT * FROM `wp2017_groupc`.`user` WHERE account='0001'";
-connection.query(sel, (err,result) => {//result?? yes, result. function (err, result, fields) ....
+connection.query(sel, (err,result) => {//result?? yes!!
     if (err){
       console.log('selete failed!');
     }
