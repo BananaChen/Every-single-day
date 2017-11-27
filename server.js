@@ -92,6 +92,49 @@ app.post('/post_signup',urlencodedParser, function(req, res) {
     }
   });
 });
+
+//facebook log in
+app.post('/post',urlencodedParser,function(req, res){
+
+    var fb_id =` ${req.body.id}`;   
+    var fb_name =` ${req.body.name}`;
+    console.log(fb_name);
+    var insert = "INSERT INTO `wp2017_groupc`.`user_fb` (ID, NAME) VALUES(?,?)"; 
+    var checkaccount = 0;
+    var check = "SELECT *FROM `wp2017_groupc`.`user_fb` WHERE ID = ?";
+    connection.query(check, [fb_id], function(err, rows, result){
+        if (err){
+            console.log("check failed");
+        }
+        else{
+            for(fb_id in rows){
+                checkaccount = 1;
+                //res.redirect('http://google.com.tw')
+                //res.redirect('home.html')
+
+            }
+        }
+        if(checkaccount == 0){
+             connection.query(insert,[fb_id,fb_name], function (err, result){
+                if (err){
+                    console.log("insert failed!");
+                }
+                else{ 
+                        console.log("1 account insert");
+                        //res.redirect('home.html')
+                        res.redirect('http://luffy.ee.ncku.edu.tw:2001/home.html')
+
+                    }
+                });
+        }
+        else {
+                console.log("already there!");
+                res.redirect('http://luffy.ee.ncku.edu.tw:2001/home.html');
+        }
+    });
+});
+
+
 //選擇
 /*
 var sel = "SELECT * FROM `wp2017_groupc`.`user` WHERE account='0001'";
