@@ -135,16 +135,20 @@ app.post('/post',urlencodedParser,function(req, res){
 });
 
 //view more
+var i = -1;
 app.post('/view_more',urlencodedParser, function(req, res) {
-  var r = Math.floor((Math.random() * 6));
+  //var r = Math.floor((Math.random() * 6));
   var rand_pick = "SELECT name FROM `wp2017_groupc`.`user`";
   connection.query(rand_pick, (err,result) => { //checking function
     if (err) {
       throw err;
     }
     else {
-      //console.log(result);
-      res.status(200).send(result[r].name);
+      if (i <= 5) { // i <= array size
+        //console.log();
+        i=i+1;
+        res.status(200).send(result[i].name);
+      }
     }
   });
 });
