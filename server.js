@@ -128,8 +128,8 @@ app.post('/post_fb',urlencodedParser,function(req, res){
         else{
             for(fb_id in rows){
                 checkaccount = 1;
-                //res.redirect('http://google.com.tw')
-                //res.redirect('home.html')
+                res.redirect('http://google.com.tw')
+                //res.redirect('home.html');
 
             }
         }
@@ -141,7 +141,8 @@ app.post('/post_fb',urlencodedParser,function(req, res){
                 else{ 
                         console.log("1 account insert");
                         //res.redirect('home.html')
-                        res.redirect('http://luffy.ee.ncku.edu.tw:2266/home.html')
+                        //res.redirect('http://luffy.ee.ncku.edu.tw:2266/home.html')
+                        res.redirect('person_info.html')
 
                     }
                 });
