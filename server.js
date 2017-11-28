@@ -94,7 +94,7 @@ app.post('/post_signup',urlencodedParser, function(req, res) {
 });
 
 //facebook log in
-app.post('/post',urlencodedParser,function(req, res){
+app.post('/post_fb',urlencodedParser,function(req, res){
 
     var fb_id =` ${req.body.id}`;   
     var fb_name =` ${req.body.name}`;

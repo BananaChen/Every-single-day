@@ -475,7 +475,7 @@ name = response.name;
             console.log('stoername'+name);
             $.ajax({
                     method: "post",
-                    url:'/post',
+                    url:'/post_fb',
                     data: {id: s,name: name},
                     success: function(data) {
                         console.log('ajax'+data);
