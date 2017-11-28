@@ -82,7 +82,7 @@ app.post('/post_signup',urlencodedParser, function(req, res) {
             console.log("insert failed");
           }
           else{
-            res.redirect('home.html')
+            res.redirect('person_info.html')
             console.log(signup_account);
           }
         });
@@ -100,8 +100,8 @@ app.post('/post_info',urlencodedParser, function(req, res) {
   var p_birthday = req.body.p_birthday;
   var p_department = req.body.p_department;
   var p_hobby = req.body.p_hobby;
-  var p_insert = "INSERT INTO `wp2017_groupc`.`person_information` (name, birthday, department, hobb
-  connection.query(p_insert, [p_name, p_birthday,p_department, p_hobby], function (err, rows, result
+  var p_insert = "INSERT INTO `wp2017_groupc`.`person_information` (name, birthday, department, hobby) VALUES(?,?,?,?)";
+  connection.query(p_insert, [p_name, p_birthday,p_department, p_hobby], function (err, rows, result){
     if (err){
       console.log("select failed");
     }
