@@ -14,15 +14,14 @@ $(document).ready(function() {
           <div class="wow bounceInUp" data-wow-delay="0.1s">
             <div class="col-md-2 col-sm-12">
               <div class="section-title">
-                <h2 class="head-title">
+                <h6>
                 `
                 +
                 data
                 +
                 `
-                </h2>
+                </h6>
                 <img src="https://i.imgur.com/xdGPi1p.png" alt="" class="img-responsive">
-                <p class="sec-para">Maybe some bio here? </p>
               </div>
             </div>
               <div class="col-md-10 col-sm-12">
