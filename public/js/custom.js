@@ -67,7 +67,7 @@ controlNav: true
 });
 
 //owl carousel
-$('#owl-works').owlCarousel({
+$('.owl-carousel').owlCarousel({
 items : 4,
 itemsDesktop : [1199,5],
 itemsDesktopSmall : [980,5],

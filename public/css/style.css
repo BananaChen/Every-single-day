@@ -1989,6 +1989,13 @@ a.btn:focus{
 
 }
 @media (max-width:768px) {
+  .video-caption h1 {
+    font-size: 25px;
+  }
+  #intro.home-video .overlay {
+    padding : 7% 0;
+  }
+
 	#navigation {
 		padding: 20px 0;
 	}
