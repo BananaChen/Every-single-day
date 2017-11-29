@@ -1,24 +1,20 @@
 $(document).ready(function() {
-/*
+
   $('#view-more').click(function(){
     $.ajax({
-      method: "GET",
-      url: "database.txt",
+      method: "POST",
+      url: "view_more",
       success: function(data) {
-        //$("#content").text(data);
-        $(".shit div").append(" <b>Appended text</b>.");
-        console.log(data);
-      }
-    });
-  });
-  */
-  $('#view-more').click(function(){
+      
+
+  //$('#view-more').click(function(){
     var html =
     `
       <div class="row" style="display: none;">
           <div class="wow bounceInUp" data-wow-delay="0.1s">
             <div class="col-md-2 col-sm-12">
               <div class="section-title">
+                <h2 class="head-title">data</h2>
                 <img src="https://i.imgur.com/xdGPi1p.png" alt="" class="img-responsive">
                 <p class="sec-para">Maybe some bio here? </p>
               </div>
