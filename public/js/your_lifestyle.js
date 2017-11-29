@@ -1,4 +1,4 @@
-$("#uploadImage").change(function(){
+/*$("#uploadImage").change(function(){
   readImage( this );
 });
 
@@ -11,4 +11,4 @@ function readImage(input) {
     };
     FR.readAsDataURL( input.files[0] );
   }
-}
+}*/
