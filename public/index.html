@@ -75,9 +75,9 @@
 </div>
 <div class="margintop-30">
 <!--a href="home.html" class="btn btn-skinfb" class="fb-login-button" style="width: 250px;height: 35px;font-size: 15px">Log In With Facebook</a-->
-<fb:login-button scope="public_profile,email" onlogin="checkLoginState();" size="xlarge">Log In With Facebook                                 
-</fb:login-button>
-
+<!--fb:login-button scope="public_profile,email" onlogin="checkLoginState();" style="width: 700px !important">Log In With Facebook                                 
+</fb:login-button-->
+<input type='button' scope="public_profile,email" value='Log In With Facebook' onclick="checkLoginState();" class="btn btn-skinfb" style="width: 250px;height: 35px;font-size: 15px"/ >
 
 </div>
 <div class="margintop-30">
@@ -402,7 +402,7 @@ function statusChangeCallback(response) {
         // Logged into your app and Facebook.
         var ID = response.authResponse.userID
             testAPI(ID);
-        Storeid(ID);
+            Storeid(ID);
         //    Storename();
 } else {
         // The person is not logged into your app or we are unable to tell.
@@ -415,8 +415,16 @@ function statusChangeCallback(response) {
 // Button.  See the onlogin handler attached to it in the sample
 // code below.
 function checkLoginState() {
+    console.log("in");
     FB.getLoginStatus(function(response) {
-            statusChangeCallback(response);
+            if(response.authResponse){
+                statusChangeCallback(response);
+            }
+            else{
+                FB.login(function(response){
+                    console.log("ddddd");
+                });
+            }
             });
 }
 
@@ -457,6 +465,8 @@ FB.getLoginStatus(function(response) {
  }(document, 'script', 'facebook-jssdk'));
 // Here we run a very simple test of the Graph API after login is
 // successful.  See statusChangeCallback() for when this call is made.
+
+
 function testAPI(s) {
     console.log('Welcome!  Fetching your information.... ');
     FB.api('/me', function(response) {
@@ -472,11 +482,11 @@ function Storeid(s) {
         console.log(s);
         var name;
         FB.api('/me', function(response) {                 
-name = response.name;
+            name = response.name;
             console.log('stoername'+name);
             $.ajax({
                     method: "post",
-                    url:'/post',
+                    url:'/post_fb',
                     data: {id: s,name: name},
                     success: function(data) {
                         console.log('ajax'+data);
@@ -494,8 +504,8 @@ name = response.name;
             the FB.login() function when clicked.
             -->
 
-            <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
-            </fb:login-button>
+            <!--fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
+            </fb:login-button-->
 
             <div id="status">
             </div>

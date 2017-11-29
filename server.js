@@ -23,6 +23,7 @@ const connection = mysql.createConnection({
 
 connection.connect();
 
+//log in
 app.post('/post',urlencodedParser, function(req, res) {  
   var useraccount = req.body.account;
   var userpassword = req.body.password;
@@ -51,6 +52,7 @@ app.post('/post',urlencodedParser, function(req, res) {
     }
   });
 });
+//sign up
 app.post('/post_signup',urlencodedParser, function(req, res) {  
   var signup_name = req.body.name_signup;
   var signup_account = req.body.account_signup;
@@ -80,7 +82,7 @@ app.post('/post_signup',urlencodedParser, function(req, res) {
             console.log("insert failed");
           }
           else{
-            res.redirect('home.html')
+            res.redirect('person_info.html')
             console.log(signup_account);
           }
         });
@@ -92,9 +94,26 @@ app.post('/post_signup',urlencodedParser, function(req, res) {
     }
   });
 });
+//person_information
+app.post('/post_info',urlencodedParser, function(req, res) {
+  var p_name = req.body.p_name;
+  var p_birthday = req.body.p_birthday;
+  var p_department = req.body.p_department;
+  var p_hobby = req.body.p_hobby;
+  var p_insert = "INSERT INTO `wp2017_groupc`.`person_information` (name, birthday, department, hobby) VALUES(?,?,?,?)";
+  connection.query(p_insert, [p_name, p_birthday,p_department, p_hobby], function (err, rows, result){
+    if (err){
+      console.log("select failed");
+    }
+    else{
+      res.redirect('home.html')
+      console.log(p_name);
+    }
+  });
+});
 
 //facebook log in
-app.post('/post',urlencodedParser,function(req, res){
+app.post('/post_fb',urlencodedParser,function(req, res){
 
     var fb_id =` ${req.body.id}`;   
     var fb_name =` ${req.body.name}`;
@@ -109,8 +128,8 @@ app.post('/post',urlencodedParser,function(req, res){
         else{
             for(fb_id in rows){
                 checkaccount = 1;
-                //res.redirect('http://google.com.tw')
-                //res.redirect('home.html')
+                res.redirect('http://google.com.tw')
+                //res.redirect('home.html');
 
             }
         }
@@ -122,7 +141,8 @@ app.post('/post',urlencodedParser,function(req, res){
                 else{ 
                         console.log("1 account insert");
                         //res.redirect('home.html')
-                        res.redirect('http://luffy.ee.ncku.edu.tw:2266/home.html')
+                        //res.redirect('http://luffy.ee.ncku.edu.tw:2266/home.html')
+                        res.redirect('person_info.html')
 
                     }
                 });
