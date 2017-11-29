@@ -2,7 +2,7 @@ $(document).ready(function() {
 
   $('#view-more').click(function(){
     $.ajax({
-      method: "GET",
+      method: "POST",
       url: "view_more",
       success: function(data) {
         var html =   '<br><br><br>' +
@@ -10,7 +10,9 @@ $(document).ready(function() {
                      "<div class='row'>" +
                      "<div class='col-md-3 col-sm-12'>" +
                      "<div class='section-title'>" +
-                     '<h2 class="head-title">Your Name</h2>' +
+                     '<h2 class="head-title">' +
+                     data + //is this correct?
+                     '</h2>' +
                      '<img src="https://i.imgur.com/xdGPi1p.png" alt="" class="img-responsive">' +
                      '<p class="sec-para">Maybe some bio here? (livestyle or anythign else)</p>' +
                      '</div>' +
