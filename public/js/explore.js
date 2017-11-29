@@ -10,6 +10,7 @@ $(document).ready(function() {
   //$('#view-more').click(function(){
     var html =
     `
+    <br><br><br>    
       <div class="row" style="display: none;">
           <div class="wow bounceInUp" data-wow-delay="0.1s">
             <div class="col-md-2 col-sm-12">
