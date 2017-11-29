@@ -163,7 +163,7 @@ app.post('/post_fb',urlencodedParser,function(req, res){
     });
 });
 
-//view more
+//view more //when refresh the pages, how do we reload this?
 var i = -1;
 app.post('/view_more',urlencodedParser, function(req, res) {
   //var r = Math.floor((Math.random() * 6));
