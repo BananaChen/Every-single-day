@@ -403,8 +403,10 @@ function statusChangeCallback(response) {
             testAPI(ID);
             Storeid(ID);
         //    Storename();
-} else {
+    } 
+    else {
         // The person is not logged into your app or we are unable to tell.
+        console.log("didn't log in");
         document.getElementById('status').innerHTML = 'Please log ' +
             'into this app.';
     }
@@ -422,19 +424,22 @@ function checkLoginState() {
             else{
                 FB.login(function(response){
                     console.log("ddddd");
+                    FB.getLoginStatus(function(response) {
+                        statusChangeCallback(response);
+                    });
                 });
             }
             });
 }
 
 window.fbAsyncInit = function() {       
-FB.init({
-appId      : '520313951662227',
-cookie     : true,  // enable cookies to allow the server to access 
-// the session
-xfbml      : true,  // parse social plugins on this page
-version    : 'v2.8' // use graph api version 2.8
-});
+    FB.init({
+        appId      : '520313951662227',
+        cookie     : true,  // enable cookies to allow the server to access 
+        // the session
+        xfbml      : true,  // parse social plugins on this page
+        version    : 'v2.8' // use graph api version 2.8
+    });
 
 // Now that we've initialized the JavaScript SDK, we call 
 // FB.getLoginStatus().  This function gets the state of the
@@ -448,19 +453,21 @@ version    : 'v2.8' // use graph api version 2.8
 //
 // These three cases are handled in the callback function.
 
+/*once load the web seeing u wheather log in facebook in your computer
 FB.getLoginStatus(function(response) {
         statusChangeCallback(response);
         });
-
+*/
 };
 
 // Load the SDK asynchronously
 (function(d, s, id) {
- var js, fjs = d.getElementsByTagName(s)[0];
- if (d.getElementById(id)) return;
- js = d.createElement(s); js.id = id;
- js.src = "//connect.facebook.net/en_US/sdk.js";
- fjs.parentNode.insertBefore(js, fjs);
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) 
+        return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js";
+    fjs.parentNode.insertBefore(js, fjs);
  }(document, 'script', 'facebook-jssdk'));
 // Here we run a very simple test of the Graph API after login is
 // successful.  See statusChangeCallback() for when this call is made.
@@ -489,6 +496,12 @@ function Storeid(s) {
                     data: {id: s,name: name},
                     success: function(data) {
                         console.log('ajax'+data);
+                       if(data==0){
+                            window.location.href = 'http://luffy.ee.ncku.edu.tw:2001/person_info.html';
+                       }
+                       else if(data==1){
+                            window.location.href = 'http://luffy.ee.ncku.edu.tw:2001/home.html';
+                       }
                     }
                 });
         
