@@ -12,3 +12,9 @@ function readImage(input) {
     FR.readAsDataURL( input.files[0] );
   }
 }*/
+
+function getid(){
+
+
+
+}

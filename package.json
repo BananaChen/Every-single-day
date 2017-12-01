@@ -19,6 +19,7 @@
   "homepage": "https://github.com/BananaChen/Every-single-day#readme",
   "dependencies": {
     "body-parser": "^1.18.2",
+    "connect-busboy": "0.0.2",
     "express": "^4.16.2",
     "mysql": "^2.15.0"
   }

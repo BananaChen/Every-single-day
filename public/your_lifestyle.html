@@ -27,7 +27,7 @@
 
 </head>
 
-<body id="page-top" data-spy="scroll" data-target=".navbar-custom">
+<body id="page-top" data-spy="scroll" data-target=".navbar-custom" onload="grtID()">
 
   <!-- page loader -->
   <div id="page-loader">
@@ -123,9 +123,10 @@
         <div class="col-md-10 col-sm-12">
 
 
-          <form action="/file-upload" class="dropzone">
+          <form method="post" action="/upload" enctype="multipart/form-data" class="dropzone">
             <div class="fallback">
               <input name="file" type="file" multiple accept="image/*"/>
+              <input type="submit" value="upload">
             </div>
           </form>
 
@@ -207,6 +208,13 @@
   <script src="contactform/contactform.js"></script>
   <script src="js/your_lifestyle.js"></script>
   <script src="https://rawgit.com/enyo/dropzone/master/dist/dropzone.js"></script>
+
+<form method="post" action="/upload" enctype="multipart/form-data">
+    
+        <input name="file" type="file">
+        <input type="submit" value="upload">
+
+</form>
 
 
 </body>

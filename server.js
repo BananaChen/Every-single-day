@@ -182,6 +182,25 @@ app.post('/view_more',urlencodedParser, function(req, res) {
   });
 });
 
+var fs1 = require('fs');
+var busboy = require('connect-busboy');
+
+app.use(busboy());
+
+app.post('/upload', function(req, res){
+    var fstream;
+    //var dir = './user/'+fb_id;
+    req.pipe(req.busboy);
+    req.busboy.on('file', function (filedname, file, filename){
+        console.log("Uploading: " +filename);
+        fstream = fs1.createWriteStream(__dirname +'/user/'+ filename);
+        console.log(fstream);
+        file.pipe(fstream);
+        fstream.on('close',function(){
+            res.redirect('back');
+        });
+    });
+});
 
 //選擇
 /*
