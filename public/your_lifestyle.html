@@ -20,8 +20,9 @@
   <link href="css/animate.css" rel="stylesheet" />
   <link href="css/style.css" rel="stylesheet">
   <link href="color/default.css" rel="stylesheet">
-
-
+  <link href="css/basic.css" rel="stylesheet">
+  <link href="css/dropzone.css" rel="stylesheet">
+  <link rel="icon" type="image/png" href="https://i.imgur.com/S7aSqjv.png">
 </head>
 
 <body id="page-top" data-spy="scroll" data-target=".navbar-custom">
@@ -79,9 +80,10 @@
               <!-- Collect the nav links, forms, and other content for toggling -->
               <div class="collapse navbar-collapse" id="menu">
                 <ul class="nav navbar-nav navbar-right">
-                  <li class="active"><a href="yours.html">Your Lifestyle</a></li>
+                  <li><a href="your_lifestyle.html">Your Lifestyle</a></li>
                   <li><a href="home.html">Island</a></li>
-                  <li><a href="index.html">Log Out</a></li>
+                  <li><a href="explore.html">Explore</a></li>
+                  <li><button onclick="fun()" ><a>Log Out</a></button></li> <!--didn't know where the class is-->
                 </ul>
               </div>
               <!-- /.Navbar-collapse -->
@@ -113,19 +115,48 @@
 
     <div class="text-center">
       <div class="container">
-        <input accept="image/*" id="uploadImage" type="file">
-        <form>
-          <select name="WhichPart">
-            <option value="head">Head (What you think)</option>
-            <option value="hand">Hand (What you do)</option>
-            <option value="foot">Foot (Where you go)</option>
-          </select>
-        </form>
-        <div id = "myPart"></div>
-        <img id="img" src="">
+        <div class="row">
+          <div class="col-md-5 col-sm-12">
+            <img src="https://i.imgur.com/BcFGhlW.png" class="img-responsive" id = "small_man">
+          </div>
+
+          <div class="col-md-7 col-sm-12">
+            <div id = "upload_section">
+              <form method="post" action="/upload" enctype="multipart/form-data" class="dropzone">
+                <div class="fallback">
+                  <input name="file" type="file" multiple accept="image/*"/>
+                  <input type="submit" value="upload">
+                </div>
+              </form>
 
 
+              <form>
+                <select name="WhichPart">
+                  <option value="head">Head (What you think)</option>
+                  <option value="hand">Hand (What you do)</option>
+                  <option value="foot">Foot (Where you go)</option>
+                </select>
+              </form>
+          </div>
+        </div>
+
+        <div class="col-md-7 col-sm-12" id = "pic_section" style="display: none;">
+          <div class="container">
+            <div class = "row">
+              <div class = "col-sm-2 col-sm-7"><img src="https://i.imgur.com/fyUGqs5.jpg" class="img-responsive"></div>
+              <div class = "col-sm-2 col-sm-7"><img src="https://i.imgur.com/fyUGqs5.jpg" class="img-responsive"></div>
+              <div class = "col-sm-2 col-sm-7"><img src="https://i.imgur.com/fyUGqs5.jpg" class="img-responsive"></div>
+            </div>
+            <div class = "row">
+              <div class="col-md-5 col-sm-12">
+                <div><img src="https://i.imgur.com/fyUGqs5.jpg" class="img-responsive"></div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
+    </div>
+
     </div>
 
        <img class="tree" id="f_tree" src="https://i.imgur.com/kqvwIwp.png">
@@ -174,12 +205,10 @@
   <!-- Core JavaScript Files -->
   <script src="js/jquery.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD8HeI8o-c1NppZA-92oYlXakhDPYR7XMY"></script>
   <script src="js/jquery.sticky.js"></script>
   <script src="js/slippry.min.js"></script>
   <script src="js/jquery.flexslider-min.js"></script>
   <script src="js/morphext.min.js"></script>
-  <script src="js/gmap.js"></script>
   <script src="js/jquery.mb.YTPlayer.js"></script>
   <script src="js/jquery.easing.min.js"></script>
   <script src="js/jquery.scrollTo.js"></script>
@@ -192,5 +221,14 @@
   <script src="js/custom.js"></script>
   <script src="contactform/contactform.js"></script>
   <script src="js/your_lifestyle.js"></script>
+  <script src="https://rawgit.com/enyo/dropzone/master/dist/dropzone.js"></script>
+
+<form method="post" action="/upload" enctype="multipart/form-data">
+
+        <input name="file" type="file">
+        <input type="submit" value="upload">
+
+</form>
+
 
 </body>

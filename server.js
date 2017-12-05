@@ -23,6 +23,8 @@ const connection = mysql.createConnection({
 
 connection.connect();
 
+var fs = require('fs');//make new dir
+
 //log in
 app.post('/post',urlencodedParser, function(req, res) {  
   var useraccount = req.body.account;
@@ -114,7 +116,11 @@ app.post('/post_info',urlencodedParser, function(req, res) {
 
 //facebook log in
 app.post('/post_fb',urlencodedParser,function(req, res){
-
+    //console.log("already there!");
+    //var a=5;
+    //res.send(a);
+    //return;
+    console.log("in the post_fb");
     var fb_id =` ${req.body.id}`;   
     var fb_name =` ${req.body.name}`;
     console.log(fb_name);
@@ -128,9 +134,8 @@ app.post('/post_fb',urlencodedParser,function(req, res){
         else{
             for(fb_id in rows){
                 checkaccount = 1;
-                res.redirect('http://google.com.tw')
-                //res.redirect('home.html');
-
+                console.log("you have already been the user");
+                //res.send("1")
             }
         }
         if(checkaccount == 0){
@@ -140,21 +145,26 @@ app.post('/post_fb',urlencodedParser,function(req, res){
                 }
                 else{ 
                         console.log("1 account insert");
-                        //res.redirect('home.html')
-                        //res.redirect('http://luffy.ee.ncku.edu.tw:2266/home.html')
-                        res.redirect('person_info.html')
-
+                        var dir = './user/'+fb_id;//make user dir
+                        console.log("a new dir");
+                        if(!fs.existsSync(dir)){
+                            fs.mkdirSync(dir);
+                        }
+                        res.send("1");
+                        
                     }
                 });
+        p
         }
         else {
                 console.log("already there!");
-                res.redirect('http://luffy.ee.ncku.edu.tw:2266/home.html');
+                var a="0";
+                res.send(a);
         }
     });
 });
 
-//view more
+//view more //when refresh the pages, how do we reload this?
 var i = -1;
 app.post('/view_more',urlencodedParser, function(req, res) {
   //var r = Math.floor((Math.random() * 6));
@@ -173,6 +183,25 @@ app.post('/view_more',urlencodedParser, function(req, res) {
   });
 });
 
+var fs1 = require('fs');
+var busboy = require('connect-busboy');
+
+app.use(busboy());
+
+app.post('/upload', function(req, res){
+    var fstream;
+    //var dir = './user/'+fb_id;
+    req.pipe(req.busboy);
+    req.busboy.on('file', function (filedname, file, filename){
+        console.log("Uploading: " +filename);
+        fstream = fs1.createWriteStream(__dirname +'/user/'+ filename);
+        console.log(fstream);
+        file.pipe(fstream);
+        fstream.on('close',function(){
+            res.redirect('back');
+        });
+    });
+});
 
 //選擇
 /*
