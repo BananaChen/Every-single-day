@@ -1,3 +1,18 @@
+/*$("#uploadImage").change(function(){
+   readImage( this );
+-});
++  });
+
+-function readImage(input) {
++  function readImage(input) {
+   if ( input.files && input.files[0] ) {
+-    var FR= new FileReader();
+-    FR.onload = function(e) {
+-      //e.target.result = base64 format picture
+-      $('#img').attr( "src", e.target.result );
+-    };
+-    FR.readAsDataURL( input.files[0] );
+-  }*/
 var hover_or_not;
 
 $(document).ready(function(){
@@ -16,39 +31,54 @@ $(document).ready(function(){
         hover_or_not = 0;
       }
   )
-
-
-
 })
+function statusChangeCallback(response) {
+    console.log('statusChangeCallback');
+    console.log(response);
+    // for FB.getLoginStatus().
+    if (response.status === 'connected') {
+        // Logged into your app and Facebook.
+        //testAPI();
+        console.log("wlcome");
+    }
+    else if (response.status === 'not_authorized'){
+        window.top.location.href= "https://www.facebook.com/dialog/oauth?client_id=1573588719392394&scope=email,user_birthday&redirect_uri=http://luffy.ee.ncku.edu.tw:2266/your_lifestyle.html"
+
+    }
+    else {
+        // The person is not logged into your app or we are unable to tell.
+        alert("please log in :)");
+        window.top.location.href= "http://luffy.ee.ncku.edu.tw:2266/index.html"
+        //document.getElementById('status').innerHTML = 'Please log ' +
+        //  'into this app.';
+    }
+}
 window.fbAsyncInit = function() {
     FB.init({
-        appId      : '520313951662227',
-        cookie     : true,  // enable cookies to allow the server to access
-        // the session
-        xfbml      : true,  // parse social plugins on this page
-        version    : 'v2.8' // use graph api version 2.8
+                appId      : '1573588719392394',
+                xfbml      : true,
+                version    : 'v2.11'
     });
-/*
-FB.getLoginStatus(function(response) {
-        statusChangeCallback(response);
-        });
-*/
+//FB.AppEvents.logPageView();
+    FB.getLoginStatus(function(response) {
+          console.log(response);
+          statusChangeCallback(response);
+              });
 };
 
-// Load the SDK asynchronously
-(function(d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id))
-        return;
-    js = d.createElement(s); js.id = id;
-    js.src = "//connect.facebook.net/en_US/sdk.js";
-    fjs.parentNode.insertBefore(js, fjs);
+(function(d, s, id){
+ var js, fjs = d.getElementsByTagName(s)[0];
+ if (d.getElementById(id)) {return;}
+ js = d.createElement(s); js.id = id;
+ js.src = "https://connect.facebook.net/en_US/sdk.js";
+ fjs.parentNode.insertBefore(js, fjs);
  }(document, 'script', 'facebook-jssdk'));
-// Here we run a very simple test of the Graph API after login is
-// successful.  See statusChangeCallback() for when this call is made.
 
-FB.grtLoginStatus(function(response){
-    if(response.status == 'connected'){
-        console.log('hi');
-    }
-});
+function fun(){
+
+    console.log("hi");
+    FB.logout(function(response) {
+            // user is now logged out
+            window.top.location.href="http://luffy.ee.ncku.edu.tw:2266/index.html"
+            });
+}
