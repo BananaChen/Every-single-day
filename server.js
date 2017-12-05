@@ -135,6 +135,7 @@ app.post('/post_fb',urlencodedParser,function(req, res){
             for(fb_id in rows){
                 checkaccount = 1;
                 console.log("you have already been the user");
+                //res.send("1")
             }
         }
         if(checkaccount == 0){

@@ -490,10 +490,10 @@ function Storeid(s) {
                     data: {id: s,name: name},
                     success: function(data) {
                         console.log('ajax'+data);
-                       if(data==0){
+                       if(data==1){
                             window.location.href = 'http://luffy.ee.ncku.edu.tw:2266/person_info.html';
                        }
-                       else if(data==1){
+                       else if(data==0){
                             window.location.href = 'http://luffy.ee.ncku.edu.tw:2266/home.html';
                        }
                     }
