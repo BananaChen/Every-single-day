@@ -183,6 +183,7 @@ app.post('/view_more',urlencodedParser, function(req, res) {
   });
 });
 
+
 var fs1 = require('fs');
 var busboy = require('connect-busboy');
 
@@ -203,6 +204,11 @@ app.post('/upload', function(req, res){
     });
 });
 
+//get picture
+var path = require('path');
+app.get('/show_pic', function(req, res){
+  res.sendFile(path.resolve('./user/emma.jpg'));
+}); 
 //選擇
 /*
 var sel = "SELECT * FROM `wp2017_groupc`.`user` WHERE account='0001'";
