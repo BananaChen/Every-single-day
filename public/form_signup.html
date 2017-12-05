@@ -13,17 +13,16 @@
 
   <body background="https://ak7.picdn.net/shutterstock/videos/4757387/thumb/1.jpg" style="background-size:cover;">
   <div class="outer">
-	<div class="pic">
+	<div class="pic" ">
 		<img src="https://i.imgur.com/A74cu6A.png">
 	</div>
-	<div class="container">
+	<div class="container" style="padding:55px;">
 		<div id="logbox">
 			<form id="signup" action= "post_signup" method= "POST">
 			<input class="input pass" type= "text" name= "name_signup" placeholder= "Name" required />
-			<input class="input pass" type= "text" name= "account_signup" placeholder= "Account" required />
 			<input class="input pass" type= "password" name= "password_signup" placeholder= "Password" required />
 			<input class="input pass" type= "password" name= "password_again" placeholder= "Confirm Password" required />
-			<input class="input pass" type= "text" name= "email_signup" placeholder= "E-mail Address" required />
+			<input class="input pass" type= "email" name= "email_signup" placeholder= "E-mail Address" required />
 			<input class="inputButton" type="submit" value="SIGN UP"/>
 			</form>
 		</div>
@@ -98,12 +97,12 @@ h1 {
 
 .inputButton {
   position: relative;
-	font-family: 'Roboto Mono', monospace;
+  font-family: 'Roboto Mono', monospace;
   font-size:30px;
   width: 85%;
   height: 50px;
   display: block;
-  margin: 30px auto 30px;
+  margin: 10px auto 30px;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   -ms-border-radius: 5px;
