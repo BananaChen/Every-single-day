@@ -6,30 +6,129 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-
     <title>Every-Single-Day</title>
-    
     <link rel="icon" type="image/png" href="https://i.imgur.com/Yk7PENe.png">
+	<link href="https://fonts.googleapis.com/css?family=Libre+Franklin|Roboto+Mono" rel="stylesheet"> 
   </head>
 
-  <body>
-    <form action="post_signup" method="POST">
-      Name:<br>
-      <input type="text" name="name_signup" required />
-      <br>
-      Account:<br>
-      <input type="text" name="account_signup" required />
-      <br>
-      Password:<br>
-      <input type="password" name="password_signup" required />
-      <br>
-      Check your password again:<br>
-      <input type="password" name="password_again" required />
-      <br>
-      Email address:<br>
-      <input type="email" name="email_signup" required />
-      <br><br>
-      <button type="submit">註冊</button>
-    </form> 
-  </body>
+  <body background="https://ak7.picdn.net/shutterstock/videos/4757387/thumb/1.jpg" style="background-size:cover;">
+  <div class="outer">
+	<div class="pic" ">
+		<img src="https://i.imgur.com/A74cu6A.png">
+	</div>
+	<div class="container" style="padding:55px;">
+		<div id="logbox">
+			<form id="signup" action= "post_signup" method= "POST">
+			<input class="input pass" type= "text" name= "name_signup" placeholder= "Name" required />
+			<input class="input pass" type= "password" name= "password_signup" placeholder= "Password" required />
+			<input class="input pass" type= "password" name= "password_again" placeholder= "Confirm Password" required />
+			<input class="input pass" type= "email" name= "email_signup" placeholder= "E-mail Address" required />
+			<input class="inputButton" type="submit" value="SIGN UP"/>
+			</form>
+		</div>
+	</div>
+   </div>
+   </body>
+  
+  
 </html>
+<style>
+*{
+  text-align:center;
+  font-family: 'Libre Franklin', sans-serif;
+}
+::selection {
+  background-color: #b5e2e7;
+}
+
+::-moz-selection {
+  background-color: #8ac7d8;
+}
+.container {
+  display: -webkit-flex;
+  display: flex;
+  height: 100%;
+  margin-top: -115px;
+}
+
+#logbox {
+  margin: 50px auto;
+  width: 340px;
+  background-color: #fff;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  border-radius: 4px;
+  -webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
+  -moz-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
+}
+
+h1 {
+  text-align: center;
+  font-size: 175%;
+  color: #757575;
+  font-weight: 300;
+}
+.input {
+  width: 75%;
+  height: 50px;
+  display: block;
+  margin: 0 auto 15px;
+  padding: 0 15px;
+  border: none;
+  border-bottom: 2px solid #ebebeb;
+  text-align:left;
+}
+.input:focus {
+  outline: none;
+  border-bottom-color: #58c791 !important;
+}
+.input:hover {
+  border-bottom-color: #dcdcdc;
+}
+.input:invalid {
+  box-shadow: none;
+}
+
+.pass:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px white inset;
+}
+
+.inputButton {
+  position: relative;
+  font-family: 'Roboto Mono', monospace;
+  font-size:30px;
+  width: 85%;
+  height: 50px;
+  display: block;
+  margin: 10px auto 30px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  border-radius: 5px;
+  color: white;
+  background-color: #58c791;
+  border: none;
+  -webkit-box-shadow: 0 5px 0 #3aad73;
+  -moz-box-shadow: 0 5px 0 #3aad73;
+  box-shadow: 0 5px 0 #3aad73;
+}
+.inputButton:hover {
+  top: 2px;
+  -webkit-box-shadow: 0 3px 0 #3aad73;
+  -moz-box-shadow: 0 3px 0 #3aad73;
+  box-shadow: 0 3px 0 #3aad73;
+}
+.inputButton:active {
+  top: 5px;
+  box-shadow: none;
+}
+.inputButton:focus {
+  outline: none;
+}
+
+
+
+
+</style>
