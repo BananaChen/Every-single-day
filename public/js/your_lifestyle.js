@@ -17,16 +17,31 @@ var hover_or_not;
 
 $(document).ready(function(){
 
-  $("div.col-md-5.col-sm-12, #pic_section").hover(
+  $("#man_head, #pic_section_head").hover(
       function(){
-         $('#small_man').attr("src", "https://i.imgur.com/jzGdnXe.png");
-         $('#pic_section').css("display", "block");
+         $('#man_head').attr("src", "https://i.imgur.com/IMPP1Ie.png");
+         $('#pic_section_head').css("display", "block");
          $('#upload_section').css("display", "none");
          hover_or_not = 1;
       },
       function() {
-        $('#small_man').attr("src", "https://i.imgur.com/BcFGhlW.png");
-        $('#pic_section').css("display", "none");
+        $('#man_head').attr("src", "https://i.imgur.com/nCZJng8.png");
+        $('#pic_section_head').css("display", "none");
+        $('#upload_section').css("display", "block");
+        hover_or_not = 0;
+      }
+  )
+
+  $("#man_body, #pic_section_body").hover(
+      function(){
+         $('#man_body').attr("src", "https://i.imgur.com/u6GqAga.png");
+         $('#pic_section_body').css("display", "block");
+         $('#upload_section').css("display", "none");
+         hover_or_not = 1;
+      },
+      function() {
+        $('#man_body').attr("src", "https://i.imgur.com/pKCJS1p.png");
+        $('#pic_section_body').css("display", "none");
         $('#upload_section').css("display", "block");
         hover_or_not = 0;
       }

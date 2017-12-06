@@ -2092,7 +2092,10 @@ a.btn:focus{
   object-fit: contain;
 }
 
-#pic_section{
+#pic_section_head{
+	background: rgba(255, 190, 59, 0.5);
+}
+#pic_section_body{
 	background: rgba(255, 190, 59, 0.5);
 }
 
