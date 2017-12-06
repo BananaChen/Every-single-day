@@ -55,8 +55,10 @@ app.post('/post',urlencodedParser, function(req, res) {
   });
 });
 //sign up
+var signup_name;
 app.post('/post_signup',urlencodedParser, function(req, res) {  
-  var signup_name = req.body.name_signup;
+  //var signup_name = req.body.name_signup;
+  signup_name = req.body.name_signup;
   var signup_password = req.body.password_signup;
   var signup_passcheck = req.body.password_again;
   var samepass = 0;
@@ -97,7 +99,8 @@ app.post('/post_signup',urlencodedParser, function(req, res) {
 });
 //person_information
 app.post('/post_info',urlencodedParser, function(req, res) {
-  var p_name = req.body.p_name;
+  //var p_name = req.body.p_name;
+  var p_name = signup_name;
   var p_birthday = req.body.p_birthday;
   var p_department = req.body.p_department;
   var p_hobby = req.body.p_hobby;
@@ -167,7 +170,7 @@ app.post('/post_fb',urlencodedParser,function(req, res){
 var i = -1;
 app.post('/view_more',urlencodedParser, function(req, res) {
   //var r = Math.floor((Math.random() * 6));
-  var rand_pick = "SELECT name FROM `wp2017_groupc`.`user`";
+  var rand_pick = "SELECT name FROM `wp2017_groupc`.`person_information`";
   connection.query(rand_pick, (err,result) => { //checking function
     if (err) {
       throw err;
