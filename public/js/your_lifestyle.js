@@ -31,7 +31,19 @@ $(document).ready(function(){
         hover_or_not = 0;
       }
   )
+
+  $("#my_pic").owlCarousel({
+    items : 1,
+    itemsDesktop : [1199,1],
+    itemsDesktopSmall : [980,1],
+    itemsTablet: [768,1],
+    itemsTabletSmall: false,
+    itemsMobile : [479,1],
+    singleItem : false,
+  })
 })
+
+
 function statusChangeCallback(response) {
     console.log('statusChangeCallback');
     console.log(response);
