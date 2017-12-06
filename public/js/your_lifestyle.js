@@ -19,7 +19,6 @@ var b1_col = 1;
 var b2_col = 1;
 var b3_col = 1;
 
-<<<<<<< HEAD
 //still need to make a responsive version?
 $("#go").click(function(){
   $.ajax({ 
@@ -164,50 +163,10 @@ span.onclick = function() {
 
 
 //facebook stuff
-=======
-  $("#man_head, #pic_section_head").hover(
-      function(){
-         $('#man_head').attr("src", "https://i.imgur.com/IMPP1Ie.png");
-         $('#pic_section_head').css("display", "block");
-         $('#upload_section').css("display", "none");
-         hover_or_not = 1;
-      },
-      function() {
-        $('#man_head').attr("src", "https://i.imgur.com/nCZJng8.png");
-        $('#pic_section_head').css("display", "none");
-        $('#upload_section').css("display", "block");
-        hover_or_not = 0;
-      }
-  )
-
-  $("#man_body, #pic_section_body").hover(
-      function(){
-         $('#man_body').attr("src", "https://i.imgur.com/u6GqAga.png");
-         $('#pic_section_body').css("display", "block");
-         $('#upload_section').css("display", "none");
-         hover_or_not = 1;
-      },
-      function() {
-        $('#man_body').attr("src", "https://i.imgur.com/pKCJS1p.png");
-        $('#pic_section_body').css("display", "none");
-        $('#upload_section').css("display", "block");
-        hover_or_not = 0;
-      }
-  )
-
-  $("#my_pic").owlCarousel({
-    items : 1,
-    itemsDesktop : [1199,1],
-    itemsDesktopSmall : [980,1],
-    itemsTablet: [768,1],
-    itemsTabletSmall: false,
-    itemsMobile : [479,1],
-    singleItem : false,
-  })
-})
 
 
->>>>>>> 3cedf6fa1c61af15847b9864f278549b5a6d7da2
+
+
 function statusChangeCallback(response) {
     console.log('statusChangeCallback');
     console.log(response);
