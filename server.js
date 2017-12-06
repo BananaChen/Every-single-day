@@ -6,6 +6,7 @@ const urlencodedParser = bodyParser.urlencoded({extended:false});
 const crypto = require('crypto');
 
 app.use(express.static(__dirname+'/public'));
+app.use(express.static(__dirname+'/user'));
 
 app.listen(port, function(err) {
     if(!err) console.log("Listening in port " + port);
@@ -201,13 +202,16 @@ app.post('/upload', function(req, res){
             res.redirect('back');
         });
     });
+    res.send(filename);
 });
 
 //get picture
-var path = require('path');
+//var path = require('path');
+
 app.get('/show_pic', function(req, res){
-  res.sendFile(path.resolve('./user/emma.jpg'));
+  res.send('emma.jpg');
 }); 
+
 //選擇
 /*
 var sel = "SELECT * FROM `wp2017_groupc`.`user` WHERE account='0001'";

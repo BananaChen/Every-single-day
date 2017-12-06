@@ -10,7 +10,7 @@
 -    FR.onload = function(e) {
 -      //e.target.result = base64 format picture
 -      $('#img').attr( "src", e.target.result );
--    };
+-"    };
 -    FR.readAsDataURL( input.files[0] );
 -  }*/
 
@@ -27,17 +27,7 @@ $("#go").click(function(){
     success:  function(data) {
      var pic =
       `
-      <img src=
-      `
-      +
-      //'"../user'
-      //+
-      data
-      //+
-      //'"'
-      +
-      `
-      style="width:100%">
+      <img src="${data}" style="width:100%">
       `;
     switch (box) {
       case 1:
@@ -86,6 +76,8 @@ $("#go").click(function(){
          break;
       }
     }
+    //waiting
+    //$('#go').html('loading...');
   });
 });
 
@@ -146,6 +138,7 @@ $("#feet").hover(
 );
 */
 
+/*
 // Get the modal
 var modal = document.getElementById('myModal');
 // Get the image and insert it inside the modal - use its "alt" text as a caption
@@ -166,7 +159,7 @@ var span = document.getElementsByClassName("close")[0];
 span.onclick = function() {
   modal.style.display = "none";
 }
-
+*/
 
 
 //facebook stuff
@@ -219,4 +212,4 @@ function fun(){
             // user is now logged out
             window.top.location.href="http://luffy.ee.ncku.edu.tw:2266/index.html"
             });
-}
+};
