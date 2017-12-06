@@ -23,18 +23,10 @@
   <link href="css/basic.css" rel="stylesheet">
   <link href="css/dropzone.css" rel="stylesheet">
   <link rel="icon" type="image/png" href="https://i.imgur.com/S7aSqjv.png">
-<<<<<<< HEAD
-  <link href="css/your_lifestyle.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-  <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue-grey.css">
-  <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> 
-=======
   <link href="css/owl.carousel.css" rel="stylesheet" media="screen" />
   <link href="css/owl.theme.css" rel="stylesheet" media="screen" />
   <link href="css/nivo-lightbox.css" rel="stylesheet" />
   <link href="css/nivo-lightbox-theme/default/default.css" rel="stylesheet" type="text/css" />
->>>>>>> 3cedf6fa1c61af15847b9864f278549b5a6d7da2
 </head>
 
 <body id="page-top" data-spy="scroll" data-target=".navbar-custom">
@@ -92,20 +84,10 @@
               <!-- Collect the nav links, forms, and other content for toggling -->
               <div class="collapse navbar-collapse" id="menu">
                 <ul class="nav navbar-nav navbar-right">
-									<div class="w3-dropdown-hover w3-hide-small">
-                  	<li><button class="w3-button w3-white w3-padding-large" title="Notifications"><i class="fa fa-bell"></i><span class="w3-badge w3-right w3-small w3-red">1</span></button></li>
-                      <div class="w3-dropdown-content w3-card-4 w3-bar-block" style="width:300px">              
-
-                        <a href="#" class="w3-bar-item w3-button"></a>
-                        <a href="#" class="w3-bar-item w3-button"></a>
-                        <a href="#" class="w3-bar-item w3-button"></a>
-                      </div>
-                  </div>
                   <li><a href="your_lifestyle.html">Your Lifestyle</a></li>
                   <li><a href="home.html">Island</a></li>
                   <li><a href="explore.html">Explore</a></li>
-                  <li><a href="#"  onclick="fun()">Log out</a></li>
-    <!--                <li><button onclick="fun()" class="w3-white" ><a>Log Out</a></button></li>-->
+                  <li><button onclick="fun()" ><a>Log Out</a></button></li> <!--didn't know where the class is-->
                 </ul>
               </div>
               <!-- /.Navbar-collapse -->
@@ -132,188 +114,9 @@
           </div>
         </div>
       </div>
+
     </div>
 
-<!-------------------------------------------------------------------->
-    <div class="container">
-      <div class="row">
-        <div class="col-md-5">
-          <img id="head" src="https://i.imgur.com/87GadxX.png" alt="" class="img-responsive little_man" >
-          <img id="hand" src="https://i.imgur.com/1OTKdl9.png" alt="" class="img-responsive little_man" >
-          <img id="feet" src="https://i.imgur.com/X3jeUWn.png" alt="" class="img-responsive little_man" >
-
-          <div class="upload_section" >
-            <form action="/file-upload" class="dropzone">
-              <div class="fallback">
-                <input name="file" type="file" multiple accept="image/*"/>
-              </div>
-            </form>
-          </div>
-          <button type="button" name="button" class="btn btn-submit" id="go">Upload</button>
-        </div>
-        <!--three lightbox inside here-->
-        <div class="col-md-7">
-
-            <div class="item" id="box1">
-              <div class="about-left-grid">
-                <div class="column" id="box1_col1">
-                    <img id="img9"src="https://i.imgur.com/fyUGqs5.jpg" style="width:100%">
-                    <img id="img7"src="https://i.imgur.com/fNzCTDN.jpg" style="width:100%">
-                    <img id="img5"src="https://i.imgur.com/xdGPi1p.png" style="width:100%">
-                    <img id="img3"src="https://i.imgur.com/5TLU5zG.jpg" style="width:100%">
-                    <img id="img1"src="https://i.imgur.com/urMlX6c.jpg" style="width:100%">
-                  </div>
-                  <div class="column" id="box1_col2">
-                    <img id="img10"src="https://i.imgur.com/fNzCTDN.jpg" style="width:100%">
-                    <img id="img8"src="https://i.imgur.com/xdGPi1p.png" style="width:100%">
-                    <img id="img6"src="https://i.imgur.com/urMlX6c.jpg" style="width:100%">
-                    <img id="img4"src="https://i.imgur.com/5TLU5zG.jpg" style="width:100%">
-                    <img id="img2"src="https://i.imgur.com/0GnUbLj.jpg" style="width:100%">
-                  </div>
-                  <!--
-                  <div class="column" id="box1_col3">
-                    <img src="https://i.imgur.com/fNzCTDN.jpg" style="width:100%">
-                    <img src="https://i.imgur.com/fyUGqs5.jpg" style="width:100%">
-                    <img src="https://i.imgur.com/EHUvyKS.gifv" style="width:100%">
-                    <img src="https://i.imgur.com/xdGPi1p.png" style="width:100%">
-                    <img src="https://i.imgur.com/urMlX6c.jpg" style="width:100%">
-                    <img src="https://i.imgur.com/5TLU5zG.jpg" style="width:100%">
-                    <img src="https://i.imgur.com/0GnUbLj.jpg" style="width:100%">
-                  </div>
-                  <div class="column" id="box1_col4">
-                    <img src="https://i.imgur.com/fNzCTDN.jpg" style="width:100%">
-                    <img src="https://i.imgur.com/fyUGqs5.jpg" style="width:100%">
-                    <img src="https://i.imgur.com/EHUvyKS.gifv" style="width:100%">
-                    <img src="https://i.imgur.com/xdGPi1p.png" style="width:100%">
-                    <img src="https://i.imgur.com/urMlX6c.jpg" style="width:100%">
-                    <img src="https://i.imgur.com/5TLU5zG.jpg" style="width:100%">
-                    <img src="https://i.imgur.com/0GnUbLj.jpg" style="width:100%">
-                  </div>
-                -->
-              </div>
-            </div>
-
-
-            <div class="item" id="box2">
-              <div class="about-left-grid">
-                <div class="column" id="box2_col1">
-                    <img src="https://i.imgur.com/fyUGqs5.jpg" style="width:100%">
-                    <img src="https://i.imgur.com/EHUvyKS.gifv" style="width:100%">
-                    <img src="https://i.imgur.com/fNzCTDN.jpg" style="width:100%">
-                    <img src="https://i.imgur.com/xdGPi1p.png" style="width:100%">
-                    <img src="https://i.imgur.com/urMlX6c.jpg" style="width:100%">
-                    <img src="https://i.imgur.com/urMlX6c.jpg" style="width:100%">
-                    <img src="https://i.imgur.com/0GnUbLj.jpg" style="width:100%">
-                  </div>
-                  <div class="column" id="box2_col2">
-                    <img src="https://i.imgur.com/xdGPi1p.png" style="width:100%">
-                    <img src="https://i.imgur.com/5TLU5zG.jpg" style="width:100%">
-                    <img src="https://i.imgur.com/fNzCTDN.jpg" style="width:100%">
-                    <img src="https://i.imgur.com/fyUGqs5.jpg" style="width:100%">
-                    <img src="https://i.imgur.com/EHUvyKS.gifv" style="width:100%">
-                    <img src="https://i.imgur.com/5TLU5zG.jpg" style="width:100%">
-                    <img src="https://i.imgur.com/0GnUbLj.jpg" style="width:100%">
-                  </div>
-                  <!--
-                  <div class="column" id="box2_col3">
-                    <img src="https://i.imgur.com/fNzCTDN.jpg" style="width:100%">
-                    <img src="https://i.imgur.com/fyUGqs5.jpg" style="width:100%">
-                    <img src="https://i.imgur.com/EHUvyKS.gifv" style="width:100%">
-                    <img src="https://i.imgur.com/xdGPi1p.png" style="width:100%">
-                    <img src="https://i.imgur.com/urMlX6c.jpg" style="width:100%">
-                    <img src="https://i.imgur.com/5TLU5zG.jpg" style="width:100%">
-
-                    <img src="https://i.imgur.com/0GnUbLj.jpg" style="width:100%">
-                  </div>
-                  <div class="column" id="box2_col4">
-                    <img src="https://i.imgur.com/fNzCTDN.jpg" style="width:100%">
-                    <img src="https://i.imgur.com/fyUGqs5.jpg" style="width:100%">
-                    <img src="https://i.imgur.com/EHUvyKS.gifv" style="width:100%">
-                    <img src="https://i.imgur.com/xdGPi1p.png" style="width:100%">
-                    <img src="https://i.imgur.com/urMlX6c.jpg" style="width:100%">
-                    <img src="https://i.imgur.com/5TLU5zG.jpg" style="width:100%">
-                    <img src="https://i.imgur.com/0GnUbLj.jpg" style="width:100%">
-                  </div>
-                -->
-              </div>
-            </div>
-            <div class="item" id="box3">
-              <div class="about-left-grid">
-                <div class="column" id="box3_col1">
-                  <a href="http://swipebox.csag.co/images/image-1.jpg" class="swipebox" title="Fog">
-        						<img src="http://swipebox.csag.co/images/image-1.jpg" alt="image">
-        					</a>
-                  <a href="http://swipebox.csag.co/images/image-2.jpg" class="swipebox" title="City">
-        						<img src="http://swipebox.csag.co/images/image-2.jpg" alt="image">
-        					</a>
-                    <img src="https://i.imgur.com/fyUGqs5.jpg" style="width:100%">
-                    <img src="https://i.imgur.com/0GnUbLj.jpg" style="width:100%">
-                    <img src="https://i.imgur.com/fNzCTDN.jpg" style="width:100%">
-                    <img src="https://i.imgur.com/xdGPi1p.png" style="width:100%">
-                    <img src="https://i.imgur.com/5TLU5zG.jpg" style="width:100%">
-                    <img src="https://i.imgur.com/urMlX6c.jpg" style="width:100%">
-                    <img src="https://i.imgur.com/0GnUbLj.jpg" style="width:100%">
-                  </div>
-                  <div class="column" id="box3_col2">
-                    <img src="https://i.imgur.com/fNzCTDN.jpg" style="width:100%">
-                    <img src="https://i.imgur.com/fyUGqs5.jpg" style="width:100%">
-                    <img src="https://i.imgur.com/fyUGqs5.jpg" style="width:100%">
-                    <img src="https://i.imgur.com/xdGPi1p.png" style="width:100%">
-                    <img src="https://i.imgur.com/urMlX6c.jpg" style="width:100%">
-                    <img src="https://i.imgur.com/5TLU5zG.jpg" style="width:100%">
-                    <img src="https://i.imgur.com/0GnUbLj.jpg" style="width:100%">
-                  </div>
-                  <!--
-                  <div class="column" id="box3_col3">
-                    <img src="https://i.imgur.com/fNzCTDN.jpg" style="width:100%">
-                    <img src="https://i.imgur.com/fyUGqs5.jpg" style="width:100%">
-                    <img src="https://i.imgur.com/urMlX6c.jpg" style="width:100%">
-                    <img src="https://i.imgur.com/xdGPi1p.png" style="width:100%">
-                    <img src="https://i.imgur.com/urMlX6c.jpg" style="width:100%">
-                    <img src="https://i.imgur.com/5TLU5zG.jpg" style="width:100%">
-
-                    <img src="https://i.imgur.com/0GnUbLj.jpg" style="width:100%">
-                  </div>
-                  <div class="column" id="box3_col4">
-                    <img src="https://i.imgur.com/fNzCTDN.jpg" style="width:100%">
-                    <img src="https://i.imgur.com/fyUGqs5.jpg" style="width:100%">
-                    <img src="https://i.imgur.com/5TLU5zG.jpg" style="width:100%">
-                    <img src="https://i.imgur.com/xdGPi1p.png" style="width:100%">
-                    <img src="https://i.imgur.com/urMlX6c.jpg" style="width:100%">
-                    <img src="https://i.imgur.com/5TLU5zG.jpg" style="width:100%">
-                    <img src="https://i.imgur.com/0GnUbLj.jpg" style="width:100%">
-                  </div>
-                -->
-              </div>
-            </div>
-            <!-- The Modal -->
-            <div id="myModal" class="modal">
-              <!-- The Close Button -->
-              <span class="close">&times;</span>
-              <!-- Modal Content (The Image) -->
-              <img class="modal-content" id="img01" width="100%">
-              <!-- Modal Caption (Image Text) -->
-              <div id="caption"></div>
-            </div>
-        </div>
-        <div class="clearfix"> </div>
-      </div>
-    </div>
-
-<br><br><br><br><br>
-
-<!-- this is upload-file section-->
-<div class="text-center">
-      <div class="container">
-        <div class="row">
-        </div>
-
-
-      </div>
-    </div>
-  <!---->
-
-<!--
     <div class="text-center">
       <div class="container">
         <div class="row">
@@ -388,7 +191,7 @@
     </div>
 
     </div>
--->
+
        <img class="tree" id="f_tree" src="https://i.imgur.com/kqvwIwp.png">
       <img class="tree" id="s_tree" src="https://i.imgur.com/kqvwIwp.png">
       <img class="tree" id="th_tree" src="https://i.imgur.com/kqvwIwp.png">

@@ -164,8 +164,8 @@ $(window).resize(initNice);
 
 })(jQuery);
 $(window).load(function() {
-        $(".loader").delay(300).fadeOut();
-        $("#page-loader").delay(500).fadeOut("slow");
+        $(".loader").delay(100).fadeOut();
+        $("#page-loader").delay(300).fadeOut("slow");
         });
 
 
