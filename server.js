@@ -38,7 +38,7 @@ app.post('/post',urlencodedParser, function(req, res) {
   var check = "SELECT * FROM `wp2017_groupc`.`user` WHERE email = ?";
   connection.query(check, [useremail], function (err, rows, result){
     if (err){
-      console.log("check failed!");
+      console.log("log in check failed!");
     }
     else{
       for(useremail in rows){
@@ -47,7 +47,7 @@ app.post('/post',urlencodedParser, function(req, res) {
     }
     if(checkaccount == 1){ 
       if(rows[useremail].password == userpassword){
-        console.log(rows[useremail].email);
+        console.log("log in:" + rows[useremail].email);
         req.session = {email:rows[useremail].email, name:rows[useremail].name};
         res.redirect('home.html')
       }
@@ -75,7 +75,7 @@ app.post('/post_signup',urlencodedParser, function(req, res) {
   var newaccount = 0;
   connection.query(check_signup, [signup_email], function (err, rows, result){
     if (err){
-      console.log("select failed");
+      console.log("sign up select failed");
     }
     else{
       for(useremail in rows){
@@ -86,11 +86,11 @@ app.post('/post_signup',urlencodedParser, function(req, res) {
       if(samepass == 1){
         connection.query(insert,[signup_name, signup_password, signup_email], function (err, result){
           if (err){
-            console.log("insert failed");
+            console.log("sign up insert failed");
           }
           else{
             res.redirect('person_info.html')
-            console.log(signup_email);
+            console.log("sign up:" + signup_email);
           }
         });
       }
@@ -109,17 +109,22 @@ app.post('/post_info',urlencodedParser, function(req, res) {
   var p_department = req.body.p_department;
   var p_hobby = req.body.p_hobby;
   var p_insert = "INSERT INTO `wp2017_groupc`.`person_information` (name, birthday, department, hobby) VALUES(?,?,?,?)";
-  connection.query(p_insert, [p_name, p_birthday,p_department, p_hobby], function (err, rows, result){
+  var p_select = "SELECT * FROM `wp2017_groupc`.`user` WHERE name = ?";
+  connection.query(p_insert, [p_name, p_birthday,p_department, p_hobby], function (err, result){
     if (err){
-      console.log("select failed");
+      console.log("person_info select failed");
     }
     else{
+      connection.query(p_select, [p_name], function (err, rows, result){
+      for(p_name in rows){
+        req.session = {email:rows[p_name].email, name:rows[p_name].name};
+        console.log("person_info:" + req.session.email);
+      }
+      });
       res.redirect('home.html')
-      console.log(p_name);
     }
   });
 });
-
 //facebook log in
 app.post('/post_fb',urlencodedParser,function(req, res){
     //console.log("already there!");
@@ -172,7 +177,7 @@ app.post('/post_fb',urlencodedParser,function(req, res){
 
 //user name
 app.post('/user',urlencodedParser, function(req,res){
-  console.log(req.session.name);
+  console.log("user:" + req.session.name);
   res.send(req.session.name);
 });
 
@@ -239,7 +244,7 @@ connection.query(sel, (err,result) => {//result?? yes!!
 */
 //delete data in database
 /*
-var del = "DELETE FROM `wp2017_groupc`.`user` WHERE account = 'yiju2'";
+var del = "DELETE FROM `wp2017_groupc`.`user` WHERE name = ''";
 connection.query(del, function (err, result) {
   if (err){
     console.log('delete failed!');
