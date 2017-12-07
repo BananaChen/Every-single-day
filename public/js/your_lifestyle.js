@@ -195,10 +195,6 @@ window.fbAsyncInit = function() {
                 version    : 'v2.11'
     });
 //FB.AppEvents.logPageView();
-    FB.getLoginStatus(function(response) {
-          console.log(response);
-          statusChangeCallback(response);
-              });
 };
 
 (function(d, s, id){
