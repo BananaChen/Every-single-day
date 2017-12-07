@@ -28,6 +28,8 @@
   <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue-grey.css">
   <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> 
+  <link rel="stylesheet" href="src/css/swipebox.css">
+  <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Merriweather:400,700&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
 </head>
 
 <body id="page-top" data-spy="scroll" data-target=".navbar-custom">
@@ -150,6 +152,18 @@
             <div class="item" id="box1">
               <div class="about-left-grid">
                 <div class="column" id="box1_col1">
+                   <a href="http://swipebox.csag.co/images/image-1.jpg" class="swipebox" title="Fog">
+        						<img src="http://swipebox.csag.co/images/image-1.jpg" alt="image">
+        					</a>
+        					<a href="http://swipebox.csag.co/images/image-2.jpg" class="swipebox" title="City">
+        						<img src="http://swipebox.csag.co/images/image-2.jpg" alt="image">
+        					</a>
+        					<a href="http://swipebox.csag.co/images/image-3.jpg" class="swipebox" title="Street">
+        						<img src="http://swipebox.csag.co/images/image-3.jpg" alt="image">
+        					</a>
+        					<a href="http://swipebox.csag.co/images/image-4.jpg" class="swipebox" title="Mustache Guy">
+        						<img src="http://swipebox.csag.co/images/image-4.jpg" alt="image">
+        					</a> 
                     <img id="img9"src="https://i.imgur.com/fyUGqs5.jpg" style="width:100%">
                     <img id="img7"src="https://i.imgur.com/fNzCTDN.jpg" style="width:100%">
                     <img id="img5"src="https://i.imgur.com/xdGPi1p.png" style="width:100%">
@@ -371,7 +385,19 @@
   <script src="https://rawgit.com/enyo/dropzone/master/dist/dropzone.js"></script>
   <script src="js/owl.carousel.min.js"></script>
   <script src="js/nivo-lightbox.min.js"></script>
+  <script src="lib/ios-orientationchange-fix.js"></script>
+	<script src="lib/jquery-2.1.0.min.js"></script>
+	<script src="src/js/jquery.swipebox.js"></script>
+	<script type="text/javascript">
+	  $( document ).ready(function() {
+			/* Basic Gallery */
+			$( '.swipebox' ).swipebox();
 
+			/* Video */
+			$( '.swipebox-video' ).swipebox();
+
+		});
+	</script>
 <form method="post" action="/upload" enctype="multipart/form-data">
         <input name="file" type="file">
         <input type="submit" value="upload">
