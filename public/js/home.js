@@ -5,7 +5,7 @@ $("document").ready(function(){
     success : function(data) {
       var text;
       if (data.value == null) {
-        text = `<li><a href="your_lifestyle.html">Guest</a></li>`;
+        text = `<li><a href="#">Guest</a></li>`;
         $("#yourname").prepend(text);
       }
       else {
