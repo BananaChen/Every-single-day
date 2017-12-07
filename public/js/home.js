@@ -3,16 +3,16 @@ $("document").ready(function(){
     method: "POST",
     url: "user",
     success : function(data) {
-      var text;
-      if (data.value == null) {
-        text = `<li><a href="#">Guest</a></li>`;
-        $("#yourname").prepend(text);
+      if (data.value == 'none') {
+        $("#yourname").prepend(`<li><a href="#">Guest</a></li>`);
+        $("#yourname").append(`<li><a href="form_login.html">Login</a></li>`);
       }
       else {
-        text = `<li><a href="your_lifestyle.html">${data}</a></li>`;
-        $("#yourname").prepend(text);
+        $("#yourname").prepend(`<li><a href="your_lifestyle.html">${data}</a></li>`);
+        $("#yourname").append(`<li><a href="#" onclick="back()">Log Out</a></li>`);
       }
     }
+
   });
 });
 function back(){
