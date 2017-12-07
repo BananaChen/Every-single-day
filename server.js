@@ -1,4 +1,5 @@
 const express = require('express');
+const CookieStore = require('cookie-sessions');
 const app = express();
 const port = 2266;
 const bodyParser = require('body-parser');
@@ -7,6 +8,7 @@ const crypto = require('crypto');
 
 app.use(express.static(__dirname+'/public'));
 app.use(express.static(__dirname+'/user'));
+app.use(CookieStore({secret:'day'}));
 
 app.listen(port, function(err) {
     if(!err) console.log("Listening in port " + port);
@@ -46,6 +48,7 @@ app.post('/post',urlencodedParser, function(req, res) {
     if(checkaccount == 1){ 
       if(rows[useremail].password == userpassword){
         console.log(rows[useremail].email);
+        req.session = {email:rows[useremail].email, name:rows[useremail].name};
         res.redirect('home.html')
       }
       else res.send(`Your password is wrong`);
@@ -165,6 +168,12 @@ app.post('/post_fb',urlencodedParser,function(req, res){
                 res.send(a);
         }
     });
+});
+
+//user name
+app.post('/user',urlencodedParser, function(req,res){
+  console.log(req.session.name);
+  res.send(req.session.name);
 });
 
 //view more //when refresh the pages, how do we reload this?
