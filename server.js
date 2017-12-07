@@ -157,7 +157,7 @@ app.post('/post_fb',urlencodedParser,function(req, res){
                         
                     }
                 });
-        p
+        
         }
         else {
                 console.log("already there!");
