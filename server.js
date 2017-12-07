@@ -176,6 +176,11 @@ app.post('/user',urlencodedParser, function(req,res){
   console.log("user session:" + req.session.name);
   res.send(req.session.name);
 });
+//default user name
+app.post('/default',urlencodedParser, function(req,res){
+	req.session = {email:null, name:null};
+  res.send(req.session.name);
+});
 
 //logout
 app.post('/logout',urlencodedParser, function(req,res){

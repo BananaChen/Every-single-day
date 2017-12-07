@@ -4,7 +4,7 @@ $(document).ready(function() {
     url: "user",
     success : function(data) {
       var text;
-      if (data == null) {
+      if (data.value == null) {
         text = `<li><a href="your_lifestyle.html">Guest</a></li>`;
         $("#yourname").prepend(text);
       }

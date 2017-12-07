@@ -3,8 +3,15 @@ $("document").ready(function(){
     method: "POST",
     url: "user",
     success : function(data) {
-      var text = `<li><a href="your_lifestyle.html">${data}</a></li>`;
-      $("#yourname").prepend(text);
+      var text;
+      if (data.value == null) {
+        text = `<li><a href="your_lifestyle.html">Guest</a></li>`;
+        $("#yourname").prepend(text);
+      }
+      else {
+        text = `<li><a href="your_lifestyle.html">${data}</a></li>`;
+        $("#yourname").prepend(text);
+      }
     }
   });
 });
