@@ -127,18 +127,14 @@ app.post('/post_info',urlencodedParser, function(req, res) {
 });
 //facebook log in
 app.post('/post_fb',urlencodedParser,function(req, res){
-    //console.log("already there!");
-    //var a=5;
-    //res.send(a);
-    //return;
     console.log("in the post_fb");
-    var fb_id =` ${req.body.id}`;   
+    var fb_email =` ${req.body.email}`;   
     var fb_name =` ${req.body.name}`;
     console.log(fb_name);
-    var insert = "INSERT INTO `wp2017_groupc`.`user_fb` (ID, NAME) VALUES(?,?)"; 
+    var insert = "INSERT INTO `wp2017_groupc`.`user_fb` (NAME, email) VALUES(?,?)"; 
     var checkaccount = 0;
-    var check = "SELECT *FROM `wp2017_groupc`.`user_fb` WHERE ID = ?";
-    connection.query(check, [fb_id], function(err, rows, result){
+    var check = "SELECT *FROM `wp2017_groupc`.`user_fb` WHERE email = ?";
+    connection.query(check, [fb_email], function(err, rows, result){
         if (err){
             console.log("check failed");
         }
@@ -150,13 +146,13 @@ app.post('/post_fb',urlencodedParser,function(req, res){
             }
         }
         if(checkaccount == 0){
-             connection.query(insert,[fb_id,fb_name], function (err, result){
+             connection.query(insert,[fb_name,fb_email], function (err, result){
                 if (err){
                     console.log("insert failed!");
                 }
                 else{ 
                         console.log("1 account insert");
-                        var dir = './user/'+fb_id;//make user dir
+                        var dir = './user/'+fb_email;//make user dir
                         console.log("a new dir");
                         if(!fs.existsSync(dir)){
                             fs.mkdirSync(dir);
