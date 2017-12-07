@@ -3,7 +3,6 @@ $(document).ready(function() {
     method: "POST",
     url: "default",
     success : function(data) {
-      alert("welcome bitch!");
     }
   });
 });
