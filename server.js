@@ -177,8 +177,15 @@ app.post('/post_fb',urlencodedParser,function(req, res){
 
 //user name
 app.post('/user',urlencodedParser, function(req,res){
-  console.log("user:" + req.session.name);
+  console.log("user session:" + req.session.name);
   res.send(req.session.name);
+});
+
+//logout
+app.post('/logout',urlencodedParser, function(req,res){
+  console.log("user logout:" + req.session.name);
+  res.send("OK");
+  req.session = null;
 });
 
 //view more //when refresh the pages, how do we reload this?
