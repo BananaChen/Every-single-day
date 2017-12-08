@@ -49,6 +49,7 @@ app.post('/post',urlencodedParser, function(req, res) {
       if(rows[useremail].password == userpassword){
         console.log("log in:" + rows[useremail].email);
         req.session = {email:rows[useremail].email, name:rows[useremail].name};
+        console.log("user.session.email: " + rows[useremail].email);
         res.redirect('home.html')
       }
       else res.send(`Your password is wrong`);
@@ -176,17 +177,28 @@ app.post('/user',urlencodedParser, function(req,res){
   console.log("user session:" + req.session.name);
   res.send(req.session.name);
 });
+/*
 //default user name
+var first = 0;
 app.post('/default',urlencodedParser, function(req,res){
-	req.session = {email:null, name:null};
-  res.send(req.session.name);
+  if (first == 0) {
+  	req.session = {email:null, name:null};
+    console.log("user email: " + req.session.email);
+    console.log("user name: " + req.session.name);
+    res.send(req.session.name);
+    first++;
+  }
+  else {
+    res.send("not the first time on this page.");
+  }
 });
-
+*/
 //logout
 app.post('/logout',urlencodedParser, function(req,res){
   console.log("user logout:" + req.session.name);
+  //req.session = null;
+  req.session = {email:null, name:null};
   res.send("OK");
-  req.session = null;
 });
 
 //view more //when refresh the pages, how do we reload this?
