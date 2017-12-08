@@ -3,7 +3,7 @@ $(document).ready(function() {
     method: "POST",
     url: "user",
     success : function(data) {
-      if (data.value == null) {
+      if (data == null) {
         $("#yourname").prepend(`<li><a href="#">Guest</a></li>`);
         $("#yourname").append(`<li><a href="form_login.html">Login</a></li>`);
       }

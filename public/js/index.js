@@ -1,4 +1,3 @@
-/*
 $(document).ready(function() {                                                  
   $.ajax({
     method: "POST",
@@ -7,4 +6,3 @@ $(document).ready(function() {
     }
   });
 });
-*/
