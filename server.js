@@ -175,7 +175,6 @@ app.post('/post_fb',urlencodedParser,function(req, res){
 
 //user name
 app.post('/user',urlencodedParser, function(req,res){
-  //test
   if (req.session == null) {
     res.send(null);
   }
@@ -201,7 +200,6 @@ app.post('/logout',urlencodedParser, function(req,res){
   console.log("user logout:" + req.session.account);
   req.session = null;
   res.send(null);
-  //res.send(req.session.account);
 });
 
 //view more //when refresh the pages, how do we reload this?
