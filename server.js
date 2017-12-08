@@ -30,26 +30,32 @@ var fs = require('fs');//make new dir
 
 //log in
 app.post('/post',urlencodedParser, function(req, res) {  
-  var useremail = req.body.account;
+  var useraccount = req.body.account;
   var userpassword = req.body.password;
   var md5 = crypto.createHash('md5');
   userpassword = md5.update(userpassword).digest('hex');//加密密碼
   var checkaccount = 0;
-  var check = "SELECT * FROM `wp2017_groupc`.`user` WHERE email = ?";
-  connection.query(check, [useremail], function (err, rows, result){
+  var check = "SELECT * FROM `wp2017_groupc`.`user` WHERE account = ?";
+  connection.query(check, [useraccount], function (err, rows, result){
     if (err){
       console.log("log in check failed!");
     }
     else{
-      for(useremail in rows){
+      for(useraccount in rows){
         checkaccount = 1;
       }
     }
     if(checkaccount == 1){ 
+<<<<<<< HEAD
       if(rows[useremail].password == userpassword){
         console.log("log in:" + rows[useremail].email);
         req.session = {email:rows[useremail].email, name:rows[useremail].name};
         console.log("user.session.email: " + rows[useremail].email);
+=======
+      if(rows[useraccount].password == userpassword){
+        req.session = {account:rows[useraccount].account};
+        console.log("log in:" + rows[useraccount].account);
+>>>>>>> cd806c18a27a04f952131e00728d7abe3b14c579
         res.redirect('home.html')
       }
       else res.send(`Your password is wrong`);
@@ -59,11 +65,11 @@ app.post('/post',urlencodedParser, function(req, res) {
     }
   });
 });
+
 //sign up
-var signup_name;
+var signup_account;
 app.post('/post_signup',urlencodedParser, function(req, res) {  
-  //var signup_name = req.body.name_signup;
-  signup_name = req.body.name_signup;
+  signup_account = req.body.account_signup;
   var signup_password = req.body.password_signup;
   var signup_passcheck = req.body.password_again;
   var samepass = 0;
@@ -71,58 +77,60 @@ app.post('/post_signup',urlencodedParser, function(req, res) {
   var md5 = crypto.createHash('md5');
   signup_password = md5.update(signup_password).digest('hex');//加密密碼
   var signup_email = req.body.email_signup;
-  var insert = "INSERT INTO `wp2017_groupc`.`user` (name, password, email) VALUES(?,?,?)";
-  var check_signup = "SELECT * FROM `wp2017_groupc`.`user` WHERE email = ?";
+  var insert = "INSERT INTO `wp2017_groupc`.`user` (account, password, email) VALUES(?,?,?)";
+  var check_signup = "SELECT * FROM `wp2017_groupc`.`user` WHERE account = ?";
   var newaccount = 0;
-  connection.query(check_signup, [signup_email], function (err, rows, result){
+  connection.query(check_signup, [signup_account], function (err, rows, result){
     if (err){
       console.log("sign up select failed");
     }
     else{
-      for(useremail in rows){
+      for(signup_account in rows){
         newaccount = 1;
       }
     }
     if(newaccount == 0){
       if(samepass == 1){
-        connection.query(insert,[signup_name, signup_password, signup_email], function (err, result){
+        connection.query(insert,[signup_account, signup_password, signup_email], function (err, result){
           if (err){
             console.log("sign up insert failed");
           }
           else{
             res.redirect('person_info.html')
-            console.log("sign up:" + signup_email);
+            console.log("sign up:" + signup_account);
           }
         });
       }
       else res.send(`Your password is wrong`);
     }
     else{
-      res.send(`The email has already existed`);
+      res.send(`The account has already existed`);
     }
   });
 });
+
 //person_information
 app.post('/post_info',urlencodedParser, function(req, res) {
-  //var p_name = req.body.p_name;
-  var p_name = signup_name;
+  var p_account = signup_account;
   var p_birthday = req.body.p_birthday;
   var p_department = req.body.p_department;
   var p_hobby = req.body.p_hobby;
-  var p_insert = "INSERT INTO `wp2017_groupc`.`person_information` (name, birthday, department, hobby) VALUES(?,?,?,?)";
-  var p_select = "SELECT * FROM `wp2017_groupc`.`user` WHERE name = ?";
-  connection.query(p_insert, [p_name, p_birthday,p_department, p_hobby], function (err, result){
+  var p_insert = "INSERT INTO `wp2017_groupc`.`person_information` (account, birthday, department, hobby) VALUES(?,?,?,?)";
+  var p_select = "SELECT * FROM `wp2017_groupc`.`user` WHERE account = ?";
+  var t=0;
+  var tt;
+  connection.query(p_insert, [p_account, p_birthday,p_department, p_hobby], function (err, result){
     if (err){
       console.log("person_info select failed");
     }
     else{
-      connection.query(p_select, [p_name], function (err, rows, result){
-      for(p_name in rows){
-        req.session = {email:rows[p_name].email, name:rows[p_name].name};
-        console.log("person_info:" + req.session.email);
-      }
+      connection.query(p_select, [p_account], function (err, rows, result){
+        for(p_account in rows){
+          req.session = {account:rows[p_account].account};
+          console.log("person_info:" + req.session.account);
+          res.redirect('home.html')
+        }
       });
-      res.redirect('home.html')
     }
   });
 });
@@ -174,13 +182,14 @@ app.post('/post_fb',urlencodedParser,function(req, res){
 
 //user name
 app.post('/user',urlencodedParser, function(req,res){
-  console.log("user session:" + req.session.name);
-  res.send(req.session.name);
+  console.log("user session:" + req.session.account);
+  res.send(req.session.account);
 });
 /*
 //default user name
 var first = 0;
 app.post('/default',urlencodedParser, function(req,res){
+<<<<<<< HEAD
   if (first == 0) {
   	req.session = {email:null, name:null};
     console.log("user email: " + req.session.email);
@@ -191,14 +200,24 @@ app.post('/default',urlencodedParser, function(req,res){
   else {
     res.send("not the first time on this page.");
   }
+=======
+	req.session = {account:null};
+  res.send(req.session.account);
+>>>>>>> cd806c18a27a04f952131e00728d7abe3b14c579
 });
 */
 //logout
 app.post('/logout',urlencodedParser, function(req,res){
+<<<<<<< HEAD
   console.log("user logout:" + req.session.name);
   //req.session = null;
   req.session = {email:null, name:null};
   res.send("OK");
+=======
+  console.log("user logout:" + req.session.account);
+  res.send(req.session.account);
+  req.session = null;
+>>>>>>> cd806c18a27a04f952131e00728d7abe3b14c579
 });
 
 //view more //when refresh the pages, how do we reload this?
@@ -264,7 +283,7 @@ connection.query(sel, (err,result) => {//result?? yes!!
 */
 //delete data in database
 /*
-var del = "DELETE FROM `wp2017_groupc`.`user` WHERE name = ''";
+var del = "DELETE FROM `wp2017_groupc`.`user` WHERE account = 'a'";
 connection.query(del, function (err, result) {
   if (err){
     console.log('delete failed!');

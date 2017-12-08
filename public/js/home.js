@@ -21,7 +21,7 @@ function back(){
     url: "logout",
     success : function(data) {
       console.log("logout success");
-      alert("You've successfully log out ..");
+      alert(`${data} have successfully log out 🙂 `);
       window.top.location.href = "http://luffy.ee.ncku.edu.tw:2266/index.html";
     }
   });
