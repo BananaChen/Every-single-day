@@ -46,16 +46,9 @@ app.post('/post',urlencodedParser, function(req, res) {
       }
     }
     if(checkaccount == 1){ 
-<<<<<<< HEAD
-      if(rows[useremail].password == userpassword){
-        console.log("log in:" + rows[useremail].email);
-        req.session = {email:rows[useremail].email, name:rows[useremail].name};
-        console.log("user.session.email: " + rows[useremail].email);
-=======
       if(rows[useraccount].password == userpassword){
         req.session = {account:rows[useraccount].account};
         console.log("log in:" + rows[useraccount].account);
->>>>>>> cd806c18a27a04f952131e00728d7abe3b14c579
         res.redirect('home.html')
       }
       else res.send(`Your password is wrong`);
@@ -182,42 +175,33 @@ app.post('/post_fb',urlencodedParser,function(req, res){
 
 //user name
 app.post('/user',urlencodedParser, function(req,res){
-  console.log("user session:" + req.session.account);
-  res.send(req.session.account);
-});
-/*
-//default user name
-var first = 0;
-app.post('/default',urlencodedParser, function(req,res){
-<<<<<<< HEAD
-  if (first == 0) {
-  	req.session = {email:null, name:null};
-    console.log("user email: " + req.session.email);
-    console.log("user name: " + req.session.name);
-    res.send(req.session.name);
-    first++;
+  //test
+  if (req.session == null) {
+    res.send(null);
   }
   else {
-    res.send("not the first time on this page.");
+    console.log("user session:" + req.session.account);
+    res.send(req.session.account);
   }
-=======
-	req.session = {account:null};
-  res.send(req.session.account);
->>>>>>> cd806c18a27a04f952131e00728d7abe3b14c579
 });
-*/
+//default user name
+var first = 1;
+app.post('/default',urlencodedParser, function(req,res){
+  if (first) {
+    first = 0;
+    req.session = null;
+    res.send("first visit");
+  }
+  else
+    res.send("not first visit");
+});
+
 //logout
 app.post('/logout',urlencodedParser, function(req,res){
-<<<<<<< HEAD
-  console.log("user logout:" + req.session.name);
-  //req.session = null;
-  req.session = {email:null, name:null};
-  res.send("OK");
-=======
   console.log("user logout:" + req.session.account);
-  res.send(req.session.account);
   req.session = null;
->>>>>>> cd806c18a27a04f952131e00728d7abe3b14c579
+  res.send(null);
+  //res.send(req.session.account);
 });
 
 //view more //when refresh the pages, how do we reload this?

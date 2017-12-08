@@ -3,14 +3,14 @@ $("document").ready(function(){
     method: "POST",
     url: "user",
     success : function(data) {
-      if (data == null) {
-        $("#yourname").prepend(`<li><a href="#">Guest</a></li>`);
-        $("#yourname").append(`<li><a href="form_login.html">Login</a></li>`);
-      }
-      else {
+     if (data) {                                                                                                                             
         $("#yourname").prepend(`<li><a href="your_lifestyle.html">${data}</a></li>`);
         $("#yourname").append(`<li><a href="#" onclick="back()">Log Out</a></li>`);
-      }
+      } 
+      else {
+        $("#yourname").prepend(`<li><a href="#">Guest</a></li>`);
+        $("#yourname").append(`<li><a href="form_login.html">Login</a></li>`);
+      }  
     }
 
   });
