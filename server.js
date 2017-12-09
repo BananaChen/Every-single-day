@@ -206,16 +206,16 @@ app.post('/logout',urlencodedParser, function(req,res){
 var i = -1;
 app.post('/view_more',urlencodedParser, function(req, res) {
   //var r = Math.floor((Math.random() * 6));
-  var rand_pick = "SELECT name FROM `wp2017_groupc`.`person_information`";
+  var rand_pick = "SELECT account FROM `wp2017_groupc`.`person_information`";
   connection.query(rand_pick, (err,result) => { //checking function
     if (err) {
       throw err;
     }
     else {
       if (i <= 5) { // i <= array size
-        //console.log();
+        //console.log(result);
         i=i+1;
-        res.status(200).send(result[i].name);
+        res.status(200).send(result[i].account);
       }
     }
   });
@@ -265,7 +265,7 @@ connection.query(sel, (err,result) => {//result?? yes!!
 */
 //delete data in database
 /*
-var del = "DELETE FROM `wp2017_groupc`.`user` WHERE account = 'a'";
+var del = "DELETE FROM `wp2017_groupc`.`person_information` WHERE account = '0'";
 connection.query(del, function (err, result) {
   if (err){
     console.log('delete failed!');
