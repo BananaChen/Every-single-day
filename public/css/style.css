@@ -843,7 +843,7 @@ hr.bold {
 .team-wrapper-big img, .team-wrapper-small img { width: 100%; }
 .team-wrapper-big:hover .team-wrapper-overlay h5 { bottom: 70%; color:#fff; visibility: visible; }
 .team-wrapper-big:hover .team-wrapper-overlay h6, .team-wrapper-small:hover .team-wrapper-overlay h6 { bottom: 60%; color: #fff; }
-.team-wrapper-big:hover .team-wrapper-overlay p, .team-wrapper-small:hover .team-wrapper-overlay p { color: #eee; opacity: 1; -webkit-transition: opacity 0.4s; -webkit-transition-delay: 0.2s; -moz-transition: opacity 0.4s 0.2s; -o-transition: opacity 0.4s 0.2s; transition: opacity 0.4s 0.2s; }
+.team-wrapper-big:hover .team-wrapper-overlay p, .team-wrapper-small:hover .team-wrapper-overlay p { color: #; opacity: 1; -webkit-transition: opacity 0.4s; -webkit-transition-delay: 0.2s; -moz-transition: opacity 0.4s 0.2s; -o-transition: opacity 0.4s 0.2s; transition: opacity 0.4s 0.2s; }
 .team-wrapper-big:hover .team-wrapper-overlay .social-icons, .team-wrapper-small:hover .team-wrapper-overlay .social-icons { opacity: 1; -webkit-transition: opacity 0.4s; -webkit-transition-delay: 0.4s; -moz-transition: opacity 0.4s 0.4s; -o-transition: opacity 0.4s 0.4s; transition: opacity 0.4s 0.4s; }
 
 .team-wrapper-small:hover .team-wrapper-overlay .social-icons { -webkit-transition: opacity 0.4s; -webkit-transition-delay: 0.2s; -moz-transition: opacity 0.4s 0.2s; -o-transition: opacity 0.4s 0.2s; transition: opacity 0.4s 0.2s; }
@@ -891,18 +891,13 @@ hr.bold {
 	margin:0;
 	padding:0;
 }
-.team-social .social-facebook a{background: #3873ae;}
-.team-social .social-twitter a{background: #62c6f8;}
-.team-social .social-dribbble a{background: #d74980;}
-.team-social .social-deviantart a{background: #8da356;}
-.team-social .social-google a{background: #000;}
-.team-social .social-vimeo a{background: #51a6d3;}
-.team-social .social-facebook a:hover{background: #4893ce;}
-.team-social .social-twitter a:hover{background: #82e6ff;}
-.team-social .social-dribbble a:hover{background: #f769a0;}
-.team-social .social-deviantart a:hover{background: #adc376;}
-.team-social .social-google a:hover{background: #333;}
-.team-social .social-vimeo a:hover{background: #71c6f3;}
+.team-social .social-facebook a{background: #3873ae;border-radius: 5px;}
+.team-social .social-instagram a{background: #FF0088;border-radius: 5px;}
+.team-social .social-github a{background: #000;border-radius: 5px;}
+.team-social .social-facebook a:hover{background: #4893ce;border-radius: 5px;}
+.team-social .social-instagram a:hover{background: #FF44AA;border-radius: 5px;}
+.team-social .social-github a:hover{background: #333;border-radius: 5px;}
+
 
 /* stats */
 .stats .icon {
