@@ -213,7 +213,6 @@ app.post('/view_more',urlencodedParser, function(req, res) {
     }
     else {
       if (i <= 5) { // i <= array size
-        //console.log(result);
         i=i+1;
         res.status(200).send(result[i].account);
       }
@@ -240,7 +239,7 @@ app.post('/upload', function(req, res){
             res.redirect('back');
         });
     });
-    res.send(filename);
+    //res.send(filename);
 });
 
 //get picture
