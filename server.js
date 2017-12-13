@@ -179,7 +179,7 @@ app.post('/user',urlencodedParser, function(req,res){
     res.send(null);
   }
   else {
-    console.log("user session:" + req.session.account);
+    //console.log("user session:" + req.session.account);
     res.send(req.session.account);
   }
 });
@@ -193,6 +193,13 @@ app.post('/default',urlencodedParser, function(req,res){
   }
   else
     res.send("not first visit");
+});
+//btn
+app.post('/btn',urlencodedParser, function(req,res){
+  if(req.session==null){
+    res.send(null);
+  }
+  else res.send(req.session.account);
 });
 
 //logout
