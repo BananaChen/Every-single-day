@@ -233,7 +233,7 @@ function back(){
     method: "POST",
     url: "logout",
     success : function(data) {
-      alert(`${data} have successfully log out 🙂 `);
+      alert(`You have successfully log out 🙂 `);
       window.top.location.href = "http://luffy.ee.ncku.edu.tw:2266/index.html";
     }
   });

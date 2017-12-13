@@ -183,7 +183,7 @@ app.post('/user',urlencodedParser, function(req,res){
     res.send(null);
   }
   else {
-    console.log("user session:" + req.session.account);
+    //console.log("user session:" + req.session.account);
     res.send(req.session.account);
   }
 });
@@ -198,12 +198,19 @@ app.post('/default',urlencodedParser, function(req,res){
   else
     res.send("not first visit");
 });
+//btn
+app.post('/btn',urlencodedParser, function(req,res){
+  if(req.session==null){
+    res.send(null);
+  }
+  else res.send(req.session.account);
+});
 
 //logout
 app.post('/logout',urlencodedParser, function(req,res){
   console.log("user logout:" + req.session.account);
-  res.send(req.session.account);
   req.session = null;
+  res.send(null);
 });
 
 //view more //when refresh the pages, how do we reload this?
@@ -217,7 +224,6 @@ app.post('/view_more',urlencodedParser, function(req, res) {
     }
     else {
       if (i <= 5) { // i <= array size
-        //console.log(result);
         i=i+1;
         res.status(200).send(result[i].account);
       }
@@ -244,7 +250,7 @@ app.post('/upload', function(req, res){
             res.redirect('back');
         });
     });
-    res.send(filename);
+    //res.send(filename);
 });
 
 //get picture
