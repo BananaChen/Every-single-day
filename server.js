@@ -194,6 +194,13 @@ app.post('/default',urlencodedParser, function(req,res){
   else
     res.send("not first visit");
 });
+//btn
+app.post('/btn',urlencodedParser, function(req,res){
+  if(req.session==null){
+    res.send(null);
+  }
+  else res.send(req.session.account);
+});
 
 //logout
 app.post('/logout',urlencodedParser, function(req,res){
