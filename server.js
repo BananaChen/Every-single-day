@@ -179,7 +179,7 @@ app.post('/user',urlencodedParser, function(req,res){
     res.send(null);
   }
   else {
-    console.log("user session:" + req.session.account);
+    //console.log("user session:" + req.session.account);
     res.send(req.session.account);
   }
 });
@@ -198,8 +198,8 @@ app.post('/default',urlencodedParser, function(req,res){
 //logout
 app.post('/logout',urlencodedParser, function(req,res){
   console.log("user logout:" + req.session.account);
-  res.send(req.session.account);
   req.session = null;
+  res.send(null);
 });
 
 //view more //when refresh the pages, how do we reload this?
