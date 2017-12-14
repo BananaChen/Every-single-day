@@ -387,6 +387,7 @@ function statusChangeCallback(response) {
         var ID = response.authResponse.userID
             testAPI(ID);
             Storeid(ID);
+            console.log(ID);
         //    Storename();
     } 
     else if(response.status === 'not_authorized'){
