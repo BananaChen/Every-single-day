@@ -81,70 +81,7 @@ $("#myform").ajaxForm({
   }
 });
 
-//still need to make a responsive version?
-$("#go").click(function(){
-  $.ajax({ 
-    method: "GET",
-    url: "show_pic",
-    success:  function(data) {
-     var pic =
-      `
-      <img src="${data}" style="width:100%">
-      `;
-    switch (box) {
-      case 1:
-        switch (b1_col) {
-          case 1:
-            $("#box1_col1").prepend(pic).fadeIn(500);
-            b1_col++;
-            b1_col %= 2;
-            break;
-          case 0:
-            $("#box1_col2").prepend(pic).fadeIn(500);
-            b1_col++;
-            b1_col %= 2;
-            break;
-          }
-          break;
-    
-        case 2:
-          switch (b2_col) {
-            case 1:
-              $("#box2_col1").prepend(pic).fadeIn(500);
-              b2_col++;
-              b2_col %= 2;
-              break;
-            case 0:
-              $("#box2_col2").prepend(pic).fadeIn(500);
-              b2_col++;
-              b2_col %= 2;
-              break;
-          }
-          break;
-
-        case 3:
-          switch (b3_col) {
-            case 1:
-              $("#box3_col1").prepend(pic).fadeIn(500);
-              b3_col++;
-              b3_col %= 2;
-              break;
-            case 0:
-              $("#box3_col2").prepend(pic).fadeIn(500);
-              b3_col++;
-              b3_col %= 2;
-              break;
-         }
-         break;
-      }
-    }
-    //waiting
-    //$('#go').html('loading...');
-  });
-});
-
 //show different picture box
-
 $("#head").click(function(){
   $("#box2").animate({"opacity":"0"}, 400);
   $("#box2").css({"display":"none"});
