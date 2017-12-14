@@ -135,8 +135,16 @@
           <img id="head" src="https://i.imgur.com/Cri3Ibb.png" alt="" class="img-responsive little_man" >
           <img id="hand" src="https://i.imgur.com/GvUttOW.png" alt="" class="img-responsive little_man" >
           <img id="feet" src="https://i.imgur.com/4bT40Ou.png" alt="" class="img-responsive little_man" >
-
-          <button type="button" name="button" class="btn btn-submit" id="go">Upload</button>
+					<form id="myform" method="post" action="/upload" enctype="multipart/form-data">
+						<div class="form-group">
+		        	<input name="file" type="file" class="">
+    		    	<input type="submit" value="upload" class="">
+            </div> 
+					</form>
+					<div class="progress">
+        		<div class="bar"></div>
+        		<div class="percent">0%</div>
+    			</div>
         </div>
         <!--three lightbox inside here-->
         <div class="col-md-7">
@@ -370,6 +378,7 @@
 
   <!-- Core JavaScript Files -->
   <script src="js/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.min.js" integrity="sha384-FzT3vTVGXqf7wRfy8k4BiyzvbNfeYjK+frTVqZeNDFl8woCbF0CYG6g2fMEFFo/i" crossorigin="anonymous"></script>
   <script src="js/bootstrap.min.js"></script>
   <script src="js/jquery.sticky.js"></script>
   <script src="js/slippry.min.js"></script>
@@ -391,8 +400,8 @@
   <script src="js/owl.carousel.min.js"></script>
   <script src="js/nivo-lightbox.min.js"></script>
   <script src="lib/ios-orientationchange-fix.js"></script>
-<!--	<script src="lib/jquery-2.1.0.min.js"></script>I think this should be cleaned up (if errors show such as jquery.ease....)-->
 	<script src="src/js/jquery.swipebox.js"></script>
+<!--  <script src="js/jquery.form.js"></script>-->
 	<script type="text/javascript">
 	  $( document ).ready(function() {
 			/* Basic Gallery */
@@ -403,10 +412,5 @@
 
 		});
 	</script>
-<form method="post" action="/upload" enctype="multipart/form-data">
-        <input name="file" type="file">
-        <input type="submit" value="upload">
-</form>
-
 
 </body>

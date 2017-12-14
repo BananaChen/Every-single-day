@@ -1,7 +1,7 @@
 const express = require('express');
 const CookieStore = require('cookie-sessions');
 const app = express();
-const port = 2266;
+const port = 2268;
 const bodyParser = require('body-parser');
 const urlencodedParser = bodyParser.urlencoded({extended:false});
 const crypto = require('crypto');
@@ -238,15 +238,14 @@ app.post('/upload', function(req, res){
     //var dir = './user/'+fb_id;
     req.pipe(req.busboy);
     req.busboy.on('file', function (filedname, file, filename){
-        console.log("Uploading: " +filename);
         fstream = fs1.createWriteStream(__dirname +'/user/'+ filename);
-        console.log(fstream);
         file.pipe(fstream);
         fstream.on('close',function(){
-            res.redirect('back');
+          fstream.close();
+          console.log("Uploading: " +filename);
+          res.send(filename);
         });
     });
-    //res.send(filename);
 });
 
 //get picture

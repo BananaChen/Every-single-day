@@ -1,23 +1,85 @@
-/*$("#uploadImage").change(function(){
-   readImage( this );
--});
-+  });
-
--function readImage(input) {
-+  function readImage(input) {
-   if ( input.files && input.files[0] ) {
--    var FR= new FileReader();
--    FR.onload = function(e) {
--      //e.target.result = base64 format picture
--      $('#img').attr( "src", e.target.result );
--"    };
--    FR.readAsDataURL( input.files[0] );
--  }*/
-
-var box = 1; 
+var box = 1;
 var b1_col = 1;
 var b2_col = 1;
 var b3_col = 1;
+var progress = $(".progress");
+var bar = $(".bar");
+var percent = $(".percent");
+$("#myform").ajaxForm({
+  //$(".progress").css({"display":"block"});
+  beforeSend: function() {
+    progress.css({"display":"block"});
+    var percentVal = '0%';
+    bar.width(percentVal);
+    percent.html(percentVal);
+  },
+  uploadProgress: function(event, position, total, percentComplete) {
+    var percentVal = percentComplete + '%';
+    bar.width(percentVal);
+    percent.html(percentVal);
+  },
+  success: function() {
+    var percentVal = '100%';
+    bar.width(percentVal);
+    percent.html(percentVal);
+  },
+  complete: function(data) {
+    progress.css({"display":"none"});
+     var p =
+      `
+      <img src="./user/${data.responseText}" style="width:100%">
+      `;
+      var pic = '<a href="' + data.responseText + '" class="swipebox" title=""> <img src="'+ data.responseText +'" alt="image"></a>';
+    switch (box) {
+      case 1:
+        switch (b1_col) {
+          case 1:
+            $("#box1_col1").prepend(pic).fadeIn(500);
+            b1_col++;
+            b1_col %= 2;
+            break;
+          case 0:
+            $("#box1_col2").prepend(pic).fadeIn(500);
+            b1_col++;
+            b1_col %= 2;
+            break;
+        }
+        break;
+
+      case 2:
+        switch (b2_col) {
+          case 1:
+            $("#box2_col1").prepend(pic).fadeIn(500);
+            b2_col++;
+            b2_col %= 2;
+            break;
+          case 0:
+						$("#box2_col2").prepend(pic).fadeIn(500);
+              b2_col++;
+              b2_col %= 2;
+              break;
+        }
+        break;
+
+			case 3:
+        switch (b3_col) {
+          case 1:
+            $("#box3_col1").prepend(pic).fadeIn(500);
+            b3_col++;
+            b3_col %= 2;
+            break;
+          case 0:
+            $("#box3_col2").prepend(pic).fadeIn(500);
+            b3_col++;
+            b3_col %= 2;
+            break;
+        }
+        break;
+		}			
+
+ 
+  }
+});
 
 //still need to make a responsive version?
 $("#go").click(function(){
