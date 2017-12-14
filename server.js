@@ -108,11 +108,12 @@ app.post('/post_info',urlencodedParser, function(req, res) {
   var p_birthday = req.body.p_birthday;
   var p_department = req.body.p_department;
   var p_hobby = req.body.p_hobby;
-  var p_insert = "INSERT INTO `wp2017_groupc`.`person_information` (account, birthday, department, hobby) VALUES(?,?,?,?)";
+  var p_id=0;
+  var p_insert = "INSERT INTO `wp2017_groupc`.`person_information` (account, birthday, department, hobby, id) VALUES(?,?,?,?,?)";
   var p_select = "SELECT * FROM `wp2017_groupc`.`user` WHERE account = ?";
   var t=0;
   var tt;
-  connection.query(p_insert, [p_account, p_birthday,p_department, p_hobby], function (err, result){
+  connection.query(p_insert, [p_account, p_birthday,p_department, p_hobby, p_id], function (err, result){
     if (err){
       console.log("person_info select failed");
     }
@@ -130,13 +131,13 @@ app.post('/post_info',urlencodedParser, function(req, res) {
 //facebook log in
 app.post('/post_fb',urlencodedParser,function(req, res){
     console.log("in the post_fb");
-    var fb_email =` ${req.body.email}`;   
+    var fb_id =` ${req.body.id}`;   
     var fb_name =` ${req.body.name}`;
     console.log(fb_name);
-    var insert = "INSERT INTO `wp2017_groupc`.`user_fb` (NAME, email) VALUES(?,?)"; 
+    var insert = "INSERT INTO `wp2017_groupc`.`user_fb` (NAME, id) VALUES(?,?)"; 
     var checkaccount = 0;
-    var check = "SELECT *FROM `wp2017_groupc`.`user_fb` WHERE email = ?";
-    connection.query(check, [fb_email], function(err, rows, result){
+    var check = "SELECT *FROM `wp2017_groupc`.`user_fb` WHERE id = ?";
+    connection.query(check, [fb_id], function(err, rows, result){
         if (err){
             console.log("check failed");
         }
@@ -144,21 +145,24 @@ app.post('/post_fb',urlencodedParser,function(req, res){
             for(fb_id in rows){
                 checkaccount = 1;
                 console.log("you have already been the user");
+                //req.session.
                 //res.send("1")
             }
         }
         if(checkaccount == 0){
-             connection.query(insert,[fb_name,fb_email], function (err, result){
+             connection.query(insert,[fb_name,fb_id], function (err, rows, result){
                 if (err){
                     console.log("insert failed!");
                 }
                 else{ 
                         console.log("1 account insert");
-                        var dir = './user/'+fb_email;//make user dir
+                        var dir = './user/'+fb_id;//make user dir
                         console.log("a new dir");
                         if(!fs.existsSync(dir)){
                             fs.mkdirSync(dir);
                         }
+                        req.session={id:rows[fb_id].id};
+                        console.log(req.session.id);
                         res.send("1");
                         
                     }
