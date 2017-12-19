@@ -1,4 +1,5 @@
 $(document).ready(function() {
+	/*bar information*/
   $.ajax({
     method: "POST",
     url: "user",
@@ -10,6 +11,96 @@ $(document).ready(function() {
       else {
         $("#yourname").prepend(`<li><a href="#">Guest</a></li>`);
         $("#yourname").append(`<li><a href="form_login.html">Login</a></li>`);
+      }
+    }
+  });
+
+	/*department choosen*/
+  $.ajax({
+    method: "POST",
+    url: "department",
+    success: function(data) {
+      if (data == '1') {
+        	$.ajax({
+          	method: "POST",
+	          url: "explore_pic",
+	          success: function(pics) {
+              alert('CSIE!!');
+	            //file in 8 of the user's photos
+	          }
+	        }); 
+      }
+      if (data == '2') {
+					$.ajax({
+            method: "POST", 
+            url: "explore_pic",
+            success: function(pics) {
+              //file in 8 of the user's photos                                                                                                
+            }
+          });	
+      }
+      if (data == '3') {
+					$.ajax({
+            method: "POST",
+            url: "explore_pic",
+            success: function(pics) {
+              //file in 8 of the user's photos                                                                                                
+            }
+          });
+      }
+      if (data == '4') {
+					$.ajax({
+            method: "POST",
+            url: "explore_pic",
+            success: function(pics) {
+              //file in 8 of the user's photos                                                                                                
+            }
+          });
+      }
+      if (data == '5') {
+					$.ajax({
+            method: "POST",
+            url: "explore_pic",
+            success: function(pics) {
+              //file in 8 of the user's photos                                                                                                
+            }
+          });
+      }
+      if (data == '6') {
+					$.ajax({
+            method: "POST",
+            url: "explore_pic",
+            success: function(pics) {
+              //file in 8 of the user's photos                                                                                                
+            }
+          });
+      }
+      if (data == '7') {
+					$.ajax({
+            method: "POST",
+            url: "explore_pic",
+            success: function(pics) {
+              //file in 8 of the user's photos                                                                                                
+            }
+          });
+      }
+      if (data == '8') {
+					$.ajax({
+            method: "POST",
+            url: "explore_pic",
+            success: function(pics) {
+              //file in 8 of the user's photos                                                                                                
+            }
+          });
+      }
+      if (data == '9') {
+          $.ajax({
+            method: "POST",
+            url: "explore_pic",
+            success: function(pics) {
+              //file in 8 of the user's photos                                  
+            }
+          });
       }
     }
   });

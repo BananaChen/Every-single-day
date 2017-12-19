@@ -1,7 +1,7 @@
 const express = require('express');
 const CookieStore = require('cookie-sessions');
 const app = express();
-const port = 2268;
+const port = 2266;
 const bodyParser = require('body-parser');
 const urlencodedParser = bodyParser.urlencoded({extended:false});
 const crypto = require('crypto');
@@ -219,12 +219,68 @@ app.post('/default',urlencodedParser, function(req,res){
   else
     res.send("not first visit");
 });
+
 //btn
 app.post('/btn',urlencodedParser, function(req,res){
   if(req.session==null){
     res.send(null);
   }
   else res.send(req.session.account);
+});
+
+//go to explore
+app.post('/department',urlencodedParser, function(req,res){
+  res.send(req.session.department);
+});
+app.post('/choose_department_1',urlencodedParser, function(req,res){
+  var depart = '1';
+  req.session={department:depart};
+  res.send("let's go");
+});
+app.post('/choose_department_2',urlencodedParser, function(req,res){           
+	var depart = '2';
+  req.session={department:depart};
+  res.send("let's go");  
+});
+app.post('/choose_department_3',urlencodedParser, function(req,res){           
+	var depart = '3';
+  req.session={department:depart};
+  res.send("let's go");
+});
+app.post('/choose_department_4',urlencodedParser, function(req,res){           
+	var depart = '4';
+  req.session={department:depart};
+  res.send("let's go");
+});
+app.post('/choose_department_5',urlencodedParser, function(req,res){           
+	var depart = '5';
+  req.session={department:depart};
+  res.send("let's go");
+});
+app.post('/choose_department_6',urlencodedParser, function(req,res){           
+	var depart = '6';
+  req.session={department:depart};
+  res.send("let's go");
+});
+app.post('/choose_department_7',urlencodedParser, function(req,res){           
+	var depart = '7';
+  req.session={department:depart};
+  res.send("let's go");
+});
+app.post('/choose_department_8',urlencodedParser, function(req,res){           
+	var depart = '8';
+  req.session={department:depart};
+  res.send("let's go");
+});
+app.post('/choose_department_9',urlencodedParser, function(req,res){           
+	var depart = '9';
+  req.session={department:depart};
+  res.send("let's go");
+});
+
+//explore pictures
+app.post('/explore_pic',urlencodedParser, function(req,res){
+  res.send('CSIE');
 });
 
 //logout
