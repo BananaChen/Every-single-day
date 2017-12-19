@@ -351,7 +351,7 @@ connection.query(sel, (err,result) => {//result?? yes!!
 */
 //delete data in database
 /*
-var del = "DELETE FROM `wp2017_groupc`.`user_fb` WHERE id = 1512593615494875";
+var del = "DELETE FROM `wp2017_groupc`.`person_information` WHERE hobby = 'a'";
 connection.query(del, function (err, result) {
   if (err){
     console.log('delete failed!');

@@ -220,8 +220,8 @@ $("document").ready(function(){
         $("#yourname").append(`<li><a href="#" onclick="back()">Log Out</a></li>`);
       } 
       else {
-        $("#yourname").prepend(`<li><a href="#">Guest</a></li>`);
-        $("#yourname").append(`<li><a href="form_login.html">Login</a></li>`);
+        alert(`You should log in first 🙂 `);
+        window.top.location.href = "http://luffy.ee.ncku.edu.tw:2266/form_login.html";
       }  
     }
   });
