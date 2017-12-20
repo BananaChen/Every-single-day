@@ -1,7 +1,7 @@
 const express = require('express');
 const CookieStore = require('cookie-sessions');
 const app = express();
-const port = 2267;
+const port = 2269;
 const bodyParser = require('body-parser');
 const urlencodedParser = bodyParser.urlencoded({extended:false});
 const crypto = require('crypto');
@@ -59,6 +59,8 @@ app.post('/post',urlencodedParser, function(req, res) {
     if(checkaccount == 1){ 
       if(rows[useraccount].password == userpassword){
         req.session = {account:rows[useraccount].account};
+        //req.cookies.is_login = true;
+        res.cookie('is_login', true);
         console.log("log in:" + rows[useraccount].account);
         res.redirect('home.html')
       }
@@ -140,6 +142,7 @@ app.post('/post_info',urlencodedParser, function(req, res) {
       connection.query(p_select, [p_account], function (err, rows, result){
         for(p_account in rows){
           req.session = {account:rows[p_account].account};
+          req.cookies.is_login = true;
           console.log("person_info:" + req.session.account);
           res.redirect('home.html')
         }
@@ -222,11 +225,12 @@ app.post('/user',urlencodedParser, function(req,res){
 //default user name
 app.post('/default',urlencodedParser, function(req,res){
   if (!req.cookies.is_login) {
+    console.log("cookie is false");
     req.session = null;
     res.send("first visit");
   }
   else {
-    req.cookies.is_login = true;
+    console.log("cookie is true");
     res.send("not first visit");
   }
 });
@@ -298,6 +302,7 @@ app.post('/explore_pic',urlencodedParser, function(req,res){
 app.post('/logout',urlencodedParser, function(req,res){
   console.log("user logout:" + req.session.account);
   req.session = null;
+  req.cookies.is_login = false;
   res.send(null);
 });
 
