@@ -84,6 +84,7 @@ app.post('/post_signup',urlencodedParser, function(req, res) {
   var insert = "INSERT INTO `wp2017_groupc`.`user` (account, password, email) VALUES(?,?,?)";
   var check_signup = "SELECT * FROM `wp2017_groupc`.`user` WHERE account = ?";
   var newaccount = 0;
+  req.session={id:'0'};
   connection.query(check_signup, [signup_account], function (err, rows, result){
     if (err){
       console.log("sign up select failed");
