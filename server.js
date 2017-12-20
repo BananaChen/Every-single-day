@@ -1,11 +1,7 @@
 const express = require('express');
 const CookieStore = require('cookie-sessions');
 const app = express();
-<<<<<<< HEAD
-const port = 2269;
-=======
 const port = 2266;
->>>>>>> 33e5392a3cb2c9eb8152fbcf93caa6afffa37f0d
 const bodyParser = require('body-parser');
 const urlencodedParser = bodyParser.urlencoded({extended:false});
 const crypto = require('crypto');
@@ -14,6 +10,9 @@ app.use(express.static(__dirname+'/public'));
 app.use(express.static(__dirname+'/user'));
 app.use(CookieStore({secret:'day'}));
 app.use(cookieParser());
+app.use(bodyParser.urlencoded({ extended: false }))
+ 
+app.use(bodyParser.json())
 
 var fs2 = require('fs');
 var key = fs2.readFileSync('ssl/private.key');
@@ -44,7 +43,7 @@ connection.connect();
 var fs = require('fs');//make new dir
 
 //log in
-app.post('/post',urlencodedParser, function(req, res) {  
+app.post('/post', function(req, res) {  
   var useraccount = req.body.account;
   var userpassword = req.body.password;
   var md5 = crypto.createHash('md5');
@@ -64,9 +63,10 @@ app.post('/post',urlencodedParser, function(req, res) {
       if(rows[useraccount].password == userpassword){
         req.session = {account:rows[useraccount].account};
         //req.cookies.is_login = true;
-        res.cookie('is_login', true);
+        req.session = {is_login: true};
         console.log("log in:" + rows[useraccount].account);
-        res.redirect('home.html')
+        //res.redirect('home.html');
+        res.send('a')
       }
       else res.send(`Your password is wrong`);
     }
@@ -227,14 +227,15 @@ app.post('/user',urlencodedParser, function(req,res){
   }
 });
 //default user name
-app.post('/default',urlencodedParser, function(req,res){
-  if (!req.cookies.is_login) {
-    console.log("cookie is false");
+app.post('/default', function(req,res){
+  console.log('session is now ' + req.session.is_login);
+  if (!req.session.is_login) {
+    console.log("session is false");
     req.session = null;
     res.send("first visit");
   }
   else {
-    console.log("cookie is true");
+    console.log("session is true");
     res.send("not first visit");
   }
 });
