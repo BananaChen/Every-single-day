@@ -5,9 +5,11 @@ const port = 2267;
 const bodyParser = require('body-parser');
 const urlencodedParser = bodyParser.urlencoded({extended:false});
 const crypto = require('crypto');
+const cookieParser = require('cookie-parser');
 app.use(express.static(__dirname+'/public'));
 app.use(express.static(__dirname+'/user'));
 app.use(CookieStore({secret:'day'}));
+app.use(cookieParser());
 
 var fs2 = require('fs');
 var key = fs2.readFileSync('ssl/private.key');
@@ -22,11 +24,7 @@ var https = require('https');
 https.createServer(options, app).listen(port, function(err){
   if(!err) console.log("Listening in port " + port);
 });
-/*
-app.listen(port, function(err) {
-    if(!err) console.log("Listening in port " + port);
-});
-*/
+
 // Please install npm package mysql first
 const config = require('./config');
 const mysql = require('mysql');
@@ -222,15 +220,15 @@ app.post('/user',urlencodedParser, function(req,res){
   }
 });
 //default user name
-var first = 1;
 app.post('/default',urlencodedParser, function(req,res){
-  if (first) {
-    first = 0;
+  if (!req.cookies.is_login) {
     req.session = null;
     res.send("first visit");
   }
-  else
+  else {
+    req.cookies.is_login = true;
     res.send("not first visit");
+  }
 });
 
 //btn
