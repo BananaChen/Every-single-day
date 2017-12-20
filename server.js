@@ -6,10 +6,6 @@ const bodyParser = require('body-parser');
 const urlencodedParser = bodyParser.urlencoded({extended:false});
 const crypto = require('crypto');
 const cookieParser = require('cookie-parser');
-<<<<<<< HEAD
-
-=======
->>>>>>> 33e5392a3cb2c9eb8152fbcf93caa6afffa37f0d
 app.use(express.static(__dirname+'/public'));
 app.use(express.static(__dirname+'/user'));
 app.use(CookieStore({secret:'day'}));
@@ -352,11 +348,8 @@ connection.query(sel, (err,result) => {//result?? yes!!
 });
 */
 //delete data in database
-<<<<<<< HEAD
-
-var del = "DELETE FROM `wp2017_groupc`.`user_fb` WHERE id = 1512593615494875";
-=======
 /*
+var del = "DELETE FROM `wp2017_groupc`.`user_fb` WHERE id = 1512593615494875";
 var del = "DELETE FROM `wp2017_groupc`.`person_information` WHERE hobby = 'a'";
 >>>>>>> 33e5392a3cb2c9eb8152fbcf93caa6afffa37f0d
 connection.query(del, function (err, result) {
@@ -365,4 +358,4 @@ connection.query(del, function (err, result) {
   }
   console.log("Number of records deleted: " + result.affectedRows);
 });
-
+*/
