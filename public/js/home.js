@@ -22,7 +22,90 @@ function back(){
     success : function(data) {
       console.log("logout success");
       alert(`You have successfully log out 🙂 `);
-      window.top.location.href = "http://luffy.ee.ncku.edu.tw:2266/index.html";
+      window.top.location.href = "https://luffy.ee.ncku.edu.tw:2266/index.html";
+    }
+  });
+};
+
+function d1(){
+  $.ajax({
+    method: "POST",
+    url: "choose_department_1",
+    success : function(data) {
+      window.top.location.href = "https://luffy.ee.ncku.edu.tw:2266/explore.html";
+
+    }
+  });
+};
+function d2(){
+  $.ajax({
+    method: "POST",
+    url: "choose_department_2",
+    success : function(data) {
+      window.top.location.href = "https://luffy.ee.ncku.edu.tw:2266/explore.html"
+    }
+  });
+};
+function d3(){
+  $.ajax({
+    method: "POST",
+    url: "choose_department_3",
+    success : function(data) {
+      window.top.location.href = "https://luffy.ee.ncku.edu.tw:2266/explore.html"
+    }
+  });
+};
+function d4(){
+  $.ajax({
+    method: "POST",
+    url: "choose_department_4",
+    success : function(data) {
+      window.top.location.href = "https://luffy.ee.ncku.edu.tw:2266/explore.html"
+    }
+  });
+};
+function d5(){
+  $.ajax({
+    method: "POST",
+    url: "choose_department_5",
+    success : function(data) {
+      window.top.location.href = "https://luffy.ee.ncku.edu.tw:2266/explore.html"
+    }
+  });
+};
+function d6(){
+  $.ajax({
+    method: "POST",
+    url: "choose_department_6",
+    success : function(data) {
+      window.top.location.href = "https://luffy.ee.ncku.edu.tw:2266/explore.html"
+    }
+  });
+};
+function d7(){
+  $.ajax({
+    method: "POST",
+    url: "choose_department_7",
+    success : function(data) {
+      window.top.location.href = "https://luffy.ee.ncku.edu.tw:2266/explore.html"
+    }
+  });
+};
+function d8(){
+  $.ajax({
+    method: "POST",
+    url: "choose_department_8",
+    success : function(data) {
+      window.top.location.href = "https://luffy.ee.ncku.edu.tw:2266/explore.html"
+    }
+  });
+};
+function d9(){
+  $.ajax({
+    method: "POST",
+    url: "choose_department_9",
+    success : function(data) {
+      window.top.location.href = "https://luffy.ee.ncku.edu.tw:2266/explore.html"
     }
   });
 };

@@ -109,58 +109,57 @@ $("#feet").click(function(){
   $("#box3").animate({"opacity":"1"}, 400);
   box = 3;
 });
-/*
-//hover on little man
-$("#head").hover(
-  function(){
-    $(this).css({"filter":"brightness(110%)"});
-  },
-  function(){
-    $(this).css({"filter":"brightness(100%)"});
-  }
-);
-$("#hand").hover(
-  function(){
-    $(this).css({"filter":"brightness(110%)"});
-  },
-  function(){
-    $(this).css({"filter":"brightness(100%)"});
-  }
-);
-$("#feet").hover(
-  function(){
-    $(this).css({"filter":"brightness(110%)"});
-  },
-  function(){
-    $(this).css({"filter":"brightness(100%)"});
-  }
-);
-*/
 
-/*
-// Get the modal
-var modal = document.getElementById('myModal');
-// Get the image and insert it inside the modal - use its "alt" text as a caption
-var img = document.getElementById('img');
-var modalImg = document.getElementById("img01");
-var captionText = document.getElementById("caption");
-img.onclick = function(){
-    //console.log("shit");
-    modal.style.display = "block";
-    modalImg.src = this.src;
-    captionText.innerHTML = this.alt;
+<<<<<<< HEAD
+=======
+//facebook stuff
+function statusChangeCallback(response) {
+    console.log('statusChangeCallback');
+    console.log(response);
+    // for FB.getLoginStatus().
+    if (response.status === 'connected') {
+        // Logged into your app and Facebook.
+        //testAPI();
+        console.log("wlcome");
+    }
+    else if (response.status === 'not_authorized'){
+        window.top.location.href= "https://www.facebook.com/dialog/oauth?client_id=1573588719392394&scope=email,user_birthday&redirect_uri=http://luffy.ee.ncku.edu.tw:2266/your_lifestyle.html"
+
+    }
+    else {
+        // The person is not logged into your app or we are unable to tell.
+        alert("please log in :)");
+        window.top.location.href= "https://luffy.ee.ncku.edu.tw:2266/index.html"
+        //document.getElementById('status').innerHTML = 'Please log ' +
+        //  'into this app.';
+    }
 }
+window.fbAsyncInit = function() {
+    FB.init({
+                appId      : '1573588719392394',
+                xfbml      : true,
+                version    : 'v2.11'
+    });
+//FB.AppEvents.logPageView();
+};
 
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
+(function(d, s, id){
+ var js, fjs = d.getElementsByTagName(s)[0];
+ if (d.getElementById(id)) {return;}
+ js = d.createElement(s); js.id = id;
+ js.src = "https://connect.facebook.net/en_US/sdk.js";
+ fjs.parentNode.insertBefore(js, fjs);
+ }(document, 'script', 'facebook-jssdk'));
 
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-  modal.style.display = "none";
-}
-*/
+function fun(){
 
-
+    console.log("hi");
+    FB.logout(function(response) {
+            // user is now logged out
+            window.top.location.href="https://luffy.ee.ncku.edu.tw:2266/index.html"
+            });
+};
+>>>>>>> 33e5392a3cb2c9eb8152fbcf93caa6afffa37f0d
 
 //show useraccount
 $("document").ready(function(){
@@ -173,8 +172,8 @@ $("document").ready(function(){
         $("#yourname").append(`<li><a href="#" onclick="back()">Log Out</a></li>`);
       } 
       else {
-        $("#yourname").prepend(`<li><a href="#">Guest</a></li>`);
-        $("#yourname").append(`<li><a href="form_login.html">Login</a></li>`);
+        alert(`You should log in first 🙂 `);
+        window.top.location.href = "https://luffy.ee.ncku.edu.tw:2266/form_login.html";
       }  
     }
   });
@@ -186,7 +185,7 @@ function back(){
     url: "logout",
     success : function(data) {
       alert(`You have successfully log out 🙂 `);
-      window.top.location.href = "http://luffy.ee.ncku.edu.tw:2266/index.html";
+      window.top.location.href = "https://luffy.ee.ncku.edu.tw:2266/index.html";
     }
   });
 };
