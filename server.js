@@ -1,7 +1,11 @@
 const express = require('express');
 const CookieStore = require('cookie-sessions');
 const app = express();
+<<<<<<< HEAD
 const port = 2269;
+=======
+const port = 2266;
+>>>>>>> 33e5392a3cb2c9eb8152fbcf93caa6afffa37f0d
 const bodyParser = require('body-parser');
 const urlencodedParser = bodyParser.urlencoded({extended:false});
 const crypto = require('crypto');

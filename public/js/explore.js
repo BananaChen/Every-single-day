@@ -201,8 +201,7 @@ function back(){
     success : function(data) {
       console.log("logout success");
       alert(`You have successfully log out 🙂 `);
-      window.top.location.href = "http://luffy.ee.ncku.edu.tw:2266/index.html";
+      window.top.location.href = "https://luffy.ee.ncku.edu.tw:2266/index.html";
     }
   });
 };
-
