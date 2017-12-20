@@ -63,10 +63,8 @@ app.post('/post', function(req, res) {
       if(rows[useraccount].password == userpassword){
         req.session = {account:rows[useraccount].account};
         //req.cookies.is_login = true;
-        req.session = {is_login: true};
         console.log("log in:" + rows[useraccount].account);
-        //res.redirect('home.html');
-        res.send('a')
+        res.redirect('home.html');
       }
       else res.send(`Your password is wrong`);
     }
@@ -120,46 +118,7 @@ app.post('/post_signup',urlencodedParser, function(req, res) {
   });
 });
 
-<<<<<<< HEAD
-//person_information
-app.post('/post_info',urlencodedParser, function(req, res) {
-  //var p_account = signup_account;
-  var p_account;
-  var p_id;
-  if(req.session.id)
-    p_id = req.session.id;
-  else
-    p_id = 0;
-  console.log("signup account")
-  var p_account = signup_account;
-  console.log(signup_account);
-  var p_birthday = req.body.p_birthday;
-  var p_department = req.body.p_department;
-  var p_hobby = req.body.p_hobby;
-  var p_insert = "INSERT INTO `wp2017_groupc`.`person_information` (account, birthday, department, hobby, id) VALUES(?,?,?,?,?)";
-  var p_select = "SELECT * FROM `wp2017_groupc`.`user` WHERE account = ?";
-  var t=0;
-  var tt;
-  connection.query(p_insert, [p_account, p_birthday,p_department, p_hobby, p_id], function (err, result){
-    if (err){
-      console.log("person_info select failed");
-    }
-    else{
-      connection.query(p_select, [p_account], function (err, rows, result){
-        for(p_account in rows){
-          req.session = {account:rows[p_account].account};
-          req.cookies.is_login = true;
-          console.log("person_info:" + req.session.account);
-          res.redirect('home.html')
-        }
-      });
-    }
-  });
-});
-//facebook log iin
-=======
 //facebook log in
->>>>>>> 3e456eba095c5831d83831bb192594ba92582af7
 app.post('/post_fb',urlencodedParser,function(req, res){
     console.log("in the post_fb");
     var fb_id =` ${req.body.id}`;   
@@ -254,8 +213,7 @@ app.post('/user',urlencodedParser, function(req,res){
 });
 //default user name
 app.post('/default', function(req,res){
-  console.log('session is now ' + req.session.is_login);
-  if (!req.session.is_login) {
+  if (!req.session) {
     console.log("session is false");
     req.session = null;
     res.send("first visit");
