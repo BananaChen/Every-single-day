@@ -464,7 +464,6 @@ function testAPI(s) {
 }
 function Storeid(s) {
 
-        console.log(s);
         var name;
         FB.api('/me', function(response) {                 
             name = response.name;
@@ -476,10 +475,10 @@ function Storeid(s) {
                     success: function(data) {
                         console.log('ajax'+data);
                        if(data==1){
-                            window.location.href = 'http://luffy.ee.ncku.edu.tw:2266/person_info.html';
+                            window.location.href = 'https://luffy.ee.ncku.edu.tw:2266/person_info.html';
                        }
                        else if(data==0){
-                            window.location.href = 'http://luffy.ee.ncku.edu.tw:2266/home.html';
+                            window.location.href = 'https://luffy.ee.ncku.edu.tw:2266/home.html';
                        }
                     }
                 });
@@ -489,17 +488,8 @@ function Storeid(s) {
 }
 </script>
         
-<!--
-            Below we include the Login Button social plugin. This button uses
-            the JavaScript SDK to present a graphical Login button that triggers
-            the FB.login() function when clicked.
-            -->
-
-            <!--fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
-            </fb:login-button-->
 
             <div id="status">
             </div>
-    
-
+            
             </html>

@@ -90,6 +90,7 @@ app.post('/post_signup',urlencodedParser, function(req, res) {
   var insert = "INSERT INTO `wp2017_groupc`.`user` (account, password, email) VALUES(?,?,?)";
   var check_signup = "SELECT * FROM `wp2017_groupc`.`user` WHERE account = ?";
   var newaccount = 0;
+  req.session={id:'0'};
   connection.query(check_signup, [signup_account], function (err, rows, result){
     if (err){
       console.log("sign up select failed");
@@ -119,6 +120,7 @@ app.post('/post_signup',urlencodedParser, function(req, res) {
   });
 });
 
+<<<<<<< HEAD
 //person_information
 app.post('/post_info',urlencodedParser, function(req, res) {
   //var p_account = signup_account;
@@ -155,32 +157,31 @@ app.post('/post_info',urlencodedParser, function(req, res) {
   });
 });
 //facebook log iin
+=======
+//facebook log in
+>>>>>>> 3e456eba095c5831d83831bb192594ba92582af7
 app.post('/post_fb',urlencodedParser,function(req, res){
     console.log("in the post_fb");
     var fb_id =` ${req.body.id}`;   
+    req.session={id:fb_id};
     var fb_name =` ${req.body.name}`;
     signup_account = fb_name;
     var insert = "INSERT INTO `wp2017_groupc`.`user_fb` (NAME, id) VALUES(?,?)"; 
     var checkaccount = 0;
     var check = "SELECT *FROM `wp2017_groupc`.`user_fb` WHERE id = ?";
     connection.query(check, [fb_id], function(err, rows, result){
-        if (err){
+            if (err){
             console.log("check failed");
         }
         else{
             for(fb_id in rows){
                 checkaccount = 1;
                 console.log("you have already been the user");
-
-      // console.log("fb:"+rows[fb_id]);
-                //req.session.
-                //res.send("1")
             }
-        //console.log("aaa");
         }
         //fb_signup
         if(checkaccount == 0){
-             connection.query(insert,[fb_name,fb_id], function (err, result){
+                connection.query(insert,[fb_name,fb_id], function (err, result){
                 if (err){
                     console.log("insert failed!");
                 }
@@ -191,29 +192,54 @@ app.post('/post_fb',urlencodedParser,function(req, res){
                         if(!fs.existsSync(dir)){
                             fs.mkdirSync(dir);
                         }
-                        for(fb_id in rows){
-                            req.session={id:rows[fb_id].id};
-                        }
-                        console.log(rows);
                         res.send("1");
                     }
                 });
-        
         }
         else {
                 console.log("already there!");
-                //for(fb_id in rows){
-                  //          req.session={id:rows[fb_id].id};
-                //}
                 var a="0";
                 for(fb_name in rows){
-                            req.session={account:rows[fb_name].NAME}
+                    req.session={account:rows[fb_name].NAME,id:rows[fb_name].id};
                 }
-                //console.log("fbid " + req.session.id);
                 console.log("fbname " + req.session.account);
                 res.send(a);
         }
     });
+});
+//person_information
+app.post('/post_info',urlencodedParser, function(req, res) {
+  var p_id = req.session.id;
+  var p_account = signup_account;
+  var p_birthday = req.body.p_birthday;
+  var p_department = req.body.p_department;
+  var p_hobby = req.body.p_hobby;
+  var p_insert = "INSERT INTO `wp2017_groupc`.`person_information` (account, birthday, department, hobby, id) VALUES(?,?,?,?,?)";
+  var p_select = "SELECT * FROM `wp2017_groupc`.`user` WHERE account = ?";
+  var t=0;
+  var tt;
+  var p_select_fb = "SELECT * FROM `wp2017_groupc`.`user_fb` WHERE NAME = ?";
+  connection.query(p_insert, [p_account, p_birthday,p_department, p_hobby, p_id], function (err, result){
+    if (err){
+      console.log("person_info select failed");
+    }
+    else{
+      connection.query(p_select, [p_account], function (err, rows, result){
+        for(p_account in rows){
+          req.session = {account:rows[p_account].account};
+          console.log("person_info:" + req.session.account);
+          res.redirect('home.html');
+        }
+      });
+       connection.query(p_select_fb, [p_account], function (err, rows, result){
+        for(p_account in rows){
+          req.session = {account:rows[p_account].NAME};
+          console.log("person_info:" + req.session.account);
+          res.redirect('home.html');
+        }
+      });
+    }
+  });
 });
 
 //user name
@@ -372,7 +398,9 @@ connection.query(sel, (err,result) => {//result?? yes!!
 */
 //delete data in database
 /*
+var del = "DELETE FROM `wp2017_groupc`.`user_fb` WHERE id = 1512593615494875";
 var del = "DELETE FROM `wp2017_groupc`.`person_information` WHERE hobby = 'a'";
+>>>>>>> 33e5392a3cb2c9eb8152fbcf93caa6afffa37f0d
 connection.query(del, function (err, result) {
   if (err){
     console.log('delete failed!');

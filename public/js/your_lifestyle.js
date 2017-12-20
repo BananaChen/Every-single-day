@@ -110,6 +110,8 @@ $("#feet").click(function(){
   box = 3;
 });
 
+<<<<<<< HEAD
+=======
 //facebook stuff
 function statusChangeCallback(response) {
     console.log('statusChangeCallback');
@@ -157,6 +159,7 @@ function fun(){
             window.top.location.href="https://luffy.ee.ncku.edu.tw:2266/index.html"
             });
 };
+>>>>>>> 33e5392a3cb2c9eb8152fbcf93caa6afffa37f0d
 
 //show useraccount
 $("document").ready(function(){
