@@ -125,40 +125,39 @@ app.post('/post_fb',urlencodedParser,function(req, res){
     var checkaccount = 0;
     var check = "SELECT *FROM `wp2017_groupc`.`user_fb` WHERE id = ?";
     connection.query(check, [fb_id], function(err, rows, result){
-            if (err){
-            console.log("check failed");
+        if (err){
+          console.log("check failed");
         }
         else{
-            for(fb_id in rows){
-                checkaccount = 1;
-                console.log("you have already been the user");
-            }
+          for(fb_id in rows){
+            checkaccount = 1;
+            console.log("you have already been the user");
+          }
         }
         //fb_signup
         if(checkaccount == 0){
-                connection.query(insert,[fb_name,fb_id], function (err, result){
-                if (err){
-                    console.log("insert failed!");
-                }
-                else{ 
-                        console.log("1 account insert");
-                        var dir = './user/'+fb_id;//make user dir
-                        console.log("a new dir");
-                        if(!fs.existsSync(dir)){
-                            fs.mkdirSync(dir);
-                        }
-                        res.send("1");
-                    }
-                });
+          connection.query(insert,[fb_name,fb_id], function (err, result){
+            if (err){
+              console.log("insert failed!");
+            }
+            else{ 
+              var dir = './user/'+fb_id;//make user dir
+              console.log("a new dir");
+              if(!fs.existsSync(dir)){
+                fs.mkdirSync(dir);
+              }
+              res.send("1");
+            }
+          });
         }
         else {
-                console.log("already there!");
-                var a="0";
-                for(fb_name in rows){
-                    req.session={account:rows[fb_name].NAME,id:rows[fb_name].id};
-                }
-                console.log("fbname " + req.session.account);
-                res.send(a);
+          console.log("already there!");
+          var a="0";
+          for(fb_name in rows){
+            req.session={account:rows[fb_name].NAME,id:rows[fb_name].id};
+          }
+          console.log("fbname " + req.session.account);
+          res.send(a);
         }
     });
 });
