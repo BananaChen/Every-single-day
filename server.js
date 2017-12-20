@@ -1,19 +1,32 @@
 const express = require('express');
 const CookieStore = require('cookie-sessions');
 const app = express();
-const port = 2266;
+const port = 2267;
 const bodyParser = require('body-parser');
 const urlencodedParser = bodyParser.urlencoded({extended:false});
 const crypto = require('crypto');
-
 app.use(express.static(__dirname+'/public'));
 app.use(express.static(__dirname+'/user'));
 app.use(CookieStore({secret:'day'}));
 
+var fs2 = require('fs');
+var key = fs2.readFileSync('ssl/private.key');
+var cert = fs2.readFileSync( 'ssl/certificate.crt' );
+var ca = fs2.readFileSync( 'ssl/ca_bundle.crt' );
+var options = {
+  key: key,
+  cert: cert,
+  ca: ca
+};
+var https = require('https');
+https.createServer(options, app).listen(port, function(err){
+  if(!err) console.log("Listening in port " + port);
+});
+/*
 app.listen(port, function(err) {
     if(!err) console.log("Listening in port " + port);
 });
-
+*/
 // Please install npm package mysql first
 const config = require('./config');
 const mysql = require('mysql');
