@@ -109,57 +109,6 @@ $("#feet").click(function(){
   $("#box3").animate({"opacity":"1"}, 400);
   box = 3;
 });
-/*
-//hover on little man
-$("#head").hover(
-  function(){
-    $(this).css({"filter":"brightness(110%)"});
-  },
-  function(){
-    $(this).css({"filter":"brightness(100%)"});
-  }
-);
-$("#hand").hover(
-  function(){
-    $(this).css({"filter":"brightness(110%)"});
-  },
-  function(){
-    $(this).css({"filter":"brightness(100%)"});
-  }
-);
-$("#feet").hover(
-  function(){
-    $(this).css({"filter":"brightness(110%)"});
-  },
-  function(){
-    $(this).css({"filter":"brightness(100%)"});
-  }
-);
-*/
-
-/*
-// Get the modal
-var modal = document.getElementById('myModal');
-// Get the image and insert it inside the modal - use its "alt" text as a caption
-var img = document.getElementById('img');
-var modalImg = document.getElementById("img01");
-var captionText = document.getElementById("caption");
-img.onclick = function(){
-    //console.log("shit");
-    modal.style.display = "block";
-    modalImg.src = this.src;
-    captionText.innerHTML = this.alt;
-}
-
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
-
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-  modal.style.display = "none";
-}
-*/
-
 
 //facebook stuff
 function statusChangeCallback(response) {
@@ -178,7 +127,7 @@ function statusChangeCallback(response) {
     else {
         // The person is not logged into your app or we are unable to tell.
         alert("please log in :)");
-        window.top.location.href= "http://luffy.ee.ncku.edu.tw:2266/index.html"
+        window.top.location.href= "https://luffy.ee.ncku.edu.tw:2266/index.html"
         //document.getElementById('status').innerHTML = 'Please log ' +
         //  'into this app.';
     }
@@ -205,7 +154,7 @@ function fun(){
     console.log("hi");
     FB.logout(function(response) {
             // user is now logged out
-            window.top.location.href="http://luffy.ee.ncku.edu.tw:2266/index.html"
+            window.top.location.href="https://luffy.ee.ncku.edu.tw:2266/index.html"
             });
 };
 
@@ -221,7 +170,7 @@ $("document").ready(function(){
       } 
       else {
         alert(`You should log in first 🙂 `);
-        window.top.location.href = "http://luffy.ee.ncku.edu.tw:2266/form_login.html";
+        window.top.location.href = "https://luffy.ee.ncku.edu.tw:2266/form_login.html";
       }  
     }
   });
@@ -233,7 +182,7 @@ function back(){
     url: "logout",
     success : function(data) {
       alert(`You have successfully log out 🙂 `);
-      window.top.location.href = "http://luffy.ee.ncku.edu.tw:2266/index.html";
+      window.top.location.href = "https://luffy.ee.ncku.edu.tw:2266/index.html";
     }
   });
 };
