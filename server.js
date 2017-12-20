@@ -1,14 +1,16 @@
 const express = require('express');
 const CookieStore = require('cookie-sessions');
 const app = express();
-const port = 2268;
+const port = 2266;
 const bodyParser = require('body-parser');
 const urlencodedParser = bodyParser.urlencoded({extended:false});
 const crypto = require('crypto');
+const cookieParser = require('cookie-parser');
 
 app.use(express.static(__dirname+'/public'));
 app.use(express.static(__dirname+'/user'));
 app.use(CookieStore({secret:'day'}));
+app.use(cookieParser());
 
 app.listen(port, function(err) {
     if(!err) console.log("Listening in port " + port);
@@ -102,67 +104,29 @@ app.post('/post_signup',urlencodedParser, function(req, res) {
   });
 });
 
-//person_information
-app.post('/post_info',urlencodedParser, function(req, res) {
-  //var p_account = signup_account;
-  var p_account;
-  var p_id;
-  if(req.session.id)
-    p_id = req.session.id;
-  else
-    p_id = 0;
-  console.log("signup account")
-  var p_account = signup_account;
-  console.log(signup_account);
-  var p_birthday = req.body.p_birthday;
-  var p_department = req.body.p_department;
-  var p_hobby = req.body.p_hobby;
-  var p_insert = "INSERT INTO `wp2017_groupc`.`person_information` (account, birthday, department, hobby, id) VALUES(?,?,?,?,?)";
-  var p_select = "SELECT * FROM `wp2017_groupc`.`user` WHERE account = ?";
-  var t=0;
-  var tt;
-  connection.query(p_insert, [p_account, p_birthday,p_department, p_hobby, p_id], function (err, result){
-    if (err){
-      console.log("person_info select failed");
-    }
-    else{
-      connection.query(p_select, [p_account], function (err, rows, result){
-        for(p_account in rows){
-          req.session = {account:rows[p_account].account};
-          console.log("person_info:" + req.session.account);
-          res.redirect('home.html')
-        }
-      });
-    }
-  });
-});
-//facebook log iin
+//facebook log in
 app.post('/post_fb',urlencodedParser,function(req, res){
     console.log("in the post_fb");
     var fb_id =` ${req.body.id}`;   
+    req.session={id:fb_id};
     var fb_name =` ${req.body.name}`;
     signup_account = fb_name;
     var insert = "INSERT INTO `wp2017_groupc`.`user_fb` (NAME, id) VALUES(?,?)"; 
     var checkaccount = 0;
     var check = "SELECT *FROM `wp2017_groupc`.`user_fb` WHERE id = ?";
     connection.query(check, [fb_id], function(err, rows, result){
-        if (err){
+            if (err){
             console.log("check failed");
         }
         else{
             for(fb_id in rows){
                 checkaccount = 1;
                 console.log("you have already been the user");
-
-      // console.log("fb:"+rows[fb_id]);
-                //req.session.
-                //res.send("1")
             }
-        //console.log("aaa");
         }
         //fb_signup
         if(checkaccount == 0){
-             connection.query(insert,[fb_name,fb_id], function (err, result){
+                connection.query(insert,[fb_name,fb_id], function (err, result){
                 if (err){
                     console.log("insert failed!");
                 }
@@ -173,29 +137,54 @@ app.post('/post_fb',urlencodedParser,function(req, res){
                         if(!fs.existsSync(dir)){
                             fs.mkdirSync(dir);
                         }
-                        for(fb_id in rows){
-                            req.session={id:rows[fb_id].id};
-                        }
-                        console.log(rows);
                         res.send("1");
                     }
                 });
-        
         }
         else {
                 console.log("already there!");
-                //for(fb_id in rows){
-                  //          req.session={id:rows[fb_id].id};
-                //}
                 var a="0";
                 for(fb_name in rows){
-                            req.session={account:rows[fb_name].NAME}
+                    req.session={account:rows[fb_name].NAME,id:rows[fb_name].id};
                 }
-                //console.log("fbid " + req.session.id);
                 console.log("fbname " + req.session.account);
                 res.send(a);
         }
     });
+});
+//person_information
+app.post('/post_info',urlencodedParser, function(req, res) {
+  var p_id = req.session.id;
+  var p_account = signup_account;
+  var p_birthday = req.body.p_birthday;
+  var p_department = req.body.p_department;
+  var p_hobby = req.body.p_hobby;
+  var p_insert = "INSERT INTO `wp2017_groupc`.`person_information` (account, birthday, department, hobby, id) VALUES(?,?,?,?,?)";
+  var p_select = "SELECT * FROM `wp2017_groupc`.`user` WHERE account = ?";
+  var t=0;
+  var tt;
+  var p_select_fb = "SELECT * FROM `wp2017_groupc`.`user_fb` WHERE NAME = ?";
+  connection.query(p_insert, [p_account, p_birthday,p_department, p_hobby, p_id], function (err, result){
+    if (err){
+      console.log("person_info select failed");
+    }
+    else{
+      connection.query(p_select, [p_account], function (err, rows, result){
+        for(p_account in rows){
+          req.session = {account:rows[p_account].account};
+          console.log("person_info:" + req.session.account);
+          res.redirect('home.html');
+        }
+      });
+       connection.query(p_select_fb, [p_account], function (err, rows, result){
+        for(p_account in rows){
+          req.session = {account:rows[p_account].NAME};
+          console.log("person_info:" + req.session.account);
+          res.redirect('home.html');
+        }
+      });
+    }
+  });
 });
 
 //user name
@@ -294,7 +283,7 @@ connection.query(sel, (err,result) => {//result?? yes!!
 });
 */
 //delete data in database
-/*
+
 var del = "DELETE FROM `wp2017_groupc`.`user_fb` WHERE id = 1512593615494875";
 connection.query(del, function (err, result) {
   if (err){
@@ -302,4 +291,4 @@ connection.query(del, function (err, result) {
   }
   console.log("Number of records deleted: " + result.affectedRows);
 });
-*/
+
