@@ -306,23 +306,31 @@ app.post('/view_more',urlencodedParser, function(req, res) {
   });
 });
 
-
+//picture upload 
 var fs1 = require('fs');
 var busboy = require('connect-busboy');
-
+var pic_insert =  "INSERT INTO `wp2017_groupc`.`person_pic` (account, path) VALUES(?,?)";
 app.use(busboy());
-
 app.post('/upload', function(req, res){
     var fstream;
     //var dir = './user/'+fb_id;
+    var account = req.session.account;
     req.pipe(req.busboy);
     req.busboy.on('file', function (filedname, file, filename){
         fstream = fs1.createWriteStream(__dirname +'/user/'+ filename);
         file.pipe(fstream);
+        connection.query(pic_insert, [account, '/user/'+filename], function (err, result){
+         if (err){
+           console.log("failed");
+         }
+         else{
+            console.log("insert!");
+         }
+        });
         fstream.on('close',function(){
-          fstream.close();
-          console.log("Uploading: " +filename);
-          res.send(filename);
+        fstream.close();
+        console.log("Uploading: " +filename);
+        res.send(filename);
         });
     });
 });
