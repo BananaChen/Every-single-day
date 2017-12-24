@@ -10,6 +10,9 @@ app.use(express.static(__dirname+'/public'));
 app.use(express.static(__dirname+'/user'));
 app.use(CookieStore({secret:'day'}));
 app.use(cookieParser());
+app.use(bodyParser.urlencoded({ extended: false }))
+ 
+app.use(bodyParser.json())
 
 var fs2 = require('fs');
 var key = fs2.readFileSync('ssl/private.key');
@@ -40,7 +43,7 @@ connection.connect();
 var fs = require('fs');//make new dir
 
 //log in
-app.post('/post',urlencodedParser, function(req, res) {  
+app.post('/post', function(req, res) {  
   var useraccount = req.body.account;
   var userpassword = req.body.password;
   var md5 = crypto.createHash('md5');
@@ -59,8 +62,9 @@ app.post('/post',urlencodedParser, function(req, res) {
     if(checkaccount == 1){ 
       if(rows[useraccount].password == userpassword){
         req.session = {account:rows[useraccount].account};
+        //req.cookies.is_login = true;
         console.log("log in:" + rows[useraccount].account);
-        res.redirect('home.html')
+        res.redirect('home.html');
       }
       else res.send(`Your password is wrong`);
     }
@@ -84,6 +88,7 @@ app.post('/post_signup',urlencodedParser, function(req, res) {
   var insert = "INSERT INTO `wp2017_groupc`.`user` (account, password, email) VALUES(?,?,?)";
   var check_signup = "SELECT * FROM `wp2017_groupc`.`user` WHERE account = ?";
   var newaccount = 0;
+  req.session={id:'0'};
   connection.query(check_signup, [signup_account], function (err, rows, result){
     if (err){
       console.log("sign up select failed");
@@ -124,40 +129,39 @@ app.post('/post_fb',urlencodedParser,function(req, res){
     var checkaccount = 0;
     var check = "SELECT *FROM `wp2017_groupc`.`user_fb` WHERE id = ?";
     connection.query(check, [fb_id], function(err, rows, result){
-            if (err){
-            console.log("check failed");
+        if (err){
+          console.log("check failed");
         }
         else{
-            for(fb_id in rows){
-                checkaccount = 1;
-                console.log("you have already been the user");
-            }
+          for(fb_id in rows){
+            checkaccount = 1;
+            console.log("you have already been the user");
+          }
         }
         //fb_signup
         if(checkaccount == 0){
-                connection.query(insert,[fb_name,fb_id], function (err, result){
-                if (err){
-                    console.log("insert failed!");
-                }
-                else{ 
-                        console.log("1 account insert");
-                        var dir = './user/'+fb_id;//make user dir
-                        console.log("a new dir");
-                        if(!fs.existsSync(dir)){
-                            fs.mkdirSync(dir);
-                        }
-                        res.send("1");
-                    }
-                });
+          connection.query(insert,[fb_name,fb_id], function (err, result){
+            if (err){
+              console.log("insert failed!");
+            }
+            else{ 
+              var dir = './user/'+fb_id;//make user dir
+              console.log("a new dir");
+              if(!fs.existsSync(dir)){
+                fs.mkdirSync(dir);
+              }
+              res.send("1");
+            }
+          });
         }
         else {
-                console.log("already there!");
-                var a="0";
-                for(fb_name in rows){
-                    req.session={account:rows[fb_name].NAME,id:rows[fb_name].id};
-                }
-                console.log("fbname " + req.session.account);
-                res.send(a);
+          console.log("already there!");
+          var a="0";
+          for(fb_name in rows){
+            req.session={account:rows[fb_name].NAME,id:rows[fb_name].id};
+          }
+          console.log("fbname " + req.session.account);
+          res.send(a);
         }
     });
 });
@@ -207,13 +211,14 @@ app.post('/user',urlencodedParser, function(req,res){
   }
 });
 //default user name
-app.post('/default',urlencodedParser, function(req,res){
-  if (!req.cookies.is_login) {
+app.post('/default', function(req,res){
+  if (!req.session) {
+    console.log("session is false");
     req.session = null;
     res.send("first visit");
   }
   else {
-    req.cookies.is_login = true;
+    console.log("session is true");
     res.send("not first visit");
   }
 });
@@ -285,6 +290,7 @@ app.post('/explore_pic',urlencodedParser, function(req,res){
 app.post('/logout',urlencodedParser, function(req,res){
   console.log("user logout:" + req.session.account);
   req.session = null;
+  req.cookies.is_login = false;
   res.send(null);
 });
 
