@@ -201,7 +201,7 @@ app.post('/post_info',urlencodedParser, function(req, res) {
 });
 
 //user name
-app.post('/user',urlencodedParser, function(req,res){
+app.post('user',urlencodedParser, function(req,res){
   if (req.session == null) {
     res.send(null);
   }
@@ -294,6 +294,7 @@ app.post('/logout',urlencodedParser, function(req,res){
   res.send(null);
 });
 
+/*
 //view more //when refresh the pages, how do we reload this?
 var i = -1;
 app.post('/view_more',urlencodedParser, function(req, res) {
@@ -311,6 +312,7 @@ app.post('/view_more',urlencodedParser, function(req, res) {
     }
   });
 });
+*/
 
 //picture upload 
 var fs1 = require('fs');
@@ -342,10 +344,31 @@ app.post('/upload', function(req, res){
 });
 
 //get picture
-//var path = require('path');
-
-app.get('/show_pic', function(req, res){
-  res.send('emma.jpg');
+var path = require('path');
+var fs3 = require('fs');
+var accounts = "SELECT account FROM `wp2017_groupc`.`person_information`";
+//accounts = accounts.sort(() => Math.random() - 0.5);
+var i = 1;
+app.post('/view_more', function(req, res){
+  connection.query(accounts , (err,result) => { //checking function
+    if (err) {
+      throw err;
+    }
+    else {
+      if (i <= 5) { //array size
+        i=i+1;
+      }
+    }
+  });
+	var dir = 'user/'+accounts[i]; 
+ 	fs3.readdir('user', function (err, files) {
+    if (err) {
+      throw err;
+    }
+    files = files.sort(() => Math.random() - 0.5);
+    files = files.splice(0, 7);
+    res.send(files);
+	}); 
 }); 
 
 //選擇

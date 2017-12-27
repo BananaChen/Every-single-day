@@ -1,4 +1,73 @@
 $(document).ready(function() {
+
+  /*show all the pictures*/
+  //$('#change').click(function(){
+	$.ajax({
+    method: "POST",
+    url: "view_more",
+    success : function(data) {
+      //$('#carousel .owl-carousel .owl-item:nth-child(1) img').attr('src', data[0])
+			var html =
+    	`
+    		<br><br><br>    
+      	<div class="row" style="display: none;">
+          <div class="wow bounceInUp" data-wow-delay="0.1s">
+            <div class="col-md-2 col-sm-12">
+              <div class="section-title">
+                <h6>
+                `
+                +
+                //data[0]
+                'shit'
+                +
+                `
+                </h6>
+                <img src="https://i.imgur.com/xdGPi1p.png" alt="" class="img-responsive">
+              </div>
+            </div>
+              <div class="col-md-10 col-sm-12">
+                <div class="owl-carousel">
+									<div class="item"><a href="${data[0]}" title="This is an image title" data-lightbox-gallery="gallery1" data-lightbox-hidpi="${data[0]}"><img src="${data[0]}" class="img-responsive" alt="img"></a></div>
+                  <div class="item"><a href="${data[1]}" title="This is an image title" data-lightbox-gallery="gallery1" data-lightbox-hidpi="${data[1]}"><img src="${data[1]}" class="img-responsive" alt="img"></a></div>
+                  <div class="item"><a href="${data[2]}" title="This is an image title" data-lightbox-gallery="gallery1" data-lightbox-hidpi="${data[2]}"><img src="${data[2]}" class="img-responsive" alt="img"></a></div>
+                  <div class="item"><a href="${data[3]}" title="This is an image title" data-lightbox-gallery="gallery1" data-lightbox-hidpi="${data[3]}"><img src="${data[3]}" class="img-responsive" alt="img"></a></div>
+                  <div class="item"><a href="${data[4]}" title="This is an image title" data-lightbox-gallery="gallery1" data-lightbox-hidpi="${data[4]}"><img src="${data[4]}" class="img-responsive" alt="img"></a></div>
+                  <div class="item"><a href="${data[5]}" title="This is an image title" data-lightbox-gallery="gallery1" data-lightbox-hidpi="${data[5]}"><img src="${data[5]}" class="img-responsive" alt="img"></a></div>
+                  <div class="item"><a href="${data[6]}" title="This is an image title" data-lightbox-gallery="gallery1" data-lightbox-hidpi="${data[6]}"><img src="${data[6]}" class="img-responsive" alt="img"></a></div>
+                  <div class="item"><a href="${data[7]}" title="This is an image title" data-lightbox-gallery="gallery1" data-lightbox-hidpi="${data[7]}"><img src="${data[7]}" class="img-responsive" alt="img"></a></div>
+                </div>
+              </div>
+            </div>
+      	</div>
+    	`
+			$("#carousel").append(html);
+    	$("#carousel .row:last-child").fadeIn(500);
+	    $('#carousel .row:last-child').find('.owl-carousel').owlCarousel({
+        items : 4,
+        itemsDesktop : [1199,5],
+        itemsDesktopSmall : [980,5],
+        itemsTablet: [768,5],
+        itemsTabletSmall: [550,2],
+        itemsMobile : [480,2],
+  	  });
+    	$('#carousel .row:last-child').find('.owl-carousel .item a').nivoLightbox({
+	      effect: 'fadeScale',                             // The effect to use when showing the lightbox
+	      theme: 'default',                           // The lightbox theme to use
+	      keyboardNav: true,                          // Enable/Disable keyboard navigation (left/right/escape)
+	      clickOverlayToClose: true,                  // If false clicking the "close" button will be the only way to close the lightbox
+	      onInit: function(){},                       // Callback when lightbox has loaded
+	      beforeShowLightbox: function(){},           // Callback before the lightbox is shown
+	      afterShowLightbox: function(lightbox){},    // Callback after the lightbox is shown
+	      beforeHideLightbox: function(){},           // Callback before the lightbox is hidden
+	      afterHideLightbox: function(){},            // Callback after the lightbox is hidden
+	      onPrev: function(element){},                // Callback when the lightbox gallery goes to previous item
+	      onNext: function(element){},                // Callback when the lightbox gallery goes to next item
+	      errorMessage: 'The requested content cannot be loaded. Please try again later.' // Error message when content can't be loaded
+	    });
+    }
+  });
+  //});
+
 	/*bar information*/
   $.ajax({
     method: "POST",
@@ -125,7 +194,8 @@ $(document).ready(function() {
                 <h6>
                 `
                 +
-                data
+                //data [0]
+                'shit'
                 +
                 `
                 </h6>
@@ -134,14 +204,14 @@ $(document).ready(function() {
             </div>
               <div class="col-md-10 col-sm-12">
                 <div class="owl-carousel">
-                  <div class="item"><a href="https://i.imgur.com/fyUGqs5.jpg" title="This is an image title" data-lightbox-gallery="gallery1" data-lightbox-hidpi="img/works/1@2x.jpg"><img src="https://i.imgur.com/fyUGqs5.jpg" class="img-responsive" alt="img"></a></div>
-                  <div class="item"><a href="https://i.imgur.com/nbPuP6V.jpg" title="This is an image title" data-lightbox-gallery="gallery1" data-lightbox-hidpi="img/works/2@2x.jpg"><img src="https://i.imgur.com/nbPuP6V.jpg" class="img-responsive " alt="img"></a></div>
-                  <div class="item"><a href="https://i.imgur.com/J18MCh5.jpg" title="This is an image title" data-lightbox-gallery="gallery1" data-lightbox-hidpi="img/works/3@2x.jpg"><img src="https://i.imgur.com/J18MCh5.jpg" class="img-responsive " alt="img"></a></div>
-                  <div class="item"><a href="https://i.imgur.com/fNzCTDN.jpg" title="This is an image title" data-lightbox-gallery="gallery1" data-lightbox-hidpi="img/works/4@2x.jpg"><img src="https://i.imgur.com/fNzCTDN.jpg" class="img-responsive " alt="img"></a></div>
-                  <div class="item"><a href="https://i.imgur.com/lJgsAYU.jpg" title="This is an image title" data-lightbox-gallery="gallery1" data-lightbox-hidpi="img/works/5@2x.jpg"><img src="https://i.imgur.com/lJgsAYU.jpg" class="img-responsive " alt="img"></a></div>
-                  <div class="item"><a href="https://i.imgur.com/EHUvyKS.gifv" title="This is an image title" data-lightbox-gallery="gallery1" data-lightbox-hidpi="img/works/6@2x.jpg"><img src="https://i.imgur.com/EHUvyKS.gifv" class="img-responsive " alt="img"></a></div>
-                  <div class="item"><a href="https://i.imgur.com/gLYH3KJ.jpg" title="This is an image title" data-lightbox-gallery="gallery1" data-lightbox-hidpi="img/works/7@2x.jpg"><img src="https://i.imgur.com/gLYH3KJ.jpg" class="img-responsive " alt="img"></a></div>
-                  <div class="item"><a href="https://i.imgur.com/nvtSryF.jpg" title="This is an image title" data-lightbox-gallery="gallery1" data-lightbox-hidpi="img/works/8@2x.jpg"><img src="https://i.imgur.com/nvtSryF.jpg" class="img-responsive " alt="img"></a></div>
+                  <div class="item"><a href="${data[0]}" title="This is an image title" data-lightbox-gallery="gallery1" data-lightbox-hidpi="${data[0]}"><img src="${data[0]}" class="img-responsive" alt="img"></a></div>
+                  <div class="item"><a href="${data[1]}" title="This is an image title" data-lightbox-gallery="gallery1" data-lightbox-hidpi="${data[1]}"><img src="${data[1]}" class="img-responsive" alt="img"></a></div>
+                  <div class="item"><a href="${data[2]}" title="This is an image title" data-lightbox-gallery="gallery1" data-lightbox-hidpi="${data[2]}"><img src="${data[2]}" class="img-responsive" alt="img"></a></div>
+                  <div class="item"><a href="${data[3]}" title="This is an image title" data-lightbox-gallery="gallery1" data-lightbox-hidpi="${data[3]}"><img src="${data[3]}" class="img-responsive" alt="img"></a></div>
+                  <div class="item"><a href="${data[4]}" title="This is an image title" data-lightbox-gallery="gallery1" data-lightbox-hidpi="${data[4]}"><img src="${data[4]}" class="img-responsive" alt="img"></a></div>
+                  <div class="item"><a href="${data[5]}" title="This is an image title" data-lightbox-gallery="gallery1" data-lightbox-hidpi="${data[5]}"><img src="${data[5]}" class="img-responsive" alt="img"></a></div>
+                  <div class="item"><a href="${data[6]}" title="This is an image title" data-lightbox-gallery="gallery1" data-lightbox-hidpi="${data[6]}"><img src="${data[6]}" class="img-responsive" alt="img"></a></div>
+                  <div class="item"><a href="${data[7]}" title="This is an image title" data-lightbox-gallery="gallery1" data-lightbox-hidpi="${data[7]}"><img src="${data[7]}" class="img-responsive" alt="img"></a></div>
                 </div>
               </div>
             </div>
