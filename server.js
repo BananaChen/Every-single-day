@@ -201,7 +201,7 @@ app.post('/post_info',urlencodedParser, function(req, res) {
 });
 
 //user name
-app.post('user',urlencodedParser, function(req,res){
+app.post('/user',urlencodedParser, function(req,res){
   if (req.session == null) {
     res.send(null);
   }
@@ -294,26 +294,6 @@ app.post('/logout',urlencodedParser, function(req,res){
   res.send(null);
 });
 
-/*
-//view more //when refresh the pages, how do we reload this?
-var i = -1;
-app.post('/view_more',urlencodedParser, function(req, res) {
-  //var r = Math.floor((Math.random() * 6));
-  var rand_pick = "SELECT account FROM `wp2017_groupc`.`person_information`";
-  connection.query(rand_pick, (err,result) => { //checking function
-    if (err) {
-      throw err;
-    }
-    else {
-      if (i <= 5) { // i <= array size
-        i=i+1;
-        res.status(200).send(result[i].account);
-      }
-    }
-  });
-});
-*/
-
 //picture upload 
 var fs1 = require('fs');
 var busboy = require('connect-busboy');
@@ -343,32 +323,58 @@ app.post('/upload', function(req, res){
     });
 });
 
-//get picture
-var path = require('path');
-var fs3 = require('fs');
-//accounts = accounts.sort(() => Math.random() - 0.5);
-var i = 1;
-app.post('/view_more', function(req, res){
-  var accounts = "SELECT account FROM `wp2017_groupc`.`person_information`";
-  connection.query(accounts , (err,result) => { //checking function
+/*refresh explore.html*/
+app.post('/refresh_explore', urlencodedParser, function(req, res){
+  req.session={counting: 0};
+	console.log('index is now '+req.session.counting);
+	var accounts = "SELECT account FROM `wp2017_groupc`.`person_information`";
+  connection.query(accounts , (err,result) => {
     if (err) {
       throw err;
     }
     else {
-      if (i <= 10) { //array size
-        i=i+1;
-      }
+      var dir = 'user/'+result[0].account; 
+      fs3.readdir('user', function (err, files) {
+        if (err) {
+          throw err;
+        }
+        files = files.sort(() => Math.random() - 0.5);
+        files = files.splice(0, 7);
+        res.send([files, result[0].account]);
+      });
     }
   });
-	var dir = 'user/'+accounts[i]; 
- 	fs3.readdir('user', function (err, files) {
+});
+
+/*get picture*/
+var path = require('path');
+var fs3 = require('fs');
+app.post('/view_more', function(req, res){
+  var accounts = "SELECT account FROM `wp2017_groupc`.`person_information`";
+  connection.query(accounts , (err,result) => {
+		req.session.counting = req.session.counting + 1;//is this addable? 
     if (err) {
       throw err;
     }
-    files = files.sort(() => Math.random() - 0.5);
-    files = files.splice(0, 7);
-    res.send([files, accounts[i]]);
-	}); 
+    else {
+			console.log('index is now '+req.session.counting);	
+      if (req.session.counting < result.length) { //array size
+				var dir = 'user/'+result[req.session.counting].account; 
+		    fs3.readdir('user', function (err, files) {
+    		  if (err) {
+       			throw err;
+      		}
+      		files = files.sort(() => Math.random() - 0.5);
+		      files = files.splice(0, 7);
+    		  res.send([files, result[req.session.counting].account]);
+    		});
+      }
+			else {
+				console.log('no more accounts!');
+				res.send(null);
+			}
+    }
+  });
 }); 
 
 //選擇

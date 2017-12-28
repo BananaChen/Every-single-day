@@ -1,10 +1,9 @@
 $(document).ready(function() {
 
   /*show all the pictures*/
-  //$('#change').click(function(){
 	$.ajax({
     method: "POST",
-    url: "view_more",
+    url: "refresh_explore",
     success : function(data) {
       //$('#carousel .owl-carousel .owl-item:nth-child(1) img').attr('src', data[0])
 			var html =
@@ -65,8 +64,8 @@ $(document).ready(function() {
 	      errorMessage: 'The requested content cannot be loaded. Please try again later.' // Error message when content can't be loaded
 	    });
     }
+    //above is the success part
   });
-  //});
 
 	/*bar information*/
   $.ajax({
@@ -182,8 +181,7 @@ $(document).ready(function() {
       url: "view_more",
       success: function(data) {
       
-
-  //$('#view-more').click(function(){
+    if (data) {
     var html =
     `
     <br><br><br>    
@@ -240,6 +238,7 @@ $(document).ready(function() {
   		onNext: function(element){},                // Callback when the lightbox gallery goes to next item
   		errorMessage: 'The requested content cannot be loaded. Please try again later.' // Error message when content can't be loaded
   	});
+    }
     }
   });
 });
