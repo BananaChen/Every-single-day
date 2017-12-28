@@ -325,7 +325,7 @@ app.post('/upload', function(req, res){
 
 /*refresh explore.html*/
 app.post('/refresh_explore', urlencodedParser, function(req, res){
-  req.session={counting: 0};
+  req.session.counting = 0;
 	console.log('index is now '+req.session.counting);
 	var accounts = "SELECT account FROM `wp2017_groupc`.`person_information`";
   connection.query(accounts , (err,result) => {
