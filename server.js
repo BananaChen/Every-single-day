@@ -346,16 +346,16 @@ app.post('/upload', function(req, res){
 //get picture
 var path = require('path');
 var fs3 = require('fs');
-var accounts = "SELECT account FROM `wp2017_groupc`.`person_information`";
 //accounts = accounts.sort(() => Math.random() - 0.5);
 var i = 1;
 app.post('/view_more', function(req, res){
+  var accounts = "SELECT account FROM `wp2017_groupc`.`person_information`";
   connection.query(accounts , (err,result) => { //checking function
     if (err) {
       throw err;
     }
     else {
-      if (i <= 5) { //array size
+      if (i <= 10) { //array size
         i=i+1;
       }
     }
@@ -367,7 +367,7 @@ app.post('/view_more', function(req, res){
     }
     files = files.sort(() => Math.random() - 0.5);
     files = files.splice(0, 7);
-    res.send(files);
+    res.send([files, accounts[i]]);
 	}); 
 }); 
 

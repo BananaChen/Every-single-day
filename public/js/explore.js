@@ -17,8 +17,8 @@ $(document).ready(function() {
                 <h6>
                 `
                 +
-                //data[0]
-                'shit'
+                data[1]
+                //'shit'
                 +
                 `
                 </h6>
@@ -27,14 +27,14 @@ $(document).ready(function() {
             </div>
               <div class="col-md-10 col-sm-12">
                 <div class="owl-carousel">
-									<div class="item"><a href="${data[0]}" title="This is an image title" data-lightbox-gallery="gallery1" data-lightbox-hidpi="${data[0]}"><img src="${data[0]}" class="img-responsive" alt="img"></a></div>
-                  <div class="item"><a href="${data[1]}" title="This is an image title" data-lightbox-gallery="gallery1" data-lightbox-hidpi="${data[1]}"><img src="${data[1]}" class="img-responsive" alt="img"></a></div>
-                  <div class="item"><a href="${data[2]}" title="This is an image title" data-lightbox-gallery="gallery1" data-lightbox-hidpi="${data[2]}"><img src="${data[2]}" class="img-responsive" alt="img"></a></div>
-                  <div class="item"><a href="${data[3]}" title="This is an image title" data-lightbox-gallery="gallery1" data-lightbox-hidpi="${data[3]}"><img src="${data[3]}" class="img-responsive" alt="img"></a></div>
-                  <div class="item"><a href="${data[4]}" title="This is an image title" data-lightbox-gallery="gallery1" data-lightbox-hidpi="${data[4]}"><img src="${data[4]}" class="img-responsive" alt="img"></a></div>
-                  <div class="item"><a href="${data[5]}" title="This is an image title" data-lightbox-gallery="gallery1" data-lightbox-hidpi="${data[5]}"><img src="${data[5]}" class="img-responsive" alt="img"></a></div>
-                  <div class="item"><a href="${data[6]}" title="This is an image title" data-lightbox-gallery="gallery1" data-lightbox-hidpi="${data[6]}"><img src="${data[6]}" class="img-responsive" alt="img"></a></div>
-                  <div class="item"><a href="${data[7]}" title="This is an image title" data-lightbox-gallery="gallery1" data-lightbox-hidpi="${data[7]}"><img src="${data[7]}" class="img-responsive" alt="img"></a></div>
+									<div class="item"><a href="${data[0][0]}" title="This is an image title" data-lightbox-gallery="gallery1" data-lightbox-hidpi="${data[0][0]}"><img src="${data[0][0]}" class="img-responsive" alt="img"></a></div>
+                  <div class="item"><a href="${data[0][1]}" title="This is an image title" data-lightbox-gallery="gallery1" data-lightbox-hidpi="${data[0][1]}"><img src="${data[0][1]}" class="img-responsive" alt="img"></a></div>
+                  <div class="item"><a href="${data[0][2]}" title="This is an image title" data-lightbox-gallery="gallery1" data-lightbox-hidpi="${data[0][2]}"><img src="${data[0][2]}" class="img-responsive" alt="img"></a></div>
+                  <div class="item"><a href="${data[0][3]}" title="This is an image title" data-lightbox-gallery="gallery1" data-lightbox-hidpi="${data[0][3]}"><img src="${data[0][3]}" class="img-responsive" alt="img"></a></div>
+                  <div class="item"><a href="${data[0][4]}" title="This is an image title" data-lightbox-gallery="gallery1" data-lightbox-hidpi="${data[0][4]}"><img src="${data[0][4]}" class="img-responsive" alt="img"></a></div>
+                  <div class="item"><a href="${data[0][5]}" title="This is an image title" data-lightbox-gallery="gallery1" data-lightbox-hidpi="${data[0][5]}"><img src="${data[0][5]}" class="img-responsive" alt="img"></a></div>
+                  <div class="item"><a href="${data[0][6]}" title="This is an image title" data-lightbox-gallery="gallery1" data-lightbox-hidpi="${data[0][6]}"><img src="${data[0][6]}" class="img-responsive" alt="img"></a></div>
+                  <div class="item"><a href="${data[0][7]}" title="This is an image title" data-lightbox-gallery="gallery1" data-lightbox-hidpi="${data[0][7]}"><img src="${data[0][7]}" class="img-responsive" alt="img"></a></div>
                 </div>
               </div>
             </div>
@@ -194,8 +194,7 @@ $(document).ready(function() {
                 <h6>
                 `
                 +
-                //data [0]
-                'shit'
+                data[1]
                 +
                 `
                 </h6>
@@ -204,14 +203,14 @@ $(document).ready(function() {
             </div>
               <div class="col-md-10 col-sm-12">
                 <div class="owl-carousel">
-                  <div class="item"><a href="${data[0]}" title="This is an image title" data-lightbox-gallery="gallery1" data-lightbox-hidpi="${data[0]}"><img src="${data[0]}" class="img-responsive" alt="img"></a></div>
-                  <div class="item"><a href="${data[1]}" title="This is an image title" data-lightbox-gallery="gallery1" data-lightbox-hidpi="${data[1]}"><img src="${data[1]}" class="img-responsive" alt="img"></a></div>
-                  <div class="item"><a href="${data[2]}" title="This is an image title" data-lightbox-gallery="gallery1" data-lightbox-hidpi="${data[2]}"><img src="${data[2]}" class="img-responsive" alt="img"></a></div>
-                  <div class="item"><a href="${data[3]}" title="This is an image title" data-lightbox-gallery="gallery1" data-lightbox-hidpi="${data[3]}"><img src="${data[3]}" class="img-responsive" alt="img"></a></div>
-                  <div class="item"><a href="${data[4]}" title="This is an image title" data-lightbox-gallery="gallery1" data-lightbox-hidpi="${data[4]}"><img src="${data[4]}" class="img-responsive" alt="img"></a></div>
-                  <div class="item"><a href="${data[5]}" title="This is an image title" data-lightbox-gallery="gallery1" data-lightbox-hidpi="${data[5]}"><img src="${data[5]}" class="img-responsive" alt="img"></a></div>
-                  <div class="item"><a href="${data[6]}" title="This is an image title" data-lightbox-gallery="gallery1" data-lightbox-hidpi="${data[6]}"><img src="${data[6]}" class="img-responsive" alt="img"></a></div>
-                  <div class="item"><a href="${data[7]}" title="This is an image title" data-lightbox-gallery="gallery1" data-lightbox-hidpi="${data[7]}"><img src="${data[7]}" class="img-responsive" alt="img"></a></div>
+                  <div class="item"><a href="${data[0][0]}" title="This is an image title" data-lightbox-gallery="gallery1" data-lightbox-hidpi="${data[0][0]}"><img src="${data[0][0]}" class="img-responsive" alt="img"></a></div>
+                  <div class="item"><a href="${data[0][1]}" title="This is an image title" data-lightbox-gallery="gallery1" data-lightbox-hidpi="${data[0][1]}"><img src="${data[0][1]}" class="img-responsive" alt="img"></a></div>
+                  <div class="item"><a href="${data[0][2]}" title="This is an image title" data-lightbox-gallery="gallery1" data-lightbox-hidpi="${data[0][2]}"><img src="${data[0][2]}" class="img-responsive" alt="img"></a></div>
+                  <div class="item"><a href="${data[0][3]}" title="This is an image title" data-lightbox-gallery="gallery1" data-lightbox-hidpi="${data[0][3]}"><img src="${data[0][3]}" class="img-responsive" alt="img"></a></div>
+                  <div class="item"><a href="${data[0][4]}" title="This is an image title" data-lightbox-gallery="gallery1" data-lightbox-hidpi="${data[0][4]}"><img src="${data[0][4]}" class="img-responsive" alt="img"></a></div>
+                  <div class="item"><a href="${data[0][5]}" title="This is an image title" data-lightbox-gallery="gallery1" data-lightbox-hidpi="${data[0][5]}"><img src="${data[0][5]}" class="img-responsive" alt="img"></a></div>
+                  <div class="item"><a href="${data[0][6]}" title="This is an image title" data-lightbox-gallery="gallery1" data-lightbox-hidpi="${data[0][6]}"><img src="${data[0][6]}" class="img-responsive" alt="img"></a></div>
+                  <div class="item"><a href="${data[0][7]}" title="This is an image title" data-lightbox-gallery="gallery1" data-lightbox-hidpi="${data[0][7]}"><img src="${data[0][7]}" class="img-responsive" alt="img"></a></div>
                 </div>
               </div>
             </div>
