@@ -75,9 +75,9 @@ $("#myform").ajaxForm({
             break;
         }
         break;
-		}			
+		}
 
- 
+
   }
 });
 
@@ -117,14 +117,14 @@ $("document").ready(function(){
     method: "POST",
     url: "user",
     success : function(data) {
-    	if (data) {                                                                                                                             
+    	if (data) {
         $("#yourname").prepend(`<li><a href="your_lifestyle.html">${data}</a></li>`);
         $("#yourname").append(`<li><a href="#" onclick="back()">Log Out</a></li>`);
-      } 
+      }
       else {
         alert(`You should log in first 🙂 `);
         window.top.location.href = "https://luffy.ee.ncku.edu.tw:2266/form_login.html";
-      }  
+      }
     }
   });
 });
@@ -139,3 +139,28 @@ function back(){
     }
   });
 };
+
+$("#head").hover(
+    function(){
+      $(this).attr("src", "https://i.imgur.com/r1zny51.gif");
+    },
+    function() {
+      $(this).attr("src", "https://i.imgur.com/BgkgwNz.png");
+    }
+)
+$("#hand").hover(
+    function(){
+      $(this).attr("src", "https://i.imgur.com/NZdGAOJ.gif");
+    },
+    function() {
+      $(this).attr("src", "https://i.imgur.com/jKhXHQL.png");
+    }
+)
+$("#feet").hover(
+    function(){
+      $(this).attr("src", "https://i.imgur.com/ztlsbTZ.gif");
+    },
+    function() {
+      $(this).attr("src", "https://i.imgur.com/j5bZMLx.png");
+    }
+)
