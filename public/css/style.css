@@ -130,6 +130,7 @@ p
 {
 	font-family: "NSimSun";
 	color: #888;
+	font-weight:600;
 }
 .icon {
     position: relative;
@@ -238,6 +239,7 @@ h4 {
 h5 {
 	font-size: 24px;
 	font-family: "NSimSun";
+	font-weight:800;
 }
 h6 {
 	font-size: 20px;
