@@ -184,14 +184,14 @@ app.post('/post_info',urlencodedParser, function(req, res) {
     else{
       connection.query(p_select, [p_account], function (err, rows, result){
         for(p_account in rows){
-          req.session = {account:rows[p_account].account};
+          req.session = {account:rows[p_account].account, counting:0};
           console.log("person_info:" + req.session.account);
           res.redirect('home.html');
         }
       });
        connection.query(p_select_fb, [p_account], function (err, rows, result){
         for(p_account in rows){
-          req.session = {account:rows[p_account].NAME};
+          req.session = {account:rows[p_account].NAME, counting:0};
           console.log("person_info:" + req.session.account);
           res.redirect('home.html');
         }
