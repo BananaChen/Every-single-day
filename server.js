@@ -6,6 +6,7 @@ const bodyParser = require('body-parser');
 const urlencodedParser = bodyParser.urlencoded({extended:false});
 const crypto = require('crypto');
 const cookieParser = require('cookie-parser');
+const escape = require("html-escape");
 app.use(express.static(__dirname+'/public'));
 app.use(express.static(__dirname+'/user'));
 app.use(CookieStore({secret:'day'}));
@@ -76,8 +77,8 @@ app.post('/post', function(req, res) {
 
 //sign up
 var signup_account;
-app.post('/post_signup',urlencodedParser, function(req, res) {  
-  signup_account = req.body.account_signup;
+app.post('/post_signup',urlencodedParser, function(req, res) {
+  signup_account = escape(req.body.account_signup);
   var signup_password = req.body.password_signup;
   var signup_passcheck = req.body.password_again;
   var samepass = 0;
@@ -379,14 +380,14 @@ app.post('/refresh_explore', urlencodedParser, function(req, res){
 var path = require('path');
 var fs3 = require('fs');
 app.post('/view_more', function(req, res){
+  console.log('index is now '+req.session.counting);
   var accounts = "SELECT account FROM `wp2017_groupc`.`person_information`";
   connection.query(accounts , (err,result) => {
-		req.session.counting = req.session.counting + 1;//is this addable? 
+		req.session.counting = req.session.counting + 1;
     if (err) {
       throw err;
     }
     else {
-			console.log('index is now '+req.session.counting);	
       if (req.session.counting < result.length) { //array size
 				var dir = 'user/'+result[req.session.counting].account; 
 		    fs3.readdir('user', function (err, files) {
