@@ -61,7 +61,7 @@ app.post('/post', function(req, res) {
     }
     if(checkaccount == 1){ 
       if(rows[useraccount].password == userpassword){
-        req.session = {account:rows[useraccount].account};
+        req.session = {account:rows[useraccount].account, counting: 0};
         //req.cookies.is_login = true;
         console.log("log in:" + rows[useraccount].account);
         res.redirect('home.html');
@@ -350,14 +350,14 @@ app.post('/refresh_explore', urlencodedParser, function(req, res){
 var path = require('path');
 var fs3 = require('fs');
 app.post('/view_more', function(req, res){
+  console.log('index is now '+req.session.counting);
   var accounts = "SELECT account FROM `wp2017_groupc`.`person_information`";
   connection.query(accounts , (err,result) => {
-		req.session.counting = req.session.counting + 1;//is this addable? 
+		req.session.counting = req.session.counting + 1;
     if (err) {
       throw err;
     }
     else {
-			console.log('index is now '+req.session.counting);	
       if (req.session.counting < result.length) { //array size
 				var dir = 'user/'+result[req.session.counting].account; 
 		    fs3.readdir('user', function (err, files) {
