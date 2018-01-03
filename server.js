@@ -226,14 +226,10 @@ app.post('/indexname',urlencodedParser, function(req,res){
 //default user name
 app.post('/default', function(req,res){
   if (!req.session) {
-    console.log(req.session);
     req.session = {account:null,counting:0,department:'0'};
-    console.log(req.session);
-    //req.session = null;
     res.send("first visit");
   }
   else {
-    console.log(req.session);
     res.send("not first visit");
   }
 });
@@ -256,10 +252,7 @@ app.post('/regis',urlencodedParser, function(req,res){
 
 //go to explore
 app.post('/department',urlencodedParser, function(req,res){
-  if(req.session){
-    console.log(req.session);
-    res.send(req.session.department);
-  }
+  if(req.session) res.send(req.session.department);
   else res.send(null);
 });
 app.post('/choose_department_1',urlencodedParser, function(req,res){
@@ -429,7 +422,7 @@ connection.query(sel, (err,result) => {//result?? yes!!
 */
 //delete data in database
 /*
-var del = "DELETE FROM `wp2017_groupc`.`user` WHERE email='a@yyyy'";
+var del = "DELETE FROM `wp2017_groupc`.`user` WHERE email='s@s'";
 var del = "DELETE FROM `wp2017_groupc`.`person_information` WHERE hobby = ''";
 connection.query(del, function (err, result) {
   if (err){
