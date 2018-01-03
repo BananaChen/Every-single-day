@@ -231,6 +231,14 @@ app.post('/btn',urlencodedParser, function(req,res){
   else res.send(req.session.account);
 });
 
+//regis
+app.post('/regis',urlencodedParser, function(req,res){
+  if(req.session==null){
+    res.send(null);
+  }
+  else res.send(req.session.account);
+});
+
 //go to explore
 app.post('/department',urlencodedParser, function(req,res){
   res.send(req.session.department);

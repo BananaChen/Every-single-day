@@ -259,6 +259,19 @@ $(document).ready(function() {
 		}
 	});
   */
+
+  //register
+  $.ajax({
+    method: "POST",
+    url: "regis",
+    success : function(data) {
+      if (!data){
+        $("#register1").append(`<h3>Register Now</h3>`);
+        $("#register1").append(`<p>Join us to inspect your life and to share your lifestyle to everyone!</p>`);
+        $("#register2").append(`<a href="form_signup.html" class="btn btn-submit">Register</a>`);
+      } 
+    }
+  });
 });
 
 //log out
