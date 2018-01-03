@@ -6,6 +6,7 @@ const bodyParser = require('body-parser');
 const urlencodedParser = bodyParser.urlencoded({extended:false});
 const crypto = require('crypto');
 const cookieParser = require('cookie-parser');
+const escape = require("html-escape");
 app.use(express.static(__dirname+'/public'));
 app.use(express.static(__dirname+'/user'));
 app.use(CookieStore({secret:'day'}));
@@ -61,11 +62,7 @@ app.post('/post', function(req, res) {
     }
     if(checkaccount == 1){ 
       if(rows[useraccount].password == userpassword){
-<<<<<<< HEAD
-        req.session = {account:rows[useraccount].account, counting: 0};
-=======
         req.session = {account:rows[useraccount].account, counting:0, department:0};
->>>>>>> 31228fc4bf852a44c1affecc3d6386a0d8103a39
         //req.cookies.is_login = true;
         console.log("log in:" + rows[useraccount].account);
         res.redirect('home.html');
@@ -80,8 +77,8 @@ app.post('/post', function(req, res) {
 
 //sign up
 var signup_account;
-app.post('/post_signup',urlencodedParser, function(req, res) {  
-  signup_account = req.body.account_signup;
+app.post('/post_signup',urlencodedParser, function(req, res) {
+  signup_account = escape(req.body.account_signup);
   var signup_password = req.body.password_signup;
   var signup_passcheck = req.body.password_again;
   var samepass = 0;
@@ -188,22 +185,14 @@ app.post('/post_info',urlencodedParser, function(req, res) {
     else{
       connection.query(p_select, [p_account], function (err, rows, result){
         for(p_account in rows){
-<<<<<<< HEAD
-          req.session = {account:rows[p_account].account, counting:0};
-=======
           req.session = {account:rows[p_account].account, counting:0, department:0};
->>>>>>> 31228fc4bf852a44c1affecc3d6386a0d8103a39
           console.log("person_info:" + req.session.account);
           res.redirect('home.html');
         }
       });
        connection.query(p_select_fb, [p_account], function (err, rows, result){
         for(p_account in rows){
-<<<<<<< HEAD
-          req.session = {account:rows[p_account].NAME, counting:0};
-=======
           req.session = {account:rows[p_account].NAME, counting:0, department:0};
->>>>>>> 31228fc4bf852a44c1affecc3d6386a0d8103a39
           console.log("person_info:" + req.session.account);
           res.redirect('home.html');
         }
