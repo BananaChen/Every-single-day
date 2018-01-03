@@ -1,9 +1,25 @@
+//escape!!
+function escapehtml(word) {
+  var map = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#039;',
+    '/': '',
+  };
+  // str.replace(/</g, '&lt;').replace()
+  //return word.replace(/[/&<>"']/g, function(m) { return map[m]; });
+  return word.replace(/</g, '&lt;');
+}
+
 $("document").ready(function(){
   $.ajax({
     method: "POST",
     url: "user",
     success : function(data) {
-     if (data) {                                                                                                                             
+     if (data) {
+				data = escapehtml(data);
         $("#yourname").prepend(`<li><a href="your_lifestyle.html">${data}</a></li>`);
         $("#yourname").append(`<li><a href="#" onclick="back()">Log Out</a></li>`);
       } 
@@ -15,6 +31,7 @@ $("document").ready(function(){
 
   });
 });
+
 function back(){
   $.ajax({
     method: "POST",
