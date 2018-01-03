@@ -62,7 +62,7 @@ app.post('/post', function(req, res) {
     }
     if(checkaccount == 1){ 
       if(rows[useraccount].password == userpassword){
-        req.session = {account:rows[useraccount].account, counting:0, department:0};
+        req.session = {account:rows[useraccount].account, counting:0, department:'0'};
         //req.cookies.is_login = true;
         console.log("log in:" + rows[useraccount].account);
         res.redirect('home.html');
@@ -159,7 +159,7 @@ app.post('/post_fb',urlencodedParser,function(req, res){
           console.log("already there!");
           var a="0";
           for(fb_name in rows){
-            req.session={account:rows[fb_name].NAME, id:rows[fb_name].id, counting:0, department:0};
+            req.session={account:rows[fb_name].NAME, id:rows[fb_name].id, counting:0, department:'0'};
           }
           console.log("fbname " + req.session.account);
           res.send(a);
@@ -185,14 +185,14 @@ app.post('/post_info',urlencodedParser, function(req, res) {
     else{
       connection.query(p_select, [p_account], function (err, rows, result){
         for(p_account in rows){
-          req.session = {account:rows[p_account].account, counting:0, department:0};
+          req.session = {account:rows[p_account].account, counting:0, department:'0'};
           console.log("person_info:" + req.session.account);
           res.redirect('home.html');
         }
       });
        connection.query(p_select_fb, [p_account], function (err, rows, result){
         for(p_account in rows){
-          req.session = {account:rows[p_account].NAME, counting:0, department:0};
+          req.session = {account:rows[p_account].NAME, counting:0, department:'0'};
           console.log("person_info:" + req.session.account);
           res.redirect('home.html');
         }
@@ -203,7 +203,10 @@ app.post('/post_info',urlencodedParser, function(req, res) {
 
 //user name
 app.post('/user',urlencodedParser, function(req,res){
-  if (req.session.account == null) {
+  if (req.session == null) {
+    res.send(null);
+  }
+  else if(req.session.account == null){
     res.send(null);
   }
   else {
@@ -213,7 +216,7 @@ app.post('/user',urlencodedParser, function(req,res){
 });
 //index name
 app.post('/indexname',urlencodedParser, function(req,res){
-  if (req.session.account == null) {
+  if (req.session == null) {
     res.send(null);
   }
   else {
@@ -223,19 +226,17 @@ app.post('/indexname',urlencodedParser, function(req,res){
 //default user name
 app.post('/default', function(req,res){
   if (!req.session) {
-    console.log("session is false");
-    req.session = null;
+    req.session = {account:null,counting:0,department:'0'};
     res.send("first visit");
   }
   else {
-    console.log("session is true");
     res.send("not first visit");
   }
 });
 
 //btn
 app.post('/btn',urlencodedParser, function(req,res){
-  if(req.session.account==null){
+  if(req.session==null){
     res.send(null);
   }
   else res.send(req.session.account);
@@ -243,7 +244,7 @@ app.post('/btn',urlencodedParser, function(req,res){
 
 //regis
 app.post('/regis',urlencodedParser, function(req,res){
-  if(req.session.account==null){
+  if(req.session==null){
     res.send(null);
   }
   else res.send(req.session.account);
@@ -421,7 +422,7 @@ connection.query(sel, (err,result) => {//result?? yes!!
 */
 //delete data in database
 /*
-var del = "DELETE FROM `wp2017_groupc`.`user` WHERE email='a@yyyy'";
+var del = "DELETE FROM `wp2017_groupc`.`user` WHERE email='s@s'";
 var del = "DELETE FROM `wp2017_groupc`.`person_information` WHERE hobby = ''";
 connection.query(del, function (err, result) {
   if (err){
