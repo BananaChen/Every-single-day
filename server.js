@@ -223,7 +223,8 @@ app.post('/indexname',urlencodedParser, function(req,res){
 app.post('/default', function(req,res){
   if (!req.session) {
     console.log("session is false");
-    req.session = null;
+    req.session = {account:null,counting:0,department:0};
+    //req.session = null;
     res.send("first visit");
   }
   else {
