@@ -16,4 +16,29 @@ $(document).ready(function() {
       } 
     }
   });
+  $.ajax({
+    method: "POST",
+    url: "indexname",
+    success : function(data) {
+     if (data) {                                                                                                                             
+        $("#index_name").prepend(`<li><a href="your_lifestyle.html">${data}</a></li>`);
+        $("#index_name").append(`<li><a href="#" onclick="back()">Log Out</a></li>`);
+      } 
+      else {
+        $("#index_name").prepend(`<li><a href="#">Guest</a></li>`);
+        $("#index_name").append(`<li><a href="form_login.html">Login</a></li>`);
+      }  
+    }
+  });
 });
+function back(){
+  $.ajax({
+    method: "POST",
+    url: "logout",
+    success : function(data) {
+      console.log("logout success");
+      alert(`You have successfully log out 🙂 `);
+      window.top.location.href = "https://luffy.ee.ncku.edu.tw:2266/index.html";
+    }
+  });
+};

@@ -210,6 +210,15 @@ app.post('/user',urlencodedParser, function(req,res){
     res.send(req.session.account);
   }
 });
+//user name
+app.post('/indexname',urlencodedParser, function(req,res){
+  if (req.session == null) {
+    res.send(null);
+  }
+  else {
+    res.send(req.session.account);
+  }
+});
 //default user name
 app.post('/default', function(req,res){
   if (!req.session) {
@@ -225,6 +234,14 @@ app.post('/default', function(req,res){
 
 //btn
 app.post('/btn',urlencodedParser, function(req,res){
+  if(req.session==null){
+    res.send(null);
+  }
+  else res.send(req.session.account);
+});
+
+//regis
+app.post('/regis',urlencodedParser, function(req,res){
   if(req.session==null){
     res.send(null);
   }
