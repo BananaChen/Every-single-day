@@ -34,6 +34,7 @@
     "express": "^4.16.2",
     "express-session": "^1.15.6",
     "finalhandler": "^1.1.0",
+    "html-escape": "^2.0.0",
     "merge-descriptors": "^1.0.1",
     "methods": "^1.1.2",
     "ms": "^2.1.1",

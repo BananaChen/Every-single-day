@@ -6,6 +6,7 @@ const bodyParser = require('body-parser');
 const urlencodedParser = bodyParser.urlencoded({extended:false});
 const crypto = require('crypto');
 const cookieParser = require('cookie-parser');
+const escape = require("html-escape");
 app.use(express.static(__dirname+'/public'));
 app.use(express.static(__dirname+'/user'));
 app.use(CookieStore({secret:'day'}));
@@ -15,6 +16,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
 var fs2 = require('fs');
+var fs3 = require('fs');
 var key = fs2.readFileSync('ssl/private.key');
 var cert = fs2.readFileSync( 'ssl/certificate.crt' );
 var ca = fs2.readFileSync( 'ssl/ca_bundle.crt' );
@@ -71,13 +73,23 @@ app.post('/post', function(req, res) {
     else{
       res.redirect('form_signup.html')
     }
-  });
+    fs3.exports = {
+        escape: function(html) {
+            return String(html)
+                .replace(/&/g, '&amp;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#39;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;');
+        },
+    }
+});
 });
 
 //sign up
 var signup_account;
 app.post('/post_signup',urlencodedParser, function(req, res) {  
-  signup_account = req.body.account_signup;
+  signup_account = escape(req.body.account_signup);
   var signup_password = req.body.password_signup;
   var signup_passcheck = req.body.password_again;
   var samepass = 0;
@@ -107,7 +119,12 @@ app.post('/post_signup',urlencodedParser, function(req, res) {
           else{
             res.redirect('person_info.html')
             console.log("sign up:" + signup_account);
-          }
+            var dir ='./user/'+req.session.account;//make user dir
+            console.log("a new dir");
+            if(!fs.existsSync(dir)){
+                    fs.mkdirSync(dir);
+            }
+                     }
         });
       }
       else res.send(`Your password is wrong`);
@@ -121,9 +138,9 @@ app.post('/post_signup',urlencodedParser, function(req, res) {
 //facebook log in
 app.post('/post_fb',urlencodedParser,function(req, res){
     console.log("in the post_fb");
-    var fb_id =` ${req.body.id}`;   
+    var fb_id =`${req.body.id}`;   
     req.session={id:fb_id};
-    var fb_name =` ${req.body.name}`;
+    var fb_name =`${req.body.name}`;
     signup_account = fb_name;
     var insert = "INSERT INTO `wp2017_groupc`.`user_fb` (NAME, id) VALUES(?,?)"; 
     var checkaccount = 0;
@@ -195,7 +212,7 @@ app.post('/post_info',urlencodedParser, function(req, res) {
           console.log("person_info:" + req.session.account);
           res.redirect('home.html');
         }
-      });
+ });
     }
   });
 });
