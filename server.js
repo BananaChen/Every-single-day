@@ -1,7 +1,7 @@
 const express = require('express');
 const CookieStore = require('cookie-sessions');
 const app = express();
-const port = 2266;
+const port = 22666;
 const bodyParser = require('body-parser');
 const urlencodedParser = bodyParser.urlencoded({extended:false});
 const crypto = require('crypto');
@@ -61,7 +61,7 @@ app.post('/post', function(req, res) {
     }
     if(checkaccount == 1){ 
       if(rows[useraccount].password == userpassword){
-        req.session = {account:rows[useraccount].account};
+        req.session = {account:rows[useraccount].account, counting:0, department:0};
         //req.cookies.is_login = true;
         console.log("log in:" + rows[useraccount].account);
         res.redirect('home.html');
@@ -158,7 +158,7 @@ app.post('/post_fb',urlencodedParser,function(req, res){
           console.log("already there!");
           var a="0";
           for(fb_name in rows){
-            req.session={account:rows[fb_name].NAME,id:rows[fb_name].id};
+            req.session={account:rows[fb_name].NAME, id:rows[fb_name].id, counting:0, department:0};
           }
           console.log("fbname " + req.session.account);
           res.send(a);
@@ -184,14 +184,14 @@ app.post('/post_info',urlencodedParser, function(req, res) {
     else{
       connection.query(p_select, [p_account], function (err, rows, result){
         for(p_account in rows){
-          req.session = {account:rows[p_account].account};
+          req.session = {account:rows[p_account].account, counting:0, department:0};
           console.log("person_info:" + req.session.account);
           res.redirect('home.html');
         }
       });
        connection.query(p_select_fb, [p_account], function (err, rows, result){
         for(p_account in rows){
-          req.session = {account:rows[p_account].NAME};
+          req.session = {account:rows[p_account].NAME, counting:0, department:0};
           console.log("person_info:" + req.session.account);
           res.redirect('home.html');
         }
@@ -202,7 +202,7 @@ app.post('/post_info',urlencodedParser, function(req, res) {
 
 //user name
 app.post('/user',urlencodedParser, function(req,res){
-  if (req.session == null) {
+  if (req.session.account == null) {
     res.send(null);
   }
   else {
@@ -210,9 +210,9 @@ app.post('/user',urlencodedParser, function(req,res){
     res.send(req.session.account);
   }
 });
-//user name
+//index name
 app.post('/indexname',urlencodedParser, function(req,res){
-  if (req.session == null) {
+  if (req.session.account == null) {
     res.send(null);
   }
   else {
@@ -234,7 +234,7 @@ app.post('/default', function(req,res){
 
 //btn
 app.post('/btn',urlencodedParser, function(req,res){
-  if(req.session==null){
+  if(req.session.account==null){
     res.send(null);
   }
   else res.send(req.session.account);
@@ -242,7 +242,7 @@ app.post('/btn',urlencodedParser, function(req,res){
 
 //regis
 app.post('/regis',urlencodedParser, function(req,res){
-  if(req.session==null){
+  if(req.session.account==null){
     res.send(null);
   }
   else res.send(req.session.account);
@@ -250,51 +250,61 @@ app.post('/regis',urlencodedParser, function(req,res){
 
 //go to explore
 app.post('/department',urlencodedParser, function(req,res){
-  res.send(req.session.department);
+  if(req.session) res.send(req.session.department);
+  else res.send(null);
 });
 app.post('/choose_department_1',urlencodedParser, function(req,res){
   var depart = '1';
-  req.session={department:depart};
+  if(req.session) req.session.department = depart;
+  else req.session={department:depart};
   res.send("let's go");
 });
 app.post('/choose_department_2',urlencodedParser, function(req,res){           
 	var depart = '2';
-  req.session={department:depart};
+  if(req.session) req.session.department = depart;
+  else req.session={department:depart};
   res.send("let's go");  
 });
 app.post('/choose_department_3',urlencodedParser, function(req,res){           
 	var depart = '3';
-  req.session={department:depart};
+  if(req.session) req.session.department = depart;
+  else req.session={department:depart};
   res.send("let's go");
 });
 app.post('/choose_department_4',urlencodedParser, function(req,res){           
 	var depart = '4';
-  req.session={department:depart};
+  if(req.session) req.session.department = depart;
+  else req.session={department:depart};
   res.send("let's go");
 });
 app.post('/choose_department_5',urlencodedParser, function(req,res){           
 	var depart = '5';
-  req.session={department:depart};
+  if(req.session) req.session.department = depart;
+  else req.session={department:depart};
   res.send("let's go");
 });
 app.post('/choose_department_6',urlencodedParser, function(req,res){           
 	var depart = '6';
-  req.session={department:depart};
+  if(req.session) req.session.department = depart;
+  else req.session={department:depart};
   res.send("let's go");
 });
 app.post('/choose_department_7',urlencodedParser, function(req,res){           
 	var depart = '7';
-  req.session={department:depart};
+  if(req.session) req.session.department = depart;
+  else req.session={department:depart};
   res.send("let's go");
 });
 app.post('/choose_department_8',urlencodedParser, function(req,res){           
 	var depart = '8';
-  req.session={department:depart};
+  if(req.session) req.session.department = depart;
+  else req.session={department:depart};
   res.send("let's go");
 });
 app.post('/choose_department_9',urlencodedParser, function(req,res){           
 	var depart = '9';
-  req.session={department:depart};
+  if(req.session) req.session.department = depart;
+  else req.session={department:depart};
   res.send("let's go");
 });
 
@@ -342,7 +352,8 @@ app.post('/upload', function(req, res){
 
 /*refresh explore.html*/
 app.post('/refresh_explore', urlencodedParser, function(req, res){
-  req.session.counting = 0;
+  if(req.session) req.session.counting = 0;
+  else req.session = {account:null, counting:0};
 	console.log('index is now '+req.session.counting);
 	var accounts = "SELECT account FROM `wp2017_groupc`.`person_information`";
   connection.query(accounts , (err,result) => {
@@ -409,9 +420,8 @@ connection.query(sel, (err,result) => {//result?? yes!!
 */
 //delete data in database
 /*
-var del = "DELETE FROM `wp2017_groupc`.`user_fb` WHERE id = 1512593615494875";
-var del = "DELETE FROM `wp2017_groupc`.`person_information` WHERE hobby = 'a'";
->>>>>>> 33e5392a3cb2c9eb8152fbcf93caa6afffa37f0d
+var del = "DELETE FROM `wp2017_groupc`.`user` WHERE email='a@yyyy'";
+var del = "DELETE FROM `wp2017_groupc`.`person_information` WHERE hobby = ''";
 connection.query(del, function (err, result) {
   if (err){
     console.log('delete failed!');
