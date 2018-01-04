@@ -47,6 +47,8 @@ var fs = require('fs');//make new dir
 //log in
 app.post('/post', function(req, res) {  
   var useraccount = req.body.account;
+  req.session={id:useraccount};
+  console.log("t = "+req.session.id);
   var userpassword = req.body.password;
   var md5 = crypto.createHash('md5');
   userpassword = md5.update(userpassword).digest('hex');//加密密碼
@@ -88,11 +90,7 @@ app.post('/post', function(req, res) {
 
 //sign up
 var signup_account;
-<<<<<<< HEAD
-app.post('/post_signup',urlencodedParser, function(req, res) {  
-=======
 app.post('/post_signup',urlencodedParser, function(req, res) {
->>>>>>> 03faac4f6d2382e56854ccd17d3868f2e1bde44c
   signup_account = escape(req.body.account_signup);
   var signup_password = req.body.password_signup;
   var signup_passcheck = req.body.password_again;
@@ -104,7 +102,7 @@ app.post('/post_signup',urlencodedParser, function(req, res) {
   var insert = "INSERT INTO `wp2017_groupc`.`user` (account, password, email) VALUES(?,?,?)";
   var check_signup = "SELECT * FROM `wp2017_groupc`.`user` WHERE account = ?";
   var newaccount = 0;
-  req.session={id:'0'};
+  req.session={id:signup_account};
   connection.query(check_signup, [signup_account], function (err, rows, result){
     if (err){
       console.log("sign up select failed");
