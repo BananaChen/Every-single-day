@@ -350,11 +350,13 @@ app.post('/upload', function(req, res){
     var fstream;
     //var dir = './user/'+fb_id;
     var account = req.session.account;
+    var path = '/user/'+req.session.id;
+    console.log(req.session);
     req.pipe(req.busboy);
     req.busboy.on('file', function (filedname, file, filename){
-        fstream = fs1.createWriteStream(__dirname +'/user/'+ filename);
+        fstream = fs1.createWriteStream(__dirname + path + filename);
         file.pipe(fstream);
-        connection.query(pic_insert, [account, '/user/'+filename], function (err, result){
+        connection.query(pic_insert, [account, path+filename], function (err, result){
          if (err){
            console.log("failed");
          }
