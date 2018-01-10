@@ -135,81 +135,40 @@
           <img id="head" src="https://i.imgur.com/BgkgwNz.png" alt="" class="img-responsive little_man" >
           <img id="hand" src="https://i.imgur.com/jKhXHQL.png" alt="" class="img-responsive little_man" >
           <img id="feet" src="https://i.imgur.com/j5bZMLx.png" alt="" class="img-responsive little_man" >
-					<form id="myform" method="post" action="/upload" enctype="image/form-data">
+					<!--upload picture forms-->
+					<form id="myform_head" method="post" action="/upload_head" enctype="image/form-data">
 						<div class="form-group">
 		        	<input name="file" type="file" class="">
     		    	<input type="submit" value="upload" class="">
             </div>
 					</form>
+					<form id="myform_hand" method="post" action="/upload_hand" enctype="image/form-data">
+            <div class="form-group">
+              <input name="file" type="file" class="">
+              <input type="submit" value="upload" class="">
+            </div>
+          </form>
+					<form id="myform_foot" method="post" action="/upload_foot" enctype="image/form-data">
+            <div class="form-group">
+              <input name="file" type="file" class="">
+              <input type="submit" value="upload" class="">
+            </div>
+          </form>
+					<!-------------------->
 					<div class="progress">
         		<div class="bar"></div>
         		<div class="percent">0%</div>
     			</div>
         </div>
         <!--three lightbox inside here-->
-        <div class="col-md-7">
+        <div class="col-md-7 boxes">
 
             <div class="item" id="box1">
               <div class="about-left-grid">
                 <div class="column" id="box1_col1">
-                  <a href="https://i.imgur.com/fyUGqs5.jpg" class="swipebox" title="">
-        						<img src="https://i.imgur.com/fyUGqs5.jpg" alt="image">
-        					</a>
-        					<a href="https://i.imgur.com/fyUGqs5.jpg" class="swipebox" title="">
-        						<img src="https://i.imgur.com/fyUGqs5.jpg" alt="image">
-        					</a>
-        					<a href="https://i.imgur.com/5TLU5zG.jpg" class="swipebox" title="">
-        						<img src="https://i.imgur.com/5TLU5zG.jpg" alt="image">
-        					</a>
-                  <a href="https://i.imgur.com/fyUGqs5.jpg" class="swipebox" title="">
-                   <img src="https://i.imgur.com/fyUGqs5.jpg" alt="image">
-                  </a>
-                  <a href="https://i.imgur.com/fyUGqs5.jpg" class="swipebox" title="">
-                    <img src="https://i.imgur.com/fyUGqs5.jpg" alt="image">
-                  </a>
-                  <a href="https://i.imgur.com/5TLU5zG.jpg" class="swipebox" title="">
-                    <img src="https://i.imgur.com/5TLU5zG.jpg" alt="image">
-                  </a>
-                 </div>
-                  <div class="column" id="box1_col2">
-										<a href="http://swipebox.csag.co/images/image-1.jpg" class="swipebox" title="Fog">
-                    	<img src="http://swipebox.csag.co/images/image-1.jpg" alt="image">
-	                  </a>
-	                  <a href="http://swipebox.csag.co/images/image-2.jpg" class="swipebox" title="City">
-  	                  <img src="http://swipebox.csag.co/images/image-2.jpg" alt="image">
-    	              </a>
-      	            <a href="http://swipebox.csag.co/images/image-3.jpg" class="swipebox" title="Street">
-        	            <img src="http://swipebox.csag.co/images/image-3.jpg" alt="image">
-          	        </a>
-         	      	  <a href="http://swipebox.csag.co/images/image-4.jpg" class="swipebox" title="Mustache Guy">
-          	  	      <img src="http://swipebox.csag.co/images/image-4.jpg" alt="image">
-            	      </a>
-                    <img id="img10"src="https://i.imgur.com/fNzCTDN.jpg" style="width:100%">
-                    <img id="img8"src="https://i.imgur.com/xdGPi1p.png" style="width:100%">
-                    <img id="img6"src="https://i.imgur.com/urMlX6c.jpg" style="width:100%">
-                    <img id="img4"src="https://i.imgur.com/5TLU5zG.jpg" style="width:100%">
-                    <img id="img2"src="https://i.imgur.com/0GnUbLj.jpg" style="width:100%">
-                  </div>
-                  <!--
-                  <div class="column" id="box1_col3">
-                    <img src="https://i.imgur.com/fNzCTDN.jpg" style="width:100%">
-                    <img src="https://i.imgur.com/fyUGqs5.jpg" style="width:100%">
-                    <img src="https://i.imgur.com/EHUvyKS.gifv" style="width:100%">
-                    <img src="https://i.imgur.com/xdGPi1p.png" style="width:100%">
-                    <img src="https://i.imgur.com/urMlX6c.jpg" style="width:100%">
-                    <img src="https://i.imgur.com/5TLU5zG.jpg" style="width:100%">
-                    <img src="https://i.imgur.com/0GnUbLj.jpg" style="width:100%">
-                  </div>
-                  <div class="column" id="box1_col4">
-                    <img src="https://i.imgur.com/fNzCTDN.jpg" style="width:100%">
-                    <img src="https://i.imgur.com/fyUGqs5.jpg" style="width:100%">
-                    <img src="https://i.imgur.com/EHUvyKS.gifv" style="width:100%">
-                    <img src="https://i.imgur.com/xdGPi1p.png" style="width:100%">
-                    <img src="https://i.imgur.com/urMlX6c.jpg" style="width:100%">
-                    <img src="https://i.imgur.com/5TLU5zG.jpg" style="width:100%">
-                    <img src="https://i.imgur.com/0GnUbLj.jpg" style="width:100%">
-                  </div>
-                -->
+                </div>
+                <div class="column" id="box1_col2">
+                </div>
               </div>
             </div>
 
@@ -217,95 +176,20 @@
             <div class="item" id="box2">
               <div class="about-left-grid">
                 <div class="column" id="box2_col1">
-                    <img src="https://i.imgur.com/fyUGqs5.jpg" style="width:100%">
-                    <img src="https://i.imgur.com/EHUvyKS.gifv" style="width:100%">
-                    <img src="https://i.imgur.com/fNzCTDN.jpg" style="width:100%">
-                    <img src="https://i.imgur.com/xdGPi1p.png" style="width:100%">
-                    <img src="https://i.imgur.com/urMlX6c.jpg" style="width:100%">
-                    <img src="https://i.imgur.com/urMlX6c.jpg" style="width:100%">
-                    <img src="https://i.imgur.com/0GnUbLj.jpg" style="width:100%">
-                  </div>
-                  <div class="column" id="box2_col2">
-                    <img src="https://i.imgur.com/xdGPi1p.png" style="width:100%">
-                    <img src="https://i.imgur.com/5TLU5zG.jpg" style="width:100%">
-                    <img src="https://i.imgur.com/fNzCTDN.jpg" style="width:100%">
-                    <img src="https://i.imgur.com/fyUGqs5.jpg" style="width:100%">
-                    <img src="https://i.imgur.com/EHUvyKS.gifv" style="width:100%">
-                    <img src="https://i.imgur.com/5TLU5zG.jpg" style="width:100%">
-                    <img src="https://i.imgur.com/0GnUbLj.jpg" style="width:100%">
-                  </div>
-                  <!--
-                  <div class="column" id="box2_col3">
-                    <img src="https://i.imgur.com/fNzCTDN.jpg" style="width:100%">
-                    <img src="https://i.imgur.com/fyUGqs5.jpg" style="width:100%">
-                    <img src="https://i.imgur.com/EHUvyKS.gifv" style="width:100%">
-                    <img src="https://i.imgur.com/xdGPi1p.png" style="width:100%">
-                    <img src="https://i.imgur.com/urMlX6c.jpg" style="width:100%">
-                    <img src="https://i.imgur.com/5TLU5zG.jpg" style="width:100%">
-
-                    <img src="https://i.imgur.com/0GnUbLj.jpg" style="width:100%">
-                  </div>
-                  <div class="column" id="box2_col4">
-                    <img src="https://i.imgur.com/fNzCTDN.jpg" style="width:100%">
-                    <img src="https://i.imgur.com/fyUGqs5.jpg" style="width:100%">
-                    <img src="https://i.imgur.com/EHUvyKS.gifv" style="width:100%">
-                    <img src="https://i.imgur.com/xdGPi1p.png" style="width:100%">
-                    <img src="https://i.imgur.com/urMlX6c.jpg" style="width:100%">
-                    <img src="https://i.imgur.com/5TLU5zG.jpg" style="width:100%">
-                    <img src="https://i.imgur.com/0GnUbLj.jpg" style="width:100%">
-                  </div>
-                -->
+                </div>
+                <div class="column" id="box2_col2">
+                </div>
               </div>
             </div>
             <div class="item" id="box3">
               <div class="about-left-grid">
                 <div class="column" id="box3_col1">
-                  <a href="http://swipebox.csag.co/images/image-1.jpg" class="swipebox" title="Fog">
-        						<img src="http://swipebox.csag.co/images/image-1.jpg" alt="image">
-        					</a>
-                  <a href="http://swipebox.csag.co/images/image-2.jpg" class="swipebox" title="City">
-        						<img src="http://swipebox.csag.co/images/image-2.jpg" alt="image">
-        					</a>
-                    <img src="https://i.imgur.com/fyUGqs5.jpg" style="width:100%">
-                    <img src="https://i.imgur.com/0GnUbLj.jpg" style="width:100%">
-                    <img src="https://i.imgur.com/fNzCTDN.jpg" style="width:100%">
-                    <img src="https://i.imgur.com/xdGPi1p.png" style="width:100%">
-                    <img src="https://i.imgur.com/5TLU5zG.jpg" style="width:100%">
-                    <img src="https://i.imgur.com/urMlX6c.jpg" style="width:100%">
-                    <img src="https://i.imgur.com/0GnUbLj.jpg" style="width:100%">
-                  </div>
-                  <div class="column" id="box3_col2">
-                    <img src="https://i.imgur.com/fNzCTDN.jpg" style="width:100%">
-                    <img src="https://i.imgur.com/fyUGqs5.jpg" style="width:100%">
-                    <img src="https://i.imgur.com/fyUGqs5.jpg" style="width:100%">
-                    <img src="https://i.imgur.com/xdGPi1p.png" style="width:100%">
-                    <img src="https://i.imgur.com/urMlX6c.jpg" style="width:100%">
-                    <img src="https://i.imgur.com/5TLU5zG.jpg" style="width:100%">
-                    <img src="https://i.imgur.com/0GnUbLj.jpg" style="width:100%">
-                  </div>
-                  <!--
-                  <div class="column" id="box3_col3">
-                    <img src="https://i.imgur.com/fNzCTDN.jpg" style="width:100%">
-                    <img src="https://i.imgur.com/fyUGqs5.jpg" style="width:100%">
-                    <img src="https://i.imgur.com/urMlX6c.jpg" style="width:100%">
-                    <img src="https://i.imgur.com/xdGPi1p.png" style="width:100%">
-                    <img src="https://i.imgur.com/urMlX6c.jpg" style="width:100%">
-                    <img src="https://i.imgur.com/5TLU5zG.jpg" style="width:100%">
-
-                    <img src="https://i.imgur.com/0GnUbLj.jpg" style="width:100%">
-                  </div>
-                  <div class="column" id="box3_col4">
-                    <img src="https://i.imgur.com/fNzCTDN.jpg" style="width:100%">
-                    <img src="https://i.imgur.com/fyUGqs5.jpg" style="width:100%">
-                    <img src="https://i.imgur.com/5TLU5zG.jpg" style="width:100%">
-                    <img src="https://i.imgur.com/xdGPi1p.png" style="width:100%">
-                    <img src="https://i.imgur.com/urMlX6c.jpg" style="width:100%">
-                    <img src="https://i.imgur.com/5TLU5zG.jpg" style="width:100%">
-                    <img src="https://i.imgur.com/0GnUbLj.jpg" style="width:100%">
-                  </div>
-                -->
+                </div>
+                <div class="column" id="box3_col2">
+                </div>
               </div>
             </div>
+
             <!-- The Modal -->
             <div id="myModal" class="modal">
               <!-- The Close Button -->
@@ -315,6 +199,8 @@
               <!-- Modal Caption (Image Text) -->
               <div id="caption"></div>
             </div>
+            <!---------------->
+
         </div>
         <div class="clearfix"> </div>
       </div>

@@ -5,7 +5,115 @@ var b3_col = 1;
 var progress = $(".progress");
 var bar = $(".bar");
 var percent = $(".percent");
-$("#myform").ajaxForm({
+$("#myform_head").ajaxForm({
+  //$(".progress").css({"display":"block"});
+  beforeSend: function() {
+    progress.css({"display":"block"});
+    var percentVal = '0%';
+    bar.width(percentVal);
+    percent.html(percentVal);
+  },
+  uploadProgress: function(event, position, total, percentComplete) {
+    var percentVal = percentComplete + '%';
+    bar.width(percentVal);
+    percent.html(percentVal);
+  },
+  success: function() {
+    var percentVal = '100%';
+    bar.width(percentVal);
+    percent.html(percentVal);
+  },
+  complete: function(data) {
+    progress.css({"display":"none"});
+    var pic = '<a href="' + data.responseText + '" class="swipebox" title=""> <img src="'+ data.responseText +'" alt="image"></a>';
+    switch (b1_col) {
+      case 1:
+        $("#box1_col1").prepend(pic).fadeIn(500);
+          b1_col++;
+          b1_col %= 2;
+          break;
+      case 0:
+        $("#box1_col2").prepend(pic).fadeIn(500);
+          b1_col++;
+          b1_col %= 2;
+          break;
+    }
+	}
+});
+
+$("#myform_hand").ajaxForm({
+  //$(".progress").css({"display":"block"});
+  beforeSend: function() {
+    progress.css({"display":"block"});
+    var percentVal = '0%';
+    bar.width(percentVal);
+    percent.html(percentVal);
+  },
+  uploadProgress: function(event, position, total, percentComplete) {
+    var percentVal = percentComplete + '%';
+    bar.width(percentVal);
+    percent.html(percentVal);
+  },
+  success: function() {
+    var percentVal = '100%';
+    bar.width(percentVal);
+    percent.html(percentVal);
+  },
+  complete: function(data) {
+    progress.css({"display":"none"});
+    var pic = '<a href="' + data.responseText + '" class="swipebox" title=""> <img src="'+ data.responseText +'" alt="image"></a>';
+    switch (b2_col) {
+      case 1:
+        $("#box2_col1").prepend(pic).fadeIn(500);
+          b2_col++;
+          b2_col %= 2;
+          break;
+      case 0:
+			  $("#box2_col2").prepend(pic).fadeIn(500);
+          b2_col++;
+          b2_col %= 2;
+          break;
+    }
+	}
+});
+
+$("#myform_foot").ajaxForm({
+  //$(".progress").css({"display":"block"});
+  beforeSend: function() {
+    progress.css({"display":"block"});
+    var percentVal = '0%';
+    bar.width(percentVal);
+    percent.html(percentVal);
+  },
+  uploadProgress: function(event, position, total, percentComplete) {
+    var percentVal = percentComplete + '%';
+    bar.width(percentVal);
+    percent.html(percentVal);
+  },
+  success: function() {
+    var percentVal = '100%';
+    bar.width(percentVal);
+    percent.html(percentVal);
+  },
+  complete: function(data) {
+    progress.css({"display":"none"});
+    var pic = '<a href="' + data.responseText + '" class="swipebox" title=""> <img src="'+ data.responseText +'" alt="image"></a>';
+    switch (b3_col) {
+      case 1:
+        $("#box3_col1").prepend(pic).fadeIn(500);
+          b3_col++;
+          b3_col %= 2;
+          break;
+      case 0:
+        $("#box3_col2").prepend(pic).fadeIn(500);
+          b3_col++;
+          b3_col %= 2;
+          break;
+    }
+	}
+});
+/*
+$("#myform_head").ajaxForm({
   //$(".progress").css({"display":"block"});
   beforeSend: function() {
     progress.css({"display":"block"});
@@ -76,9 +184,18 @@ $("#myform").ajaxForm({
 
   }
 });
+*/
 
-//show different picture box
+//show different picture box and different upload form
 $("#head").click(function(){
+  //form
+  $("#myform_hand").animate({"opacity":"0"}, 400);
+  $("#myform_hand").css({"display":"none"});
+  $("#myform_foot").animate({"opacity":"0"}, 400);
+  $("#myform_foot").css({"display":"none"});
+  $("#myform_head").css({"display":"block"});
+  $("#myform_head").animate({"opacity":"1"}, 400);
+  //boxes
   $("#box2").animate({"opacity":"0"}, 400);
   $("#box2").css({"display":"none"});
   $("#box3").animate({"opacity":"0"}, 400);
@@ -88,6 +205,14 @@ $("#head").click(function(){
   box = 1;
 });
 $("#hand").click(function(){
+  //form
+	$("#myform_head").animate({"opacity":"0"}, 400);
+  $("#myform_head").css({"display":"none"});
+  $("#myform_foot").animate({"opacity":"0"}, 400);
+  $("#myform_foot").css({"display":"none"});
+  $("#myform_hand").css({"display":"block"});
+  $("#myform_hand").animate({"opacity":"1"}, 400);
+  //boxes
   $("#box1").animate({"opacity":"0"}, 400);
   $("#box1").css({"display":"none"});
   $("#box3").animate({"opacity":"0"}, 400);
@@ -97,6 +222,14 @@ $("#hand").click(function(){
   box = 2;
 });
 $("#feet").click(function(){
+	//form
+	$("#myform_head").animate({"opacity":"0"}, 400);
+  $("#myform_head").css({"display":"none"});
+  $("#myform_hand").animate({"opacity":"0"}, 400);
+  $("#myform_hand").css({"display":"none"});
+  $("#myform_foot").css({"display":"block"});
+  $("#myform_foot").animate({"opacity":"1"}, 400);
+	//boxes
   $("#box1").animate({"opacity":"0"}, 400);
   $("#box1").css({"display":"none"});
   $("#box2").animate({"opacity":"0"}, 400);
@@ -123,16 +256,49 @@ $("document").ready(function(){
       }
     }
   });
-  /*
-  //personal box
+  //personal box (need 3 ajax here)
 	$.ajax({
     method: "POST",
-    url: "personal_box",
+    url: "personal_box_head",
     success : function(data) {
-			
+      var pic;
+      for (i = 0; i < data[1].length; i++) {
+        pic = '<a href="' + data[0] + data[1][i] + '" class="swipebox" title=""> <img src="'+ data[0] + data[1][i] +'" alt="image"></a>';
+        if (i%2 == 0)
+          $("#box1_col1").append(pic);
+        else
+          $("#box1_col2").append(pic);
+      }
     }
   });
-	*/
+	$.ajax({
+    method: "POST",
+    url: "personal_box_hand",
+    success : function(data) {
+      var pic;
+      for (i = 0; i < data[1].length; i++) {
+        pic = '<a href="' + data[0] + data[1][i] + '" class="swipebox" title=""> <img src="'+ data[0] + data[1][i] +'" alt="image"></a>';
+        if (i%2 == 0)
+          $("#box2_col1").append(pic);
+        else
+          $("#box2_col2").append(pic);
+      }
+    }
+  });
+	$.ajax({
+    method: "POST",
+    url: "personal_box_foot",
+    success : function(data) {
+      var pic;
+      for (i = 0; i < data[1].length; i++) {
+        pic = '<a href="' + data[0] + data[1][i] + '" class="swipebox" title=""> <img src="'+ data[0] + data[1][i] +'" alt="image"></a>';
+        if (i%2 == 0)
+          $("#box3_col1").append(pic);
+        else
+          $("#box3_col2").append(pic);
+      }
+    }
+  });
 });
 //logout function
 function back(){

@@ -354,35 +354,110 @@ app.post('/logout',urlencodedParser, function(req,res){
   res.send(null);
 });
 
-//personal box
-app.post('/personal_box',urlencodedParser, function(req,res){
+/*personal box*/
+var fs5 = require('fs');
+app.post('/personal_box_head',urlencodedParser, function(req,res){
+  var path = 'user/'+req.session.id+'/head';
+  fs5.readdir(path, function (err, files) {
+  	if (err) {
+    	throw err;
+    }
+    var send_path = '/'+req.session.id+'/head/';
+    res.send([send_path, files]);
+	});  
+});
+app.post('/personal_box_hand',urlencodedParser, function(req,res){
+  var path = 'user/'+req.session.id+'/hand';
+  fs5.readdir(path, function (err, files) {
+    if (err) {
+      throw err;
+    }
+    var send_path = '/'+req.session.id+'/hand/';
+    res.send([send_path, files]);
+  });
+});
+app.post('/personal_box_foot',urlencodedParser, function(req,res){
+  var path = 'user/'+req.session.id+'/foot';
+  fs5.readdir(path, function (err, files) {
+    if (err) {
+      throw err;
+    }
+    var send_path = '/'+req.session.id+'/foot/';
+    res.send([send_path, files]);
+  });
 });
 
-//picture upload 
+/*picture upload*/
 var fs1 = require('fs');
 var busboy = require('connect-busboy');
 var pic_insert =  "INSERT INTO `wp2017_groupc`.`person_pic` (account, path) VALUES(?,?)";
 app.use(busboy());
-app.post('/upload', function(req, res){
+app.post('/upload_head', function(req, res){
     var fstream;
     var account = req.session.account;
-    var path = '/user/'+req.session.id+'/';
-    var send_path = '/'+req.session.id+'/';
+    var path = '/user/'+req.session.id+'/head/';
+    var send_path = '/'+req.session.id+'/head/';
     req.pipe(req.busboy);
     req.busboy.on('file', function (filedname, file, filename){
         fstream = fs1.createWriteStream(__dirname + path + filename);
         file.pipe(fstream);
         connection.query(pic_insert, [account, path+filename], function (err, result){
-         if (err){
-           console.log("failed");
-         }
-         else{
+        	if (err){
+           	console.log("failed");
+         	}
+         	else{
             console.log("insert!");
-         }
+         	}
         });
         fstream.on('close',function(){
-        fstream.close();
-        res.send(send_path+filename);
+        	fstream.close();
+        	res.send(send_path+filename);
+        });
+    });
+});
+app.post('/upload_hand', function(req, res){
+    var fstream;
+    var account = req.session.account;
+    var path = '/user/'+req.session.id+'/hand/';
+    var send_path = '/'+req.session.id+'/hand/';
+    req.pipe(req.busboy);
+    req.busboy.on('file', function (filedname, file, filename){
+        fstream = fs1.createWriteStream(__dirname + path + filename);
+        file.pipe(fstream);
+        connection.query(pic_insert, [account, path+filename], function (err, result){
+          if (err){
+            console.log("failed");
+          }
+          else{
+            console.log("insert!");
+          }
+        });
+        fstream.on('close',function(){
+          fstream.close();
+          res.send(send_path+filename);
+        });
+    });
+});
+app.post('/upload_foot', function(req, res){
+    var fstream;
+    var account = req.session.account;
+    var path = '/user/'+req.session.id+'/foot/';
+    var send_path = '/'+req.session.id+'/foot/';
+    req.pipe(req.busboy);
+    req.busboy.on('file', function (filedname, file, filename){
+        fstream = fs1.createWriteStream(__dirname + path + filename);
+        file.pipe(fstream);
+        connection.query(pic_insert, [account, path+filename], function (err, result){
+          if (err){
+            console.log("failed");
+          }
+          else{
+            console.log("insert!");
+          }
+        });
+        fstream.on('close',function(){
+          fstream.close();
+          res.send(send_path+filename);
         });
     });
 });
@@ -411,7 +486,7 @@ app.post('/refresh_explore', urlencodedParser, function(req, res){
   });
 });
 
-/*get picture*/
+/*view more*/
 var path = require('path');
 var fs3 = require('fs');
 app.post('/view_more', function(req, res){

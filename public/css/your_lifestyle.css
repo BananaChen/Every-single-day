@@ -64,8 +64,20 @@
 
 }
 .about-left-grid{
-
 }
+
+#myform_head {
+   opacity: 1;
+}
+#myform_hand {
+   opacity: 0;
+   display: none;
+}
+#myform_foot {
+   opacity: 0;
+   display: none;
+}
+
 #box1 {
   width:100%;
   height: 400px;
