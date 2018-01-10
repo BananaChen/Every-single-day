@@ -1,7 +1,7 @@
 const express = require('express');
 const CookieStore = require('cookie-sessions');
 const app = express();
-const port = 2266;
+const port = 2267;
 const bodyParser = require('body-parser');
 const urlencodedParser = bodyParser.urlencoded({extended:false});
 const crypto = require('crypto');
@@ -47,7 +47,7 @@ var fs = require('fs');//make new dir
 //log in
 app.post('/post', function(req, res) {  
   var useraccount = req.body.account;
-  console.log("t = "+req.session.id);
+  //console.log("t = "+req.session.id);
   var userpassword = req.body.password;
   var md5 = crypto.createHash('md5');
   userpassword = md5.update(userpassword).digest('hex');//加密密碼
@@ -340,6 +340,10 @@ app.post('/logout',urlencodedParser, function(req,res){
   res.send(null);
 });
 
+//personal box
+app.post('/personal_box',urlencodedParser, function(req,res){
+});
+
 //picture upload 
 var fs1 = require('fs');
 var busboy = require('connect-busboy');
@@ -347,10 +351,9 @@ var pic_insert =  "INSERT INTO `wp2017_groupc`.`person_pic` (account, path) VALU
 app.use(busboy());
 app.post('/upload', function(req, res){
     var fstream;
-    //var dir = './user/'+fb_id;
     var account = req.session.account;
-    var path = '/user/'+req.session.id;
-    console.log(req.session);
+    var path = '/user/'+req.session.id+'/';
+    var send_path = '/'+req.session.id+'/';
     req.pipe(req.busboy);
     req.busboy.on('file', function (filedname, file, filename){
         fstream = fs1.createWriteStream(__dirname + path + filename);
@@ -365,8 +368,7 @@ app.post('/upload', function(req, res){
         });
         fstream.on('close',function(){
         fstream.close();
-        console.log("Uploading: " +filename);
-        res.send(filename);
+        res.send(send_path+filename);
         });
     });
 });

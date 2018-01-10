@@ -25,11 +25,7 @@ $("#myform").ajaxForm({
   },
   complete: function(data) {
     progress.css({"display":"none"});
-     var p =
-      `
-      <img src="./user/${data.responseText}" style="width:100%">
-      `;
-      var pic = '<a href="' + data.responseText + '" class="swipebox" title=""> <img src="'+ data.responseText +'" alt="image"></a>';
+    var pic = '<a href="' + data.responseText + '" class="swipebox" title=""> <img src="'+ data.responseText +'" alt="image"></a>';
     switch (box) {
       case 1:
         switch (b1_col) {
@@ -122,11 +118,21 @@ $("document").ready(function(){
         $("#yourname").append(`<li><a href="#" onclick="back()">Log Out</a></li>`);
       }
       else {
-        alert(`You should log in first 🙂 `);
+        alert(`You should log in first .. `);
         window.top.location.href = "https://luffy.ee.ncku.edu.tw:2266/form_login.html";
       }
     }
   });
+  /*
+  //personal box
+	$.ajax({
+    method: "POST",
+    url: "personal_box",
+    success : function(data) {
+			
+    }
+  });
+	*/
 });
 //logout function
 function back(){
@@ -134,7 +140,7 @@ function back(){
     method: "POST",
     url: "logout",
     success : function(data) {
-      alert(`You have successfully log out 🙂 `);
+      alert(`You have successfully log out .. `);
       window.top.location.href = "https://luffy.ee.ncku.edu.tw:2266/index.html";
     }
   });
