@@ -125,6 +125,7 @@ app.post('/post_signup',urlencodedParser, function(req, res) {
             console.log("a new dir");
             if(!fs.existsSync(dir)){
                     fs.mkdirSync(dir);
+                    console.log("ok there is dir");
             }
                      }
         });
@@ -142,6 +143,7 @@ app.post('/post_fb',urlencodedParser,function(req, res){
     console.log("in the post_fb");
     var fb_id =`${req.body.id}`;   
     req.session={id:fb_id};
+    console.log(req.session.id);
     var fb_name =`${req.body.name}`;
     signup_account = fb_name;
     var insert = "INSERT INTO `wp2017_groupc`.`user_fb` (NAME, id) VALUES(?,?)"; 
@@ -179,7 +181,7 @@ app.post('/post_fb',urlencodedParser,function(req, res){
           for(fb_name in rows){
             req.session={account:rows[fb_name].NAME, id:rows[fb_name].id, counting:0, department:'0'};
           }
-          console.log("fbname " + req.session.account);
+          console.log(req.session);
           res.send(a);
         }
     });
@@ -350,6 +352,7 @@ app.post('/upload', function(req, res){
     var fstream;
     //var dir = './user/'+fb_id;
     var account = req.session.account;
+    console.log(req.session);
     req.pipe(req.busboy);
     req.busboy.on('file', function (filedname, file, filename){
         fstream = fs1.createWriteStream(__dirname +'/user/'+ filename);
