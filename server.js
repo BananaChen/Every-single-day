@@ -1,7 +1,7 @@
 const express = require('express');
 const CookieStore = require('cookie-sessions');
 const app = express();
-const port = 2267;
+const port = 2266;
 const bodyParser = require('body-parser');
 const urlencodedParser = bodyParser.urlencoded({extended:false});
 const crypto = require('crypto');
@@ -120,7 +120,8 @@ app.post('/post_signup',urlencodedParser, function(req, res) {
           else{
             res.redirect('person_info.html')
             console.log("sign up:" + signup_account);
-       });
+         }
+      });
       }
       else res.send(`Your password is wrong`);
     }
@@ -159,9 +160,16 @@ app.post('/post_fb',urlencodedParser,function(req, res){
             }
             else{ 
               var dir = './user/'+fb_id;//make user dir
-              console.log("a new dir");
+              var dir1 = './user/'+fb_id+'/head/';//make user dir
+              var dir2 = './user/'+fb_id+'/hand';//make user dir
+              var dir3 = './user/'+fb_id+'/foot/';//make user dir
+
+              console.log(dir1);
               if(!fs.existsSync(dir)){
                 fs.mkdirSync(dir);
+                fs.mkdirSync(dir1);
+                fs.mkdirSync(dir2);
+                fs.mkdirSync(dir3);
               }
               res.send("1");
             }
@@ -197,12 +205,18 @@ app.post('/post_info',urlencodedParser, function(req, res) {
     else{
       connection.query(p_select, [p_account], function (err, rows, result){
         for(p_account in rows){
-          req.session = {account:rows[p_account].account, counting:0, department:'0'};
+          req.session = {account:rows[p_account].account, counting:0, department:'0', id:rows[p_account].account};
           console.log("person_info:" + req.session.account);
           var dir ='./user/'+req.session.account;//make user dir
+          var dir1 = './user/'+req.session.account+'/head/';//make user dir
+          var dir2 = './user/'+req.session.account+'/hand';//make user dir
+          var dir3 = './user/'+req.session.account+'/foot/';//make user dir
           console.log("a new dir");
           if(!fs.existsSync(dir)){
             fs.mkdirSync(dir);
+            fs.mkdirSync(dir1);
+            fs.mkdirSync(dir2);
+            fs.mkdirSync(dir3);
           }
           res.redirect('home.html');
         }
@@ -352,12 +366,8 @@ app.use(busboy());
 app.post('/upload', function(req, res){
     var fstream;
     var account = req.session.account;
-<<<<<<< HEAD
-    console.log(req.session);
-=======
     var path = '/user/'+req.session.id+'/';
     var send_path = '/'+req.session.id+'/';
->>>>>>> dfbd73cbefa68c9a0796b1f3e459d99816d5f870
     req.pipe(req.busboy);
     req.busboy.on('file', function (filedname, file, filename){
         fstream = fs1.createWriteStream(__dirname + path + filename);
