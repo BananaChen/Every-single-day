@@ -1,7 +1,7 @@
 const express = require('express');
 const CookieStore = require('cookie-sessions');
 const app = express();
-const port = 2266;
+const port = 2267;
 const bodyParser = require('body-parser');
 const urlencodedParser = bodyParser.urlencoded({extended:false});
 const crypto = require('crypto');
@@ -47,8 +47,7 @@ var fs = require('fs');//make new dir
 //log in
 app.post('/post', function(req, res) {  
   var useraccount = req.body.account;
-  req.session={id:useraccount};
-  console.log("t = "+req.session.id);
+  //console.log("t = "+req.session.id);
   var userpassword = req.body.password;
   var md5 = crypto.createHash('md5');
   userpassword = md5.update(userpassword).digest('hex');//加密密碼
@@ -65,7 +64,7 @@ app.post('/post', function(req, res) {
     }
     if(checkaccount == 1){ 
       if(rows[useraccount].password == userpassword){
-        req.session = {account:rows[useraccount].account, counting:0, department:'0'};
+        req.session = {account:rows[useraccount].account, counting:0, department:'0', id:rows[useraccount].account};
         //req.cookies.is_login = true;
         console.log("log in:" + rows[useraccount].account);
         res.redirect('home.html');
@@ -121,14 +120,7 @@ app.post('/post_signup',urlencodedParser, function(req, res) {
           else{
             res.redirect('person_info.html')
             console.log("sign up:" + signup_account);
-            var dir ='./user/'+req.session.account;//make user dir
-            console.log("a new dir");
-            if(!fs.existsSync(dir)){
-                    fs.mkdirSync(dir);
-                    console.log("ok there is dir");
-            }
-                     }
-        });
+       });
       }
       else res.send(`Your password is wrong`);
     }
@@ -207,6 +199,11 @@ app.post('/post_info',urlencodedParser, function(req, res) {
         for(p_account in rows){
           req.session = {account:rows[p_account].account, counting:0, department:'0'};
           console.log("person_info:" + req.session.account);
+          var dir ='./user/'+req.session.account;//make user dir
+          console.log("a new dir");
+          if(!fs.existsSync(dir)){
+            fs.mkdirSync(dir);
+          }
           res.redirect('home.html');
         }
       });
@@ -343,6 +340,10 @@ app.post('/logout',urlencodedParser, function(req,res){
   res.send(null);
 });
 
+//personal box
+app.post('/personal_box',urlencodedParser, function(req,res){
+});
+
 //picture upload 
 var fs1 = require('fs');
 var busboy = require('connect-busboy');
@@ -350,14 +351,18 @@ var pic_insert =  "INSERT INTO `wp2017_groupc`.`person_pic` (account, path) VALU
 app.use(busboy());
 app.post('/upload', function(req, res){
     var fstream;
-    //var dir = './user/'+fb_id;
     var account = req.session.account;
+<<<<<<< HEAD
     console.log(req.session);
+=======
+    var path = '/user/'+req.session.id+'/';
+    var send_path = '/'+req.session.id+'/';
+>>>>>>> dfbd73cbefa68c9a0796b1f3e459d99816d5f870
     req.pipe(req.busboy);
     req.busboy.on('file', function (filedname, file, filename){
-        fstream = fs1.createWriteStream(__dirname +'/user/'+ filename);
+        fstream = fs1.createWriteStream(__dirname + path + filename);
         file.pipe(fstream);
-        connection.query(pic_insert, [account, '/user/'+filename], function (err, result){
+        connection.query(pic_insert, [account, path+filename], function (err, result){
          if (err){
            console.log("failed");
          }
@@ -367,8 +372,7 @@ app.post('/upload', function(req, res){
         });
         fstream.on('close',function(){
         fstream.close();
-        console.log("Uploading: " +filename);
-        res.send(filename);
+        res.send(send_path+filename);
         });
     });
 });
