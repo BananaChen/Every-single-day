@@ -47,7 +47,6 @@ var fs = require('fs');//make new dir
 //log in
 app.post('/post', function(req, res) {  
   var useraccount = req.body.account;
-  req.session={id:useraccount};
   console.log("t = "+req.session.id);
   var userpassword = req.body.password;
   var md5 = crypto.createHash('md5');
@@ -65,7 +64,7 @@ app.post('/post', function(req, res) {
     }
     if(checkaccount == 1){ 
       if(rows[useraccount].password == userpassword){
-        req.session = {account:rows[useraccount].account, counting:0, department:'0'};
+        req.session = {account:rows[useraccount].account, counting:0, department:'0', id:rows[useraccount].account};
         //req.cookies.is_login = true;
         console.log("log in:" + rows[useraccount].account);
         res.redirect('home.html');
@@ -121,12 +120,7 @@ app.post('/post_signup',urlencodedParser, function(req, res) {
           else{
             res.redirect('person_info.html')
             console.log("sign up:" + signup_account);
-            var dir ='./user/'+req.session.account;//make user dir
-            console.log("a new dir");
-            if(!fs.existsSync(dir)){
-                    fs.mkdirSync(dir);
-            }
-                     }
+          }
         });
       }
       else res.send(`Your password is wrong`);
@@ -205,6 +199,11 @@ app.post('/post_info',urlencodedParser, function(req, res) {
         for(p_account in rows){
           req.session = {account:rows[p_account].account, counting:0, department:'0'};
           console.log("person_info:" + req.session.account);
+          var dir ='./user/'+req.session.account;//make user dir
+          console.log("a new dir");
+          if(!fs.existsSync(dir)){
+            fs.mkdirSync(dir);
+          }
           res.redirect('home.html');
         }
       });
